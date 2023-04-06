@@ -25,3 +25,18 @@ Ha lavorato all'*Eindhoven University of Technology* nei Paesi Bassi e in seguit
 
 ### **Gli ultimi anni**
 Nel **1999**, a quasi settanta anni, Dijkstra si ritira dall'insegnamento. In occasione del suo settantesimo compleanno, il dipartimento di informatica organizza un simposio che si è tenuto nel maggio del **2000**. Nel febbraio del 2002 Edsger Wybe Dijkstra ritorna nel suo Paese d'origine, i Paesi Bassi.
+
+## Attività e contributi 
+I suoi più importanti contributi all'informatica sono stati il cosiddetto "[**algoritmo di Dijkstra**](https://it.wikipedia.org/wiki/Algoritmo_di_Dijkstra)" e il concetto informatico di "[**semaforo**](https://it.wikipedia.org/wiki/Semaforo_(informatica))".
+
+È anche noto per la pessima opinione espressa a proposito dell'uso dell'istruzione GOTO nella programmazione, culminata nel celebre articolo del 1968 *Go To Statement Considered Harmful*, considerato come uno dei passi fondamentali verso il rifiuto generalizzato dell'istruzione GOTO nei linguaggi di programmazione e della sua sostituzione con più funzionali strutture di controllo come il ciclo while. Il celebre titolo dell'articolo non è di Dijkstra, ma di Niklaus Wirth, allora curatore di Communications of the ACM. Dijkstra era noto per essere un fan dell'ALGOL 60, e lavorò nel gruppo che realizzò il primo compilatore per questo linguaggio. Dijkstra e Jaap Zonneveld, che collaborò alla realizzazione del compilatore, si accordarono sul fatto di non radersi fino alla conclusione del progetto. Alla fine Zonneveld si tagliò la lunga barba, mentre Dijkstra preferì mantenerla fino alla fine dei suoi giorni.
+<br/><br/>
+
+Sin dal 1970, l'interesse principale di Dijkstra fu la verifica formale (formal verification). A quel tempo l'opinione prevalente era che bisognasse scrivere prima il programma e solo in seguito fornire una dimostrazione matematica di correttezza formale. Dijkstra obiettò che le dimostrazioni così prodotte erano lunghe ed illeggibili, e che non fornivano nessuna informazione sul modo in cui il programma era stato sviluppato. Il metodo alternativo proposto da Dijkstra fu il cosiddetto program derivation, consistente nello sviluppare in modo parallelo il programma e la dimostrazione. Secondo le parole di Dijkstra: "develop proof and program hand in hand". Partendo da una descrizione matematica di quello che il programma dovrebbe fare, si applicano le opportune trasformazioni matematiche in modo da trasformare la descrizione matematica iniziale in un programma eseguibile. Il programma risultante viene definito come: correct by construction ("corretto per costruzione").
+<br/><br/>
+
+Si occupò anche di sistemi operativi, sviluppando il concetto di semaforo, implementandolo nel sistema operativo THE, e formulando il famoso problema di sincronizzazione detto problema dei cinque filosofi a cena.
+
+Gran parte del lavoro successivo di Dijkstra riguarda i modi per snellire le argomentazioni matematiche. In una intervista del 2001 dichiarò un desiderio di "eleganza", dove l'approccio corretto consiste nell'elaborare i pensieri mentalmente, senza tentare di comunicarli finché non sono completi. L'analogia che fece era in contrasto con l'approccio compositivo di Mozart e Beethoven.
+
+Dijkstra era noto per le sue opinioni schiette riguardo alla programmazione, e per la sua abitudine di comporre attentamente dei manoscritti con la sua penna stilografica. Molti dei suoi appunti sono stati scansionati e sono disponibili online
