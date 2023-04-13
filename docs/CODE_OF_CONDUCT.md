@@ -22,3 +22,54 @@
 - Scriverò del codice che aderisce alle convenzioni di formattazione e di stile scelto dal team
 - Verificherò le funzionalità aggiunte mediante test di unità
 - Risolverò qualsiasi warning
+<br/><br/>
+# Stile di codice
+
+    // variable names
+
+    Class objectName;
+    final Class CONSTANT_NAME;
+
+<br/>
+
+    // if statements
+    
+    if( condition )
+    {
+        // code
+    }
+    else if( condition )
+    {
+        // code
+    }
+    else
+    {
+        // code
+    }
+
+    // while
+    
+    while( condition )
+    {
+        // code
+    }
+
+    // do-while
+
+    do{
+        // code
+    }while( condition )
+
+    // for
+
+    for( initialization; condition; instruction )
+    {
+        // code
+    }
+
+    // functions
+
+    type function_name( type param1, type param2, ... )
+    {
+        // code
+    }
