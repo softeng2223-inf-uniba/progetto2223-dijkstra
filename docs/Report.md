@@ -140,7 +140,7 @@ All'avvio del programma all'utente viene mostrata una descrizione concisa del gi
 ```
 Se l'utente sceglie il comando ```/help``` verrà mostrata la descrizione del gioco e la lista dei comandi selezionabili. 
 
-![Comando help](./img/Comando_help.png)
+![Comando help](./img/comando_help.png)
 
 Se l'utente (dopo aver impostato la difficoltà del gioco) sceglie il comando ```/gioca```  verrà mostrata a schermo la griglia 10x10 vuota (si è scelto di utilizzare il simbolo "_?_" per indicare le varie celle vuote della griglia). Nel caso in cui l'utente abbia selezionato questo comando senza aver prima scelto il livello di difficoltà allora verrà mostrato un messaggio di errore: _"Non è stata impostata alcuna difficoltà! Digitare /facile, /medio o /difficile per impostare una difficoltà!"_, di conseguenza il gioco non potrà iniziare e l'utente dovrà necessariamente selezionare il livello di difficoltà. 
 
