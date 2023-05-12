@@ -126,6 +126,75 @@ Nel gioco della battaglia navale in singolo il tuo obiettivo è di distruggere t
 <br>
 
 # **7. Manuale Utente**
+All'avvio del programma all'utente viene mostrata una descrizione concisa del gioco ed, inoltre, ha la possibilità di scegliere tra un insieme di comandi, ovvero:
+```
+1. /help
+2. /gioca
+3. /esci
+4. /facile
+5. /medio
+6. /difficile
+7. /mostralivello
+8. /mostranavi
+9. /svelagriglia
+```
+Se l'utente sceglie il comando ```/help``` verrà mostrata la descrizione del gioco e la lista dei comandi selezionabili. 
+
+![Comando help](./img/Comando_help.png)
+
+Se l'utente (dopo aver impostato la difficoltà del gioco) sceglie il comando ```/gioca```  verrà mostrata a schermo la griglia 10x10 vuota (si è scelto di utilizzare il simbolo "_?_" per indicare le varie celle vuote della griglia). Nel caso in cui l'utente abbia selezionato questo comando senza aver prima scelto il livello di difficoltà allora verrà mostrato un messaggio di errore: _"Non è stata impostata alcuna difficoltà! Digitare /facile, /medio o /difficile per impostare una difficoltà!"_, di conseguenza il gioco non potrà iniziare e l'utente dovrà necessariamente selezionare il livello di difficoltà. 
+
+![Errore comando gioca](./img/gioca_errore.jpg)
+
+![Inizio gioco](./img/inizio_gioco.jpg)
+
+Se l'utente sceglie il comando ```/esci``` allora potrà uscire dal gioco (dopo aver confermato le sue intenzioni con il comando "_s_").
+Nel caso in cui il comando venga selezionato per sbaglio l'utente ha la possibilità di rispondere "_n_", di conseguenza potranno essere inseriti nuovi comandi. 
+
+![Risposta n](./img/esci_n.jpg)
+
+![Risposta s](./img/esci_s.jpg)
+
+Se l'utente sceglie il comando ```/facile``` l'applicazione risponde con "_Ok!_" e imposta il numero massimo di tentativi a 50. 
+
+![Livello facile](./img/facile.jpg)
+
+Se l'utente sceglie il comando ```/medio``` l'applicazione 
+risponde con "_Ok!_" e imposta il numero massimo di tentativi a 30. 
+
+![Livello medio](./img/medio.jpg)
+
+Se l'utente sceglie il comando ```/difficile``` l'applicazione 
+risponde con "_Ok!_" e imposta il numero massimo di tentativi a 10. 
+
+![Livello difficile](./img/difficile.jpg)
+
+Nel caso in cui l'utente cerchi di modificare la difficoltà, mentre è in corso una partita, verrà mostrato il messaggio di errore: _"La partita è già iniziata!"_.
+
+![Errore livello](./img/errore_livello.jpg)
+
+Se l'utente sceglie il comando ```/mostralivello``` verrà mostrato il livello della partita che si sta giocando con il relativo numero massimo di tentativi. Se questo comando viene scelto quando ancora la partita non è iniziata l'utente visualizzerà il messaggio di errore: _"Non e' stata impostata alcuna difficoltà"_.
+
+![Errore mostra livello](./img/errore_mostra_livello.jpg)
+
+![Mostra livello](./img/mostra_livello.jpg)
+
+Se l'utente sceglie il comando ```/mostranavi``` verrà mostrato a schermo, per ogni tipo di nave, la dimensione in quadrati e il numero di esemplari da affondare.
+
+![Mostra navi](./img/mostra_navi.jpg)
+
+Se l'utente sceglie il comando ```/svelagriglia``` verrà mostrato a schermo la griglia 10x10 e l'utente potrà vedere la posizione giusta delle navi non ancora affondate. Come team abbiamo scelto di rappresentare ogni nave con un colore diverso (per renderle più facilemente distinguibili), in particolare: 
+- Cacciatorpediniere <span style="color:white">_bianco_ (#)</span>,
+- Incrociatore <span style="color:green"> _verde_ (#)</span>,
+- Corazzata <span style="color:yellow"> _giallo_ (#)</span>,
+- Portaerei <span style="color:red"> _rosso_ (#)</span>.
+
+![Svela griglia](./img/svela_griglia.jpg)
+
+Nel caso in cui l'utente non inserisca nessuno tra questi comandi, verrà mostrato il messaggio di errore: _""Comando inesistente o non riconosciuto._
+
+![Errore comando](./img/errore_comando.jpg)
+
 <br>
 
 # **8. Processo di Sviluppo e Organizzazione del Lavoro**
