@@ -84,6 +84,18 @@ public final class App {
                     printDescription();
                     printHelp();
                 break;
+                case "/esci":
+                    do {
+                        System.out.print(
+                        ANSICodes.FYELLOW
+                        + "Sei sicuro di voler uscire? [ s / n ]: "
+                        + ANSICodes.RESET);
+                        command = input.nextLine().toLowerCase();
+                        if (command.compareTo("s") == 0) {
+                            exit = true;
+                        }
+                    } while (!exit && command.compareTo("n") != 0);
+                break;
                 default:
                     System.out.println(
                         ANSICodes.FRED
