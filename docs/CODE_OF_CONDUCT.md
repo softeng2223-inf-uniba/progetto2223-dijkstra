@@ -34,42 +34,36 @@
 
     // if statements
     
-    if( condition )
-    {
+    if (condition) {
         // code
     }
-    else if( condition )
-    {
+    else if (condition) {
         // code
     }
-    else
-    {
+    else {
         // code
     }
 
     // while
     
-    while( condition )
-    {
+    while (condition) {
         // code
     }
 
     // do-while
 
-    do{
+    do {
         // code
-    }while( condition )
+    } while (condition)
 
     // for
 
-    for( initialization; condition; instruction )
-    {
+    for (initialization; condition; instruction) {
         // code
     }
 
     // functions
 
-    type function_name( type param1, type param2, ... )
-    {
+    type function_name(type param1, type param2, ...) {
         // code
     }
