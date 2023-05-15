@@ -73,6 +73,7 @@ public final class App {
                         System.out.println("\nPer consultare la lista dei comandi disponibili, digitare /help!");
                     }
         String command;
+        String difficultyName;
         Scanner input = new Scanner(System.in);
         Difficulty difficulty = null;
         Map map = null;
@@ -108,6 +109,24 @@ public final class App {
                         System.out.println("Ok!");
                     } else {
                         System.out.println("La partita e' gia' iniziata!");
+                    }
+                    break;
+                case "/mostralivello":
+                    if (difficulty != null) {
+                        difficultyName = difficulty.name();
+                        System.out.print("Difficolta': ");
+                        if (difficultyName.compareTo("EASY") == 0) {
+                            System.out.println("Facile");
+                        } else if (difficultyName.compareTo("MEDIUM") == 0) {
+                            System.out.println("Medio");
+                        } else {
+                            System.out.println("Difficile");
+                        }
+                        System.out.println("Max. Tentativi Falliti: "
+                        + difficulty.getMaxFailures());
+                    } else {
+                        System.out.println(
+                            "Non e' stata impostata alcuna difficolta'");
                     }
                     break;
                 case "/esci":
