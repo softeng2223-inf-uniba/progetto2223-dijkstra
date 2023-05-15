@@ -1,4 +1,7 @@
 package it.uniba.app;
+
+import java.util.Scanner;
+
 /**
  * Main app class.
  */
@@ -71,6 +74,7 @@ public final class App {
                     }
         String command;
         Scanner input = new Scanner(System.in);
+        boolean exit = false;
         do {
             System.out.print("> ");
             command = input.nextLine();
