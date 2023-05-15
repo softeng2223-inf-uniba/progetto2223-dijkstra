@@ -74,6 +74,8 @@ public final class App {
                     }
         String command;
         Scanner input = new Scanner(System.in);
+        Difficulty difficulty = null;
+        Map map = null;
         boolean exit = false;
         do {
             System.out.print("> ");
@@ -84,6 +86,30 @@ public final class App {
                     printDescription();
                     printHelp();
                 break;
+                case "/facile":
+                    if (map == null) {
+                        difficulty = Difficulty.EASY;
+                        System.out.println("Ok!");
+                    } else {
+                        System.out.println("La partita e' gia' iniziata!");
+                    }
+                    break;
+                case "/medio":
+                    if (map == null) {
+                        difficulty = Difficulty.MEDIUM;
+                        System.out.println("Ok!");
+                    } else {
+                        System.out.println("La partita e' gia' iniziata!");
+                    }
+                    break;
+                case "/difficile":
+                    if (map == null) {
+                        difficulty = Difficulty.HARD;
+                        System.out.println("Ok!");
+                    } else {
+                        System.out.println("La partita e' gia' iniziata!");
+                    }
+                    break;
                 case "/esci":
                     do {
                         System.out.print(
