@@ -74,7 +74,7 @@ public final class App {
                     }
         String command;
         String difficultyName;
-        Scanner input = new Scanner(System.in);
+        Scanner input = new Scanner(System.in, "UTF-8");
         Difficulty difficulty = null;
         Map map = null;
         boolean exit = false;
@@ -158,6 +158,16 @@ public final class App {
                             "E' gia' in corso un'altra partita!");
                         System.out.println(
                             "Digita /esci per terminare la partita!");
+                    }
+                    break;
+                case "/svelagriglia":
+                    if (map != null) {
+                        System.out.println(map.toString());
+                    } else {
+                        System.out.println(
+                            "La partita non e' ancora iniziata.");
+                        System.out.println(
+                            "Digita /gioca per iniziare una nuova partita!");
                     }
                     break;
                 case "/esci":
