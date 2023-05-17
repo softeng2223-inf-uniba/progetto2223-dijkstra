@@ -74,7 +74,7 @@ public final class App {
                     }
         String command;
         String difficultyName;
-        Scanner input = new Scanner(System.in,"UTF-8");
+        Scanner input = new Scanner(System.in, "UTF-8");
         Difficulty difficulty = null;
         Map map = null;
         boolean exit = false;
