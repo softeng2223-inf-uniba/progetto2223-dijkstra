@@ -183,15 +183,15 @@ Se l'utente sceglie il comando ```/mostranavi``` verrà mostrato a schermo, per 
 
 ![Mostra navi](./img/mostra_navi.jpg)
 
-Se l'utente sceglie il comando ```/svelagriglia``` verrà mostrato a schermo la griglia 10x10 e l'utente potrà vedere la posizione giusta delle navi non ancora affondate. Come team abbiamo scelto di rappresentare ogni nave con un colore diverso (per renderle più facilemente distinguibili), in particolare: 
-- Cacciatorpediniere <span style="color:white">_bianco_ (#)</span>,
-- Incrociatore <span style="color:green"> _verde_ (#)</span>,
-- Corazzata <span style="color:yellow"> _giallo_ (#)</span>,
-- Portaerei <span style="color:red"> _rosso_ (#)</span>.
+Se l'utente sceglie il comando ```/svelagriglia``` verrà mostrato a schermo la griglia 10x10 e l'utente potrà vedere la posizione giusta delle navi non ancora affondate. Come team abbiamo scelto di rappresentare ogni nave con un colore diverso (per renderle più facilmente distinguibili), in particolare: 
+- Cacciatorpediniere: _bianco_,
+- Incrociatore: _verde_,
+- Corazzata: _giallo_,
+- Portaerei: _rosso_.
 
 ![Svela griglia](./img/svela_griglia.jpg)
 
-Nel caso in cui l'utente non inserisca nessuno tra questi comandi, verrà mostrato il messaggio di errore: _""Comando inesistente o non riconosciuto._
+Nel caso in cui l'utente non inserisca nessuno tra questi comandi, verrà mostrato il messaggio di errore: _"Comando inesistente o non riconosciuto."_
 
 ![Errore comando](./img/errore_comando.jpg)
 
