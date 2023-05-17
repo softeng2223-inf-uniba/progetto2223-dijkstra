@@ -129,6 +129,16 @@ public final class App {
                             "Non e' stata impostata alcuna difficolta'");
                     }
                     break;
+                case "/mostranavi":
+                    if (map == null) {
+                        System.out.println(
+                            "Non e' in esecuzione nessuna partita!");
+                        System.out.println(
+                            "Digita /gioca per iniziare una nuova partita!");
+                    } else {
+                        System.out.println(map.shipStats());
+                    }
+                    break;
                 case "/esci":
                     do {
                         System.out.print(
