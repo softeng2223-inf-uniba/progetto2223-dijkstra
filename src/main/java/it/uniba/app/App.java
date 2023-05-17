@@ -139,6 +139,27 @@ public final class App {
                         System.out.println(map.shipStats());
                     }
                     break;
+                case "/gioca":
+                    if (map == null) {
+                        if (difficulty == null) {
+                            System.out.println(
+                            "Non e' stata impostata alcuna difficolta'!");
+                            System.out.print(
+                            "Digitare /facile, /medio o /difficile");
+                            System.out.println(
+                            " per impostare una difficolta'!");
+                        } else {
+                            map = new Map();
+                            System.out.println("Partita avviata!");
+                            System.out.println(map.getMapGrid());
+                        }
+                    } else {
+                        System.out.println(
+                            "E' gia' in corso un'altra partita!");
+                        System.out.println(
+                            "Digita /esci per terminare la partita!");
+                    }
+                    break;
                 case "/esci":
                     do {
                         System.out.print(
