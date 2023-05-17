@@ -30,7 +30,6 @@ public final class App {
         System.out.println("");
     }
     private static void printHelp() {
-        System.out.println("Buona fortuna nell'affrontare il computer!\n");
         System.out.println("I comandi utilizzabili sono:");
         System.out.println("1. /help");
         System.out.println("2. /gioca");
@@ -44,7 +43,7 @@ public final class App {
     }
     private static void printDescription() {
         System.out.println(
-            "La versione a singolo giocatore di Battaglia"
+            "La versione a singolo giocatore di Battaglia "
             + "Navale prevede che il giocatore affronti il computer.");
         System.out.println(
         "Il computer posiziona navi di "
@@ -57,6 +56,7 @@ public final class App {
         + "progressivamente sempre piu' difficili, "
         + "in cui diminuisce il numero massimo "
         + "di tentativi falliti per l'utente.");
+        System.out.println("Buona fortuna nell'affrontare il computer!\n");
     }
     /**
      * Entry point.
