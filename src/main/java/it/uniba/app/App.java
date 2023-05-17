@@ -160,6 +160,16 @@ public final class App {
                             "Digita /esci per terminare la partita!");
                     }
                     break;
+                case "/svelagriglia":
+                    if (map != null) {
+                        System.out.println(map.toString());
+                    } else {
+                        System.out.println(
+                            "La partita non e' ancora iniziata.");
+                        System.out.println(
+                            "Digita /gioca per iniziare una nuova partita!");
+                    }
+                    break;
                 case "/esci":
                     do {
                         System.out.print(
