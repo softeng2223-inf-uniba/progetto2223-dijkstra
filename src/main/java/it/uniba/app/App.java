@@ -59,7 +59,7 @@ public final class App {
         System.out.println("Buona fortuna nell'affrontare il computer!\n");
     }
     /**
-     * Entry point.
+     * Main game loop.
      * @param args
      */
     public static void main(final String[] args) {

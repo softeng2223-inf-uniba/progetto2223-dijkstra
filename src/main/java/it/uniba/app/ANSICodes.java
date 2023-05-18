@@ -1,6 +1,6 @@
 package it.uniba.app;
 /**
- * ANSICodes class.
+ * ANSICodes class in order to format text.
  */
 public final class ANSICodes {
     public static final String FBLACK = "\033[30m";

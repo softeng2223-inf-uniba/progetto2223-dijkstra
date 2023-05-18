@@ -1,6 +1,7 @@
 package it.uniba.app;
 /**
  * Class for ship in Battleship.
+ * This class describes the behaviour of a ship during the game.
  */
 public final class Ship {
     private ShipType type;

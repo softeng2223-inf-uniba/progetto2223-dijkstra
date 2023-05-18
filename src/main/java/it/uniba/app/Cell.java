@@ -14,7 +14,7 @@ public final class Cell {
     }
     /**
      * Cell Constructor.
-     * @param inShip - specifies the ship in the cell.
+     * @param inShip - specifies the ship to put in the cell.
      */
     public Cell(final Ship inShip) {
         hit = false;
