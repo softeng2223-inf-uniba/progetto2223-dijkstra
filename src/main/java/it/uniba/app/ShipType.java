@@ -1,6 +1,6 @@
 package it.uniba.app;
 /**
- * Enum class for ship types of Battleship.
+ * Enum class for ship types (and their dimension) of Battleship.
  */
 public enum ShipType {
     DESTROYER(2),           // cacciatorpediniere
@@ -10,6 +10,10 @@ public enum ShipType {
 
     private final int size;
 
+    /**
+     * ShipType constructor.
+     * @param inSize - specifies the ship size.
+     */
     ShipType(final int inSize) {
         this.size = inSize;
     }

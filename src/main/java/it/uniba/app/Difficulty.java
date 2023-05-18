@@ -8,7 +8,10 @@ public enum Difficulty {
     HARD(10);
 
     private final int maxFailures;
-
+    /**
+     * Difficulty constructor.
+     * @param inMaxFailures - specifies the maximum number of failures.
+     */
     Difficulty(final int inMaxFailures) {
         this.maxFailures = inMaxFailures;
     }

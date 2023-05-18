@@ -3,6 +3,7 @@ import java.util.Random;
 
 /**
  * Class for the map of Battleship.
+ * This class describe the behaviour of the map during the game.
  */
 public final class Map {
     public static final int CELLS_NUMBER = 10;
@@ -67,7 +68,6 @@ public final class Map {
             return false;
         }
         while (i < size && map[row][col + i].isFree()) {
-            // System.out.println("row: "+(row)+"\tcol: "+(col+i));
             i++;
         }
 
@@ -81,8 +81,6 @@ public final class Map {
             return false;
         }
         while (i < size && map[row + i][col].isFree()) {
-            // System.out.println("row: "+(row+i)+"\ncol: "+(col));
-
             i++;
         }
 
@@ -96,7 +94,6 @@ public final class Map {
             return false;
         }
         while (i < size && map[row][col - i].isFree()) {
-            // System.out.println("row: "+(row)+"\ncol: "+(col-i));
             i++;
         }
 
@@ -110,7 +107,6 @@ public final class Map {
             return false;
         }
         while (i < size && map[row - i][col].isFree()) {
-            // System.out.println("row: "+(row-i)+"\ncol: "+(col));
             i++;
         }
 
@@ -174,7 +170,7 @@ public final class Map {
     }
 
     /**
-     * Returns the Map grid updated on every attempt.
+     * Returns the String representation of the Map grid updated on every attempt.
      * @return String
      */
     public String getMapGrid() {
@@ -208,7 +204,7 @@ public final class Map {
     }
 
     /**
-     * Returns a string that describes all alive and dead ships.
+     * Returns a string that describes all alive and sunken ships.
      * @return String
      */
     public String shipStats() {
