@@ -31,15 +31,15 @@ public final class App {
     }
     private static void printHelp() {
         System.out.println("I comandi utilizzabili sono:");
-        System.out.println("1. /help");
-        System.out.println("2. /gioca");
-        System.out.println("3. /esci");
-        System.out.println("4. /facile");
-        System.out.println("5. /medio");
-        System.out.println("6. /difficile");
-        System.out.println("7. /mostralivello");
-        System.out.println("8. /mostranavi");
-        System.out.println("9. /svelagriglia");
+        System.out.println("1. /help            mostra l'elenco dei comandi disponibili");
+        System.out.println("2. /gioca           avvia una nuova partita");
+        System.out.println("3. /esci            termina il gioco");
+        System.out.println("4. /facile          imposta la difficoltà a facile");
+        System.out.println("5. /medio           imposta la difficoltà a medio");
+        System.out.println("6. /difficile       imposta la difficoltà a difficile");
+        System.out.println("7. /mostralivello   mostra il livello di difficoltà impostato");
+        System.out.println("8. /mostranavi      mostra le navi da affondare presenti sulla griglia");
+        System.out.println("9. /svelagriglia    mostra la griglia con le navi posizionate");
     }
     private static void printDescription() {
         System.out.println(
