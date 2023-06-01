@@ -205,3 +205,7 @@ Nel caso in cui l'utente non inserisca nessuno tra questi comandi, verrà mostra
 ## **9.1 Sprint 0**
 
 ![Analisi retrospettiva sprint 0](./img/Analisi_retrospettiva_sprint_0.png)
+
+## **9.2 Sprint 1**
+
+![Analisi retrospettiva sprint 0](./img/Analisi_retrospettiva_sprint_1.png)
