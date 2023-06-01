@@ -22,7 +22,7 @@ Nel gioco della battaglia navale in singolo il tuo obiettivo è di distruggere t
 
 # **2. Modello di dominio**
 
-![Diagramma classi](./img/Diagramma_classi.png)
+![Diagramma classi](./img/Diagramma_classi.jpg)
 <br>
 
 # **3. Requisiti specifici**
