@@ -9,8 +9,11 @@
 5. [OO Design](#5-oo-design)
 6. [Riepilogo del test](#6-riepilogo-del-test)
 7. [Manuale utente](#7-manuale-utente)
-8. [Processo di sviluppo e organizzazione del lavoro](#8-processo-di-sviluppo-e-organizzazione-del-lavoro)
-9. [Analisi retrospettiva](#9-analisi-retrospettiva) <br>
+8. [Processo di Sviluppo e Organizzazione del Lavoro](#8-processo-di-sviluppo-e-organizzazione-del-lavoro) <br>
+    8.1 [Processo di Sviluppo adottato](#81-processo-di-sviluppo-adottato) <br>
+    8.2 [Organizzazione del Lavoro](#82-organizzazione-del-lavoro) <br>
+    8.3 [Tool Utilizzati](#83-tool-utilizzati)
+9. [Analisi Retrospettiva](#9-analisi-retrospettiva) <br>
     9.1 [Sprint 0](#91-sprint-0) <br>
     9.2 [Sprint 1](#92-sprint-1)
     
@@ -293,6 +296,34 @@ Nel caso in cui l'utente non inserisca nessuno tra questi comandi, verrà mostra
 <br>
 
 # **8. Processo di Sviluppo e Organizzazione del Lavoro**
+
+## **8.1 Processo di Sviluppo adottato**
+Il gruppo Dijkstra per la realizzazione di questo progetto ha scelto di adottare il processo di sviluppo agile, più in particolare utilizzando il framework Scrum facendo riferimento anche al [codice di condotta](./CODE_OF_CONDUCT.md).
+
+All'inizio di ogni Sprint si è svolto un Meeting di Retrospettiva con l'obiettivo di eseguire una revisione dello Sprint precedente per individuare problematiche riscontrate durante lo svolgimento, nonchè proporre miglioramenti relativi anche dal punto di vista della produttività e dell'efficienza del gruppo.
+
+<br>
+
+
+## **8.2 Organizzazione del Lavoro**
+
+Per coordinare il lavoro, il gruppo ha utilizzato (oltre ai meeting fisici) diverse piattaforme di comunicazione, tra cui **Whatsapp** e **Discord**. Questi strumenti hanno facilitato la condivisione di file, immagini e documentazione, nonché la discussione dei problemi incontrati durante lo sviluppo.
+
+![Server Discord](./img/Screen_server_discord.png)
+
+In particolare, **Whatsapp** è stato utilizzato per decidere e organizzare meeting periodici, oltre a incontri straordinari per questioni di rilevanza. I meeting si sono poi svolti su **Discord**, dove è stato creato un server privato di comunicazione con canali specifici per mantenere ordine e organizzazione. Questo ci ha permesso di gestire al meglio la nostra collaborazione permettendoci di eseguire una corretta suddivisione del carico di lavoro.
+
+Per quanto riguarda i meeting periodici, questi sono stati programmati ogni fine settimana al fine di rispettare gli impegni di tutti i componenti del team. Essi avevano una durata variabile in base alle funzionalità da implementare e da aggiornare. Durante questi incontri i membri generalmente si suddividevano in sottogruppi per realizzare task differenti. La formazione dei sottogruppi era variabile al fine di confrontare i diversi punti di vista, fornendo supporto in caso di difficoltà riscontrate nell'avanzamento del lavoro.
+
+L'utilizzo di queste piattaforme di comunicazione e l'organizzazione dei meeting hanno contribuito a mantenere un flusso di lavoro efficiente e una collaborazione continua all'interno del gruppo.
+
+<br>
+
+## **8.3 Tool Utilizzati**
+
+Per lo svolgimento delle varie attività sono stati utilizzati una serie di tool. <br>
+Uno di questi è stato **Microsoft Whiteboard**, utilizzato per la relizzazione delle analisi retrospettive secondo lo schema Arrabbiato/Triste/Felice e per la creazione di bozze inerenti i diagrammi delle classi (con prospettiva concettuale e sw). Tali bozze sono poi state rielaborate in **StarUML** e/o **Draw.io**, per schematizzare al meglio i concetti.
+
 <br>
 
 # **9. Analisi Retrospettiva**
