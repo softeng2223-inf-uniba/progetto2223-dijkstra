@@ -98,7 +98,7 @@ Nel gioco della battaglia navale in singolo il tuo obiettivo è di distruggere t
 
     ```
     Al comando /svelagriglia 
-    l’applicazione risponde visualizzando, una griglia (10x10, 18x18 o 26x26 in base alla dimensione decisa dal giocatore), con le righe numerate da 1 a 10, 18 o 26 e le colonne numerate da A a J, R o Z, e tutte le navi posizionate
+    l’applicazione risponde visualizzando, una griglia con le righe numerate a partire da 1 e le colonne numerate a partire da A, e tutte le navi posizionate
     ```
 
 - **RF8**: Come giocatore voglio impostare il numero massimo di tentativi falliti per livello di gioco 
@@ -172,7 +172,8 @@ Nel gioco della battaglia navale in singolo il tuo obiettivo è di distruggere t
 
     ```
     Criteri di accettazione 
-    l’applicazione risponde visualizzando, una griglia (10x10, 18x18 o 26x26 in base alla dimensione decisa dal giocatore), con le righe numerate da 1 a 10, 18 o 26 e le colonne numerate da A a J, R o Z, con le navi affondate e le sole parti già colpite delle navi non affondate.
+    Al comando /mostragriglia
+    l’applicazione risponde visualizzando, una griglia con le righe numerate a partire da 1 e le colonne numerate a partire da A, con le navi affondate e le sole parti già colpite delle navi non affondate. 
     ```
 
 - **RF15**: Come giocatore voglio mostrare il numero di tentativi già effettuati e il numero di tentativi falliti 
