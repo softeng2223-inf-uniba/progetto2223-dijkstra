@@ -208,7 +208,7 @@ public final class App {
                         Shell.printlnMessage("Ok!");
                         mapType = MapType.STANDARD;
                     } else {
-                        Shell.printlnMessage("La partita è già iniziata!");
+                        Shell.printlnMessage("La partita e' già iniziata!");
                     }
                     break;
                 case "/large":
@@ -216,7 +216,7 @@ public final class App {
                         Shell.printlnMessage("Ok!");
                         mapType = MapType.LARGE;
                     } else {
-                        Shell.printlnMessage("La partita è già iniziata!");
+                        Shell.printlnMessage("La partita e' già iniziata!");
                     }
                     break;
                 case "/extralarge":
@@ -224,7 +224,7 @@ public final class App {
                         Shell.printlnMessage("Ok!");
                         mapType = MapType.EXTRALARGE;
                     } else {
-                        Shell.printlnMessage("La partita è già iniziata!");
+                        Shell.printlnMessage("La partita e' già iniziata!");
                     }
                     break;
                 case "/mostragriglia":
