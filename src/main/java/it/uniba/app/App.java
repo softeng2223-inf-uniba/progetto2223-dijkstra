@@ -177,6 +177,16 @@ public final class App {
                         Shell.printlnMessage("La partita è già iniziata!");
                     }
                     break;
+                case "/mostragriglia":
+                    if (match == null) {
+                        Shell.printlnMessage(
+                            "Non e' in esecuzione nessuna partita!");
+                        Shell.printlnMessage(
+                            "Digita /gioca per iniziare una nuova partita!");
+                    } else {
+                        Shell.printlnMessage(match.getMap().getMapGrid());
+                    }
+                    break;
                 case "/esci":
                     do {
                         Shell.printMessage(
