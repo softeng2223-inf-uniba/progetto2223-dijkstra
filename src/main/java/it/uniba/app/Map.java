@@ -6,25 +6,43 @@ import java.util.Random;
  * This class describe the behaviour of the map during the game.
  */
 public final class Map {
-    public static final int CELLS_NUMBER = 10;
     public static final int DESTROYERS_NUMBER = 4;
     public static final int CRUISERS_NUMBER = 3;
     public static final int ARMOUREDS_NUMBER = 2;
     public static final int AIRCRAFT_CARRIERS_NUMBER = 1;
+    private MapType type;
     private Cell[][] map;
+
+    /**
+     * Copy Constructor.
+     * @param inMap
+     */
+    public Map(final Map inMap) {
+        int size = inMap.getMapType().getSize();
+        map = new Cell[size][size];
+        type = inMap.type;
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                map[i][j] = inMap.getCell(i, j);
+            }
+        }
+    }
 
     /**
      * Map Constructor that initializes the grid with random ship positioning.
      */
-    public Map() {
+    public Map(final MapType inType) {
         Random rand = new Random();
         int row;
         int col;
 
-        map = new Cell[CELLS_NUMBER][CELLS_NUMBER];
+        type = inType;
+        int size = type.getSize();
 
-        for (int i = 0; i < CELLS_NUMBER; i++) {
-            for (int j = 0; j < CELLS_NUMBER; j++) {
+        map = new Cell[size][size];
+
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
                 if (map[i][j] == null) {
                     map[i][j] = new Cell();
                 }
@@ -33,54 +51,56 @@ public final class Map {
 
         for (int i = 0; i < DESTROYERS_NUMBER; i++) {
             do {
-                row = rand.nextInt(CELLS_NUMBER);
-                col = rand.nextInt(CELLS_NUMBER);
+                row = rand.nextInt(size);
+                col = rand.nextInt(size);
             } while (!setDirection(row, col, new Ship(ShipType.DESTROYER)));
         }
 
         for (int i = 0; i < CRUISERS_NUMBER; i++) {
             do {
-                row = rand.nextInt(CELLS_NUMBER);
-                col = rand.nextInt(CELLS_NUMBER);
+                row = rand.nextInt(size);
+                col = rand.nextInt(size);
             } while (!setDirection(row, col, new Ship(ShipType.CRUISER)));
         }
 
         for (int i = 0; i < ARMOUREDS_NUMBER; i++) {
             do {
-                row = rand.nextInt(CELLS_NUMBER);
-                col = rand.nextInt(CELLS_NUMBER);
+                row = rand.nextInt(size);
+                col = rand.nextInt(size);
             } while (!setDirection(row, col, new Ship(ShipType.ARMOURED)));
         }
 
         for (int i = 0; i < AIRCRAFT_CARRIERS_NUMBER; i++) {
             do {
-                row = rand.nextInt(CELLS_NUMBER);
-                col = rand.nextInt(CELLS_NUMBER);
+                row = rand.nextInt(size);
+                col = rand.nextInt(size);
             } while
             (!setDirection(row, col, new Ship(ShipType.AIRCRAFT_CARRIER)));
         }
     }
 
-    private boolean checkRight(final int row, final int col, final int size) {
+    private boolean checkRight(final int row, final int col, final int shipSize) {
         int i = 0;
+        int size = type.getSize();
 
-        if (col > CELLS_NUMBER - size) {
+        if (col > size - shipSize) {
             return false;
         }
-        while (i < size && map[row][col + i].isFree()) {
+        while (i < shipSize && map[row][col + i].isFree()) {
             i++;
         }
 
         return i == size;
     }
 
-    private boolean checkBelow(final int row, final int col, final int size) {
+    private boolean checkBelow(final int row, final int col, final int shipSize) {
         int i = 0;
+        int size = type.getSize();
 
-        if (row > CELLS_NUMBER - size) {
+        if (row > size - shipSize) {
             return false;
         }
-        while (i < size && map[row + i][col].isFree()) {
+        while (i < shipSize && map[row + i][col].isFree()) {
             i++;
         }
 
@@ -142,11 +162,35 @@ public final class Map {
         return set;
     }
 
+    public MapType getMapType() {
+        return type;
+    }
+
+    /**
+     * Returns the cell in position row and col in map.
+     * @param row - the row position.
+     * @param col - the column position.
+     * @return
+     */
+    public Cell getCell(final int row, final int col) {
+        return map[row][col];
+    }
+
+    /**
+     * Returns the revelead grid with all ship positions.
+     * @return String - represents the grid in a formatted String.
+     */
     @Override
     public String toString() {
         StringBuffer s = new StringBuffer();
         int i = 0;
-        s.append("\n\tA B C D E F G H I J\n\n\n");
+        int size = type.getSize();
+        s.append("\n\t");
+        for (int j = 0; j < size; j++) {
+            s.append((char) (((int) 'A') + j));
+            s.append(" ");
+        }
+        s.append("\n\n\n");
         for (Cell[] cells : map) {
             s.append((i + 1) + "\t");
             for (Cell cell : cells) {
@@ -176,7 +220,13 @@ public final class Map {
     public String getMapGrid() {
         StringBuffer s = new StringBuffer();
         int i = 0;
-        s.append("\n\tA B C D E F G H I J\n\n\n");
+        int size = type.getSize();
+        s.append("\n\t");
+        for (int j = 0; j < size; j++) {
+            s.append((char) (((int) 'A') + j));
+            s.append(" ");
+        }
+        s.append("\n\n\n");
         for (Cell[] cells : map) {
             s.append((i + 1) + "\t");
             for (Cell cell : cells) {
@@ -207,7 +257,7 @@ public final class Map {
      * Returns a string that describes all alive and sunken ships.
      * @return String
      */
-    public String shipStats() {
+    public String getShipStats() {
         StringBuffer s = new StringBuffer();
         int carriers = 0;
         int armoureds = 0;
