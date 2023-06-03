@@ -77,6 +77,7 @@ public final class App {
         Scanner input = new Scanner(System.in, "UTF-8");
         Difficulty difficulty = null;
         Map map = null;
+        MapType mapType = MapType.STANDARD;
         boolean exit = false;
         do {
             System.out.print("> ");
@@ -136,7 +137,7 @@ public final class App {
                         System.out.println(
                             "Digita /gioca per iniziare una nuova partita!");
                     } else {
-                        System.out.println(map.shipStats());
+                        System.out.println(map.getShipStats());
                     }
                     break;
                 case "/gioca":
@@ -149,7 +150,7 @@ public final class App {
                             System.out.println(
                             " per impostare una difficolta'!");
                         } else {
-                            map = new Map();
+                            map = new Map(mapType);
                             System.out.println("Partita avviata!");
                             System.out.println(map.getMapGrid());
                         }
