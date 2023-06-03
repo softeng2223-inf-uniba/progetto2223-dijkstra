@@ -85,31 +85,81 @@ public final class App {
             Shell.printMessage("> ");
             command = SHELL.getInput();
             command = command.toLowerCase();
-            switch (command) {
+
+            String[] splittedCommand = command.split("\\s+");
+
+            if (splittedCommand.length > 2) {
+                Shell.printlnMessage(ANSICodes.FRED + "Comando inesistente o non riconosciuto." + ANSICodes.RESET);
+                continue;
+            }
+
+            switch (splittedCommand[0]) {
                 case "/help":
                     printDescription();
                     printHelp();
                 break;
                 case "/facile":
                     if (match == null) {
-                        difficulty.setCurrentLevel(Difficulty.Level.EASY);
-                        Shell.printlnMessage("Ok!");
+                        if (splittedCommand.length == 2) {
+                            try {
+                                int number = Integer.parseInt(splittedCommand[1]);
+                                if (number > 0) {
+                                    Difficulty.setEasyMaxFailures(number);
+                                    Shell.printlnMessage("Ok!");
+                                } else {
+                                    Shell.printlnMessage("Non puoi impostare un un numero di tentativi negativo o uguale a zero.");
+                                }
+                            } catch (NumberFormatException e) {
+                                Shell.printlnMessage("Numero non valido.");
+                            }
+                        } else {
+                            difficulty.setCurrentLevel(Difficulty.Level.EASY);
+                            Shell.printlnMessage("Ok!");
+                        }
                     } else {
                         Shell.printlnMessage("La partita e' gia' iniziata!");
                     }
                     break;
                 case "/medio":
                     if (match == null) {
-                        difficulty.setCurrentLevel(Difficulty.Level.MEDIUM);
-                        Shell.printlnMessage("Ok!");
+                        if (splittedCommand.length == 2) {
+                            try {
+                                int number = Integer.parseInt(splittedCommand[1]);
+                                if (number > 0) {
+                                    Difficulty.setMediumMaxFailures(number);
+                                    Shell.printlnMessage("Ok!");
+                                } else {
+                                    Shell.printlnMessage("Non puoi impostare un un numero di tentativi negativo o uguale a zero.");
+                                }
+                            } catch (NumberFormatException e) {
+                                Shell.printlnMessage("Numero non valido.");
+                            }
+                        } else {
+                            difficulty.setCurrentLevel(Difficulty.Level.MEDIUM);
+                            Shell.printlnMessage("Ok!");
+                        }
                     } else {
                         Shell.printlnMessage("La partita e' gia' iniziata!");
                     }
                     break;
                 case "/difficile":
                     if (match == null) {
-                        difficulty.setCurrentLevel(Difficulty.Level.HARD);
-                        Shell.printlnMessage("Ok!");
+                        if (splittedCommand.length == 2) {
+                            try {
+                                int number = Integer.parseInt(splittedCommand[1]);
+                                if (number > 0) {
+                                    Difficulty.setHardMaxFailures(number);
+                                    Shell.printlnMessage("Ok!");
+                                } else {
+                                    Shell.printlnMessage("Non puoi impostare un un numero di tentativi negativo o uguale a zero.");
+                                }
+                            } catch (NumberFormatException e) {
+                                Shell.printlnMessage("Numero non valido.");
+                            }
+                        } else {
+                            difficulty.setCurrentLevel(Difficulty.Level.HARD);
+                            Shell.printlnMessage("Ok!");
+                        }
                     } else {
                         Shell.printlnMessage("La partita e' gia' iniziata!");
                     }
