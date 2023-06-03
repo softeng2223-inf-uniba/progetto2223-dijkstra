@@ -72,9 +72,9 @@ public final class App {
                         Shell.printlnMessage("\nPer consultare la lista dei comandi disponibili, digitare /help!");
                     }
         String difficultyName;
-        Difficulty difficulty = null;
-        Map map = null;
-        MapType mapType = MapType.STANDARD;
+        Difficulty difficulty = new Difficulty(Difficulty.Level.EASY);
+        // MapType mapType = MapType.STANDARD;
+        Match match = null;
 
         String command;
         boolean exit = false;
@@ -88,71 +88,51 @@ public final class App {
                     printHelp();
                 break;
                 case "/facile":
-                    if (map == null) {
-                        difficulty = Difficulty.EASY;
+                    if (match == null) {
+                        difficulty.setCurrentLevel(Difficulty.Level.EASY);
                         Shell.printlnMessage("Ok!");
                     } else {
                         Shell.printlnMessage("La partita e' gia' iniziata!");
                     }
                     break;
                 case "/medio":
-                    if (map == null) {
-                        difficulty = Difficulty.MEDIUM;
+                    if (match == null) {
+                        difficulty.setCurrentLevel(Difficulty.Level.MEDIUM);
                         Shell.printlnMessage("Ok!");
                     } else {
                         Shell.printlnMessage("La partita e' gia' iniziata!");
                     }
                     break;
                 case "/difficile":
-                    if (map == null) {
-                        difficulty = Difficulty.HARD;
+                    if (match == null) {
+                        difficulty.setCurrentLevel(Difficulty.Level.HARD);
                         Shell.printlnMessage("Ok!");
                     } else {
                         Shell.printlnMessage("La partita e' gia' iniziata!");
                     }
                     break;
                 case "/mostralivello":
-                    if (difficulty != null) {
-                        difficultyName = difficulty.name();
-                        Shell.printMessage("Difficolta': ");
-                        if (difficultyName.compareTo("EASY") == 0) {
-                            Shell.printlnMessage("Facile");
-                        } else if (difficultyName.compareTo("MEDIUM") == 0) {
-                            Shell.printlnMessage("Medio");
-                        } else {
-                            Shell.printlnMessage("Difficile");
-                        }
-                        Shell.printlnMessage("Max. Tentativi Falliti: "
-                        + difficulty.getMaxFailures());
-                    } else {
-                        Shell.printlnMessage(
-                            "Non e' stata impostata alcuna difficolta'");
-                    }
+                    difficultyName = difficulty.getName();
+                    Shell.printMessage("Difficolta': ");
+                    Shell.printlnMessage(difficultyName);
+                    Shell.printlnMessage("Max. Tentativi Falliti: "
+                    + difficulty.getCurrentMaxFailures());
                     break;
                 case "/mostranavi":
-                    if (map == null) {
+                    if (match == null) {
                         Shell.printlnMessage(
                             "Non e' in esecuzione nessuna partita!");
                         Shell.printlnMessage(
                             "Digita /gioca per iniziare una nuova partita!");
                     } else {
-                        Shell.printlnMessage(map.getShipStats());
+                        Shell.printlnMessage(match.getMap().getShipStats());
                     }
                     break;
                 case "/gioca":
-                    if (map == null) {
-                        if (difficulty == null) {
-                            Shell.printlnMessage(
-                            "Non e' stata impostata alcuna difficolta'!");
-                            Shell.printMessage(
-                            "Digitare /facile, /medio o /difficile");
-                            Shell.printlnMessage(
-                            " per impostare una difficolta'!");
-                        } else {
-                            map = new Map(mapType);
-                            Shell.printlnMessage("Partita avviata!");
-                            Shell.printlnMessage(map.getMapGrid());
-                        }
+                    if (match == null) {
+                        match = new Match(MapType.STANDARD, difficulty.getCurrentLevel());
+                        Shell.printlnMessage("Partita avviata!");
+                        Shell.printlnMessage(match.getMap().getMapGrid());
                     } else {
                         Shell.printlnMessage(
                             "E' gia' in corso un'altra partita!");
@@ -161,8 +141,8 @@ public final class App {
                     }
                     break;
                 case "/svelagriglia":
-                    if (map != null) {
-                        Shell.printlnMessage(map.toString());
+                    if (match != null) {
+                        Shell.printlnMessage(match.getMap().toString());
                     } else {
                         Shell.printlnMessage(
                             "La partita non e' ancora iniziata.");
