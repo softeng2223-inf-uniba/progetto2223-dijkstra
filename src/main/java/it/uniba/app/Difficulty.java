@@ -67,8 +67,8 @@ public final class Difficulty {
     }
 
     /**
-     * .
-     * @return
+     * Returns the difficulty name.
+     * @return String - represents the difficulty name.
      */
     public String getName() {
         switch (currentLevel) {
