@@ -65,26 +65,28 @@ public final class Map {
         }
     }
 
-    private boolean checkRight(final int row, final int col, final int size) {
+    private boolean checkRight(final int row, final int col, final int shipSize) {
         int i = 0;
+        int size = type.getSize();
 
-        if (col > size - size) {
+        if (col > size - shipSize) {
             return false;
         }
-        while (i < size && map[row][col + i].isFree()) {
+        while (i < shipSize && map[row][col + i].isFree()) {
             i++;
         }
 
         return i == size;
     }
 
-    private boolean checkBelow(final int row, final int col, final int size) {
+    private boolean checkBelow(final int row, final int col, final int shipSize) {
         int i = 0;
+        int size = type.getSize();
 
-        if (row > size - size) {
+        if (row > size - shipSize) {
             return false;
         }
-        while (i < size && map[row + i][col].isFree()) {
+        while (i < shipSize && map[row + i][col].isFree()) {
             i++;
         }
 
@@ -154,7 +156,13 @@ public final class Map {
     public String toString() {
         StringBuffer s = new StringBuffer();
         int i = 0;
-        s.append("\n\tA B C D E F G H I J\n\n\n");
+        int size = type.getSize();
+        s.append("\n\t");
+        for (int j = 0; j < size; j++) {
+            s.append((char) (((int) 'A') + j));
+            s.append(" ");
+        }
+        s.append("\n\n\n");
         for (Cell[] cells : map) {
             s.append((i + 1) + "\t");
             for (Cell cell : cells) {
@@ -184,7 +192,13 @@ public final class Map {
     public String getMapGrid() {
         StringBuffer s = new StringBuffer();
         int i = 0;
-        s.append("\n\tA B C D E F G H I J\n\n\n");
+        int size = type.getSize();
+        s.append("\n\t");
+        for (int j = 0; j < size; j++) {
+            s.append((char) (((int) 'A') + j));
+            s.append(" ");
+        }
+        s.append("\n\n\n");
         for (Cell[] cells : map) {
             s.append((i + 1) + "\t");
             for (Cell cell : cells) {
