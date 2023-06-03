@@ -17,7 +17,7 @@ public enum MapType {
         size = inSize;
     }
 
-    int getSize() {
+    public int getSize() {
         return size;
     }
 }
