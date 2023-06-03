@@ -14,7 +14,7 @@ public final class Map {
     private Cell[][] map;
 
     /**
-     * .
+     * Copy Constructor.
      * @param inMap
      */
     public Map(final Map inMap) {
@@ -167,9 +167,9 @@ public final class Map {
     }
 
     /**
-     * .
-     * @param row
-     * @param col
+     * Returns the cell in position row and col in map.
+     * @param row - the row position.
+     * @param col - the column position.
      * @return
      */
     public Cell getCell(final int row, final int col) {
