@@ -30,15 +30,18 @@ public final class App {
     }
     private static void printHelp() {
         Shell.printlnMessage("I comandi utilizzabili sono:");
-        Shell.printlnMessage("1. /help            mostra l'elenco dei comandi disponibili");
-        Shell.printlnMessage("2. /gioca           avvia una nuova partita");
-        Shell.printlnMessage("3. /esci            termina il gioco");
-        Shell.printlnMessage("4. /facile          imposta la difficoltà a facile");
-        Shell.printlnMessage("5. /medio           imposta la difficoltà a medio");
-        Shell.printlnMessage("6. /difficile       imposta la difficoltà a difficile");
-        Shell.printlnMessage("7. /mostralivello   mostra il livello di difficoltà impostato");
-        Shell.printlnMessage("8. /mostranavi      mostra le navi da affondare presenti sulla griglia");
-        Shell.printlnMessage("9. /svelagriglia    mostra la griglia con le navi posizionate");
+        Shell.printlnMessage("1.  /help            mostra l'elenco dei comandi disponibili");
+        Shell.printlnMessage("2.  /gioca           avvia una nuova partita");
+        Shell.printlnMessage("3.  /esci            termina il gioco");
+        Shell.printlnMessage("4.  /facile          imposta la difficoltà a facile");
+        Shell.printlnMessage("5.  /medio           imposta la difficoltà a medio");
+        Shell.printlnMessage("6.  /difficile       imposta la difficoltà a difficile");
+        Shell.printlnMessage("7.  /mostralivello   mostra il livello di difficoltà impostato");
+        Shell.printlnMessage("8.  /mostranavi      mostra le navi da affondare presenti sulla griglia");
+        Shell.printlnMessage("9.  /svelagriglia    mostra la griglia con le navi posizionate");
+        Shell.printlnMessage("10. /standard        imposta a 10x10 la dimensione della griglia");
+        Shell.printlnMessage("11. /large           imposta a 18x18 la dimensione della griglia");
+        Shell.printlnMessage("12. /extralarge      imposta a 26x26 la dimensione della griglia");
     }
     private static void printDescription() {
         Shell.printlnMessage(
@@ -73,7 +76,7 @@ public final class App {
                     }
         String difficultyName;
         Difficulty difficulty = new Difficulty(Difficulty.Level.EASY);
-        // MapType mapType = MapType.STANDARD;
+        MapType mapType = MapType.STANDARD;
         Match match = null;
 
         String command;
@@ -130,7 +133,7 @@ public final class App {
                     break;
                 case "/gioca":
                     if (match == null) {
-                        match = new Match(MapType.STANDARD, difficulty.getCurrentLevel());
+                        match = new Match(mapType, difficulty.getCurrentLevel());
                         Shell.printlnMessage("Partita avviata!");
                         Shell.printlnMessage(match.getMap().getMapGrid());
                     } else {
@@ -148,6 +151,30 @@ public final class App {
                             "La partita non e' ancora iniziata.");
                         Shell.printlnMessage(
                             "Digita /gioca per iniziare una nuova partita!");
+                    }
+                    break;
+                case "/standard":
+                    if (match == null) {
+                        Shell.printlnMessage("Ok!");
+                        mapType = MapType.STANDARD;
+                    } else {
+                        Shell.printlnMessage("La partita è già iniziata!");
+                    }
+                    break;
+                case "/large":
+                    if (match == null) {
+                        Shell.printlnMessage("Ok!");
+                        mapType = MapType.LARGE;
+                    } else {
+                        Shell.printlnMessage("La partita è già iniziata!");
+                    }
+                    break;
+                case "/extralarge":
+                    if (match == null) {
+                        Shell.printlnMessage("Ok!");
+                        mapType = MapType.EXTRALARGE;
+                    } else {
+                        Shell.printlnMessage("La partita è già iniziata!");
                     }
                     break;
                 case "/esci":
