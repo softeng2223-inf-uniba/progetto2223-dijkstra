@@ -14,6 +14,21 @@ public final class Map {
     private Cell[][] map;
 
     /**
+     * .
+     * @param inMap
+     */
+    public Map(final Map inMap) {
+        int size = inMap.getMapType().getSize();
+        map = new Cell[size][size];
+        type = inMap.type;
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                map[i][j] = inMap.getCell(i, j);
+            }
+        }
+    }
+
+    /**
      * Map Constructor that initializes the grid with random ship positioning.
      */
     public Map(final MapType inType) {
@@ -145,6 +160,20 @@ public final class Map {
             set = true;
         }
         return set;
+    }
+
+    public MapType getMapType() {
+        return type;
+    }
+
+    /**
+     * .
+     * @param row
+     * @param col
+     * @return
+     */
+    public Cell getCell(final int row, final int col) {
+        return map[row][col];
     }
 
     /**
