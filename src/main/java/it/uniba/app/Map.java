@@ -6,6 +6,10 @@ import java.util.Random;
  * This class describe the behaviour of the map during the game.
  */
 public final class Map {
+    public static final int DESTROYERS_NUMBER = 4;
+    public static final int CRUISERS_NUMBER = 3;
+    public static final int ARMOUREDS_NUMBER = 2;
+    public static final int AIRCRAFT_CARRIERS_NUMBER = 1;
     private MapType type;
     private Cell[][] map;
 
@@ -16,11 +20,6 @@ public final class Map {
         Random rand = new Random();
         int row;
         int col;
-
-        final int destroyersNumber = ShipType.DESTROYER.getSize();
-        final int cruisersNumber = ShipType.DESTROYER.getSize();
-        final int armouredsNumber = ShipType.ARMOURED.getSize();
-        final int aircraftCarriersNumber = ShipType.AIRCRAFT_CARRIER.getSize();
 
         type = inType;
         int size = type.getSize();
@@ -35,28 +34,28 @@ public final class Map {
             }
         }
 
-        for (int i = 0; i < destroyersNumber; i++) {
+        for (int i = 0; i < DESTROYERS_NUMBER; i++) {
             do {
                 row = rand.nextInt(size);
                 col = rand.nextInt(size);
             } while (!setDirection(row, col, new Ship(ShipType.DESTROYER)));
         }
 
-        for (int i = 0; i < cruisersNumber; i++) {
+        for (int i = 0; i < CRUISERS_NUMBER; i++) {
             do {
                 row = rand.nextInt(size);
                 col = rand.nextInt(size);
             } while (!setDirection(row, col, new Ship(ShipType.CRUISER)));
         }
 
-        for (int i = 0; i < armouredsNumber; i++) {
+        for (int i = 0; i < ARMOUREDS_NUMBER; i++) {
             do {
                 row = rand.nextInt(size);
                 col = rand.nextInt(size);
             } while (!setDirection(row, col, new Ship(ShipType.ARMOURED)));
         }
 
-        for (int i = 0; i < aircraftCarriersNumber; i++) {
+        for (int i = 0; i < AIRCRAFT_CARRIERS_NUMBER; i++) {
             do {
                 row = rand.nextInt(size);
                 col = rand.nextInt(size);
