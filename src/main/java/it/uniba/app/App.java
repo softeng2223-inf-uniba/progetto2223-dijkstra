@@ -42,6 +42,7 @@ public final class App {
         Shell.printlnMessage("10. /standard        imposta a 10x10 la dimensione della griglia");
         Shell.printlnMessage("11. /large           imposta a 18x18 la dimensione della griglia");
         Shell.printlnMessage("12. /extralarge      imposta a 26x26 la dimensione della griglia");
+        Shell.printlnMessage("13. /mostragriglia   mostra la griglia di gioco");
     }
     private static void printDescription() {
         Shell.printlnMessage(
@@ -59,6 +60,59 @@ public final class App {
         + "in cui diminuisce il numero massimo "
         + "di tentativi falliti per l'utente.");
         Shell.printlnMessage("Buona fortuna nell'affrontare il computer!\n");
+    }
+    /**
+     * Method that sets the game difficulty according to the input of the user.
+     * @param command
+     * @param match
+     * @param difficulty
+     */
+    private static void setDifficulty(final String[] command, final Match match, final Difficulty difficulty) {
+        if (match == null) {
+            if (command.length == 2) {
+                try {
+                    int number = Integer.parseInt(command[1]);
+                    if (number > 0) {
+                        switch (command[0]) {
+                            case "/facile":
+                                Difficulty.setEasyMaxFailures(number);
+                                break;
+                            case "/medio":
+                                Difficulty.setMediumMaxFailures(number);
+                                break;
+                            case "/difficile":
+                                Difficulty.setHardMaxFailures(number);
+                                break;
+                            default:
+                                return;
+                        }
+                        Shell.printlnMessage("Ok!");
+                    } else {
+                        Shell.printlnMessage("Non puoi impostare un "
+                        + "numero di tentativi negativo o uguale a zero.");
+                    }
+                } catch (NumberFormatException e) {
+                    Shell.printlnMessage("Numero non valido.");
+                }
+            } else {
+                switch (command[0]) {
+                    case "/facile":
+                        difficulty.setCurrentLevel(Difficulty.Level.EASY);
+                        break;
+                    case "/medio":
+                        difficulty.setCurrentLevel(Difficulty.Level.MEDIUM);
+                        break;
+                    case "/difficile":
+                        difficulty.setCurrentLevel(Difficulty.Level.HARD);
+                        break;
+                    default:
+                        return;
+                }
+                Shell.printlnMessage("Ok!");
+            }
+        } else {
+            Shell.printlnMessage("La partita e' gia' iniziata!");
+        }
     }
     /**
      * Main game loop.
@@ -99,70 +153,13 @@ public final class App {
                     printHelp();
                 break;
                 case "/facile":
-                    if (match == null) {
-                        if (splittedCommand.length == 2) {
-                            try {
-                                int number = Integer.parseInt(splittedCommand[1]);
-                                if (number > 0) {
-                                    Difficulty.setEasyMaxFailures(number);
-                                    Shell.printlnMessage("Ok!");
-                                } else {
-                                    Shell.printlnMessage("Non puoi impostare un un numero di tentativi negativo o uguale a zero.");
-                                }
-                            } catch (NumberFormatException e) {
-                                Shell.printlnMessage("Numero non valido.");
-                            }
-                        } else {
-                            difficulty.setCurrentLevel(Difficulty.Level.EASY);
-                            Shell.printlnMessage("Ok!");
-                        }
-                    } else {
-                        Shell.printlnMessage("La partita e' gia' iniziata!");
-                    }
+                    setDifficulty(splittedCommand, match, difficulty);
                     break;
                 case "/medio":
-                    if (match == null) {
-                        if (splittedCommand.length == 2) {
-                            try {
-                                int number = Integer.parseInt(splittedCommand[1]);
-                                if (number > 0) {
-                                    Difficulty.setMediumMaxFailures(number);
-                                    Shell.printlnMessage("Ok!");
-                                } else {
-                                    Shell.printlnMessage("Non puoi impostare un un numero di tentativi negativo o uguale a zero.");
-                                }
-                            } catch (NumberFormatException e) {
-                                Shell.printlnMessage("Numero non valido.");
-                            }
-                        } else {
-                            difficulty.setCurrentLevel(Difficulty.Level.MEDIUM);
-                            Shell.printlnMessage("Ok!");
-                        }
-                    } else {
-                        Shell.printlnMessage("La partita e' gia' iniziata!");
-                    }
+                    setDifficulty(splittedCommand, match, difficulty);
                     break;
                 case "/difficile":
-                    if (match == null) {
-                        if (splittedCommand.length == 2) {
-                            try {
-                                int number = Integer.parseInt(splittedCommand[1]);
-                                if (number > 0) {
-                                    Difficulty.setHardMaxFailures(number);
-                                    Shell.printlnMessage("Ok!");
-                                } else {
-                                    Shell.printlnMessage("Non puoi impostare un un numero di tentativi negativo o uguale a zero.");
-                                }
-                            } catch (NumberFormatException e) {
-                                Shell.printlnMessage("Numero non valido.");
-                            }
-                        } else {
-                            difficulty.setCurrentLevel(Difficulty.Level.HARD);
-                            Shell.printlnMessage("Ok!");
-                        }
-                    } else {
-                        Shell.printlnMessage("La partita e' gia' iniziata!");
-                    }
+                    setDifficulty(splittedCommand, match, difficulty);
                     break;
                 case "/mostralivello":
                     difficultyName = difficulty.getName();
