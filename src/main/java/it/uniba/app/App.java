@@ -53,7 +53,7 @@ public final class App {
             + "Navale prevede che il giocatore affronti il computer.");
         Shell.printlnMessage(
         "Il computer posiziona navi di "
-        + "diversa tipologia su una griglia 10x10.");
+        + "diversa tipologia su una griglia 10x10, 18x18 o 26x26.");
         Shell.printlnMessage(
         "Il giocatore deve cercare di colpire e affondare tutte le "
         + "navi del computer usando il minor numero di colpi possibile.");
