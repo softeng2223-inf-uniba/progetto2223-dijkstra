@@ -30,18 +30,22 @@ public final class App {
     }
     private static void printHelp() {
         Shell.printlnMessage("I comandi utilizzabili sono:");
-        Shell.printlnMessage("1.  /help            mostra l'elenco dei comandi disponibili");
-        Shell.printlnMessage("2.  /gioca           avvia una nuova partita");
-        Shell.printlnMessage("3.  /esci            termina il gioco");
-        Shell.printlnMessage("4.  /facile          imposta la difficoltà a facile");
-        Shell.printlnMessage("5.  /medio           imposta la difficoltà a medio");
-        Shell.printlnMessage("6.  /difficile       imposta la difficoltà a difficile");
-        Shell.printlnMessage("7.  /mostralivello   mostra il livello di difficoltà impostato");
-        Shell.printlnMessage("8.  /mostranavi      mostra le navi da affondare presenti sulla griglia");
-        Shell.printlnMessage("9.  /svelagriglia    mostra la griglia con le navi posizionate");
-        Shell.printlnMessage("10. /standard        imposta a 10x10 la dimensione della griglia");
-        Shell.printlnMessage("11. /large           imposta a 18x18 la dimensione della griglia");
-        Shell.printlnMessage("12. /extralarge      imposta a 26x26 la dimensione della griglia");
+        Shell.printlnMessage("1.  /help             mostra l'elenco dei comandi disponibili");
+        Shell.printlnMessage("2.  /gioca            avvia una nuova partita");
+        Shell.printlnMessage("3.  /esci             termina il gioco");
+        Shell.printlnMessage("4.  /facile           imposta la difficoltà a facile [default: 50 tentativi]");
+        Shell.printlnMessage("5.  /facile numero    imposta un nuovo numero di tentativi per la difficoltà facile");
+        Shell.printlnMessage("6.  /medio            imposta la difficoltà a medio [default: 30 tentativi]");
+        Shell.printlnMessage("7.  /medio numero     imposta un nuovo numero di tentativi per la difficoltà media");
+        Shell.printlnMessage("8.  /difficile        imposta la difficoltà a difficile [default: 10 tentativi]");
+        Shell.printlnMessage("9.  /difficile numero imposta un nuovo numero di tentativi per la difficoltà difficile");
+        Shell.printlnMessage("10. /mostralivello    mostra il livello di difficoltà impostato");
+        Shell.printlnMessage("11. /mostranavi       mostra le navi da affondare presenti sulla griglia");
+        Shell.printlnMessage("12. /svelagriglia     mostra la griglia con le navi posizionate");
+        Shell.printlnMessage("13. /standard         imposta a 10x10 la dimensione della griglia");
+        Shell.printlnMessage("14. /large            imposta a 18x18 la dimensione della griglia");
+        Shell.printlnMessage("15. /extralarge       imposta a 26x26 la dimensione della griglia");
+        Shell.printlnMessage("16. /mostragriglia    mostra la griglia di gioco");
     }
     private static void printDescription() {
         Shell.printlnMessage(
@@ -49,7 +53,7 @@ public final class App {
             + "Navale prevede che il giocatore affronti il computer.");
         Shell.printlnMessage(
         "Il computer posiziona navi di "
-        + "diversa tipologia su una griglia 10x10.");
+        + "diversa tipologia su una griglia 10x10, 18x18 o 26x26.");
         Shell.printlnMessage(
         "Il giocatore deve cercare di colpire e affondare tutte le "
         + "navi del computer usando il minor numero di colpi possibile.");
@@ -59,6 +63,59 @@ public final class App {
         + "in cui diminuisce il numero massimo "
         + "di tentativi falliti per l'utente.");
         Shell.printlnMessage("Buona fortuna nell'affrontare il computer!\n");
+    }
+    /**
+     * Method that sets the game difficulty according to the input of the user.
+     * @param command
+     * @param match
+     * @param difficulty
+     */
+    private static void setDifficulty(final String[] command, final Match match, final Difficulty difficulty) {
+        if (match == null) {
+            if (command.length == 2) {
+                try {
+                    int number = Integer.parseInt(command[1]);
+                    if (number > 0) {
+                        switch (command[0]) {
+                            case "/facile":
+                                Difficulty.setEasyMaxFailures(number);
+                                break;
+                            case "/medio":
+                                Difficulty.setMediumMaxFailures(number);
+                                break;
+                            case "/difficile":
+                                Difficulty.setHardMaxFailures(number);
+                                break;
+                            default:
+                                return;
+                        }
+                        Shell.printlnMessage("Ok!");
+                    } else {
+                        Shell.printlnMessage("Non puoi impostare un "
+                        + "numero di tentativi negativo o uguale a zero.");
+                    }
+                } catch (NumberFormatException e) {
+                    Shell.printlnMessage("Numero non valido.");
+                }
+            } else {
+                switch (command[0]) {
+                    case "/facile":
+                        difficulty.setCurrentLevel(Difficulty.Level.EASY);
+                        break;
+                    case "/medio":
+                        difficulty.setCurrentLevel(Difficulty.Level.MEDIUM);
+                        break;
+                    case "/difficile":
+                        difficulty.setCurrentLevel(Difficulty.Level.HARD);
+                        break;
+                    default:
+                        return;
+                }
+                Shell.printlnMessage("Ok!");
+            }
+        } else {
+            Shell.printlnMessage("La partita e' gia' iniziata!");
+        }
     }
     /**
      * Main game loop.
@@ -85,34 +142,27 @@ public final class App {
             Shell.printMessage("> ");
             command = SHELL.getInput();
             command = command.toLowerCase();
-            switch (command) {
+
+            String[] splittedCommand = command.split("\\s+");
+
+            if (splittedCommand.length > 2) {
+                Shell.printlnMessage(ANSICodes.FRED + "Comando inesistente o non riconosciuto." + ANSICodes.RESET);
+                continue;
+            }
+
+            switch (splittedCommand[0]) {
                 case "/help":
                     printDescription();
                     printHelp();
                 break;
                 case "/facile":
-                    if (match == null) {
-                        difficulty.setCurrentLevel(Difficulty.Level.EASY);
-                        Shell.printlnMessage("Ok!");
-                    } else {
-                        Shell.printlnMessage("La partita e' gia' iniziata!");
-                    }
+                    setDifficulty(splittedCommand, match, difficulty);
                     break;
                 case "/medio":
-                    if (match == null) {
-                        difficulty.setCurrentLevel(Difficulty.Level.MEDIUM);
-                        Shell.printlnMessage("Ok!");
-                    } else {
-                        Shell.printlnMessage("La partita e' gia' iniziata!");
-                    }
+                    setDifficulty(splittedCommand, match, difficulty);
                     break;
                 case "/difficile":
-                    if (match == null) {
-                        difficulty.setCurrentLevel(Difficulty.Level.HARD);
-                        Shell.printlnMessage("Ok!");
-                    } else {
-                        Shell.printlnMessage("La partita e' gia' iniziata!");
-                    }
+                    setDifficulty(splittedCommand, match, difficulty);
                     break;
                 case "/mostralivello":
                     difficultyName = difficulty.getName();
@@ -158,7 +208,7 @@ public final class App {
                         Shell.printlnMessage("Ok!");
                         mapType = MapType.STANDARD;
                     } else {
-                        Shell.printlnMessage("La partita è già iniziata!");
+                        Shell.printlnMessage("La partita e' già iniziata!");
                     }
                     break;
                 case "/large":
@@ -166,7 +216,7 @@ public final class App {
                         Shell.printlnMessage("Ok!");
                         mapType = MapType.LARGE;
                     } else {
-                        Shell.printlnMessage("La partita è già iniziata!");
+                        Shell.printlnMessage("La partita e' già iniziata!");
                     }
                     break;
                 case "/extralarge":
@@ -174,7 +224,7 @@ public final class App {
                         Shell.printlnMessage("Ok!");
                         mapType = MapType.EXTRALARGE;
                     } else {
-                        Shell.printlnMessage("La partita è già iniziata!");
+                        Shell.printlnMessage("La partita e' già iniziata!");
                     }
                     break;
                 case "/mostragriglia":
