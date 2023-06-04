@@ -60,7 +60,60 @@ public final class Match {
      * @param command
      */
     public void makeMove(final String command) {
+        String[] move = command.split("\\-");
+        int row = Integer.parseInt(move[1]) - 1;
+        int column = (move[0].toUpperCase()).charAt(0) - 'A';
 
+        if (isWithinBounds(move)) {
+            /*
+             * Hit the cell (if not already done)
+             * and check if there is a ship in it.
+            */
+            Cell hitCell = map.getCell(row, column);
+            if (!hitCell.isHit()) {
+                hitCell.hit();
+                incrementAttempts();
+
+                /*
+                * Displays a different message, depending
+                * on the success of the attempt
+                */
+                Shell.printlnMessage(map.getMapGrid());
+
+                if (hitCell.getShip() == null) {
+                    Shell.printlnMessage(
+                        ANSICodes.FCYAN
+                        + "\nacqua"
+                        + ANSICodes.RESET);
+                } else {
+                    hitCell.getShip().hit();
+
+                    if (hitCell.getShip().isSunken()) {
+                        Shell.printlnMessage(
+                            ANSICodes.FGREEN
+                            + "\ncolpito e affondato"
+                            + ANSICodes.RESET);
+                    } else {
+                        Shell.printlnMessage(
+                            ANSICodes.FYELLOW
+                            + "\ncolpito"
+                            + ANSICodes.RESET);
+                    }
+                }
+
+                // Shows the main information of the match
+                Shell.printlnMessage("Attempts: " + String.valueOf(getNumberOfAttempts()) + "\n");
+            } else {
+                Shell.printlnMessage(
+                "La cella e' stata gia' selezionata. \nRiprova.\n");
+            }
+
+        } else {
+            Shell.printlnMessage(
+                "Il comando inserito contiene caratteri al di fuori della mappa.");
+            Shell.printlnMessage(
+                "Rispettare le dimensioni della mappa specificate.");
+        }
     }
 
     public Map getMap() {
@@ -81,6 +134,22 @@ public final class Match {
 
     public int getNumberOfAttempts() {
         return numberOfAttempts;
+    }
+
+    /**
+     * Increments the total number of
+     * attempts made by the user.
+     */
+    public void incrementAttempts() {
+        numberOfAttempts++;
+    }
+
+    /**
+     * Increments the number of failed
+     * attempts done by the user.
+     */
+    public void incrementFailedAttempts() {
+        numberOfFailedAttempts++;
     }
 
 }
