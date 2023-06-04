@@ -260,9 +260,9 @@ public final class App {
                             } else {
                                 do {
                                     Shell.printMessage(
-                                        ANSICodes.FYELLOW
-                                        + "Sei sicuro di voler abbandonare? [ s / n ]: "
-                                        + ANSICodes.RESET);
+                                    ANSICodes.FYELLOW
+                                    + "Sei sicuro di voler abbandonare? [ s / n ]: "
+                                    + ANSICodes.RESET);
                                     command = SHELL.getInput().toLowerCase();
                                     if (command.compareTo("s") == 0) {
                                         quit = true;
