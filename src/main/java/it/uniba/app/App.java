@@ -259,7 +259,10 @@ public final class App {
                                 "Digita /gioca per iniziare una nuova partita!");
                             } else {
                                 do {
-                                    Shell.printMessage("Sei sicuro di voler abbandonare? [ s / n ]: ");
+                                    Shell.printMessage(
+                                        ANSICodes.FYELLOW
+                                        + "Sei sicuro di voler abbandonare? [ s / n ]: "
+                                        + ANSICodes.RESET);
                                     command = SHELL.getInput().toLowerCase();
                                     if (command.compareTo("s") == 0) {
                                         quit = true;
