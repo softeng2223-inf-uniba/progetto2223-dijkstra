@@ -46,6 +46,7 @@ public final class App {
         Shell.printlnMessage("14. /large            imposta a 18x18 la dimensione della griglia");
         Shell.printlnMessage("15. /extralarge       imposta a 26x26 la dimensione della griglia");
         Shell.printlnMessage("16. /mostragriglia    mostra la griglia di gioco");
+        Shell.printlnMessage("17. /abbandona        abbandona la partita in corso");
     }
     private static void printDescription() {
         Shell.printlnMessage(
@@ -138,6 +139,7 @@ public final class App {
 
         String command;
         boolean exit = false;
+        boolean quit = false;
         do {
             Shell.printMessage("> ");
             command = SHELL.getInput();
@@ -248,6 +250,26 @@ public final class App {
                             exit = true;
                         }
                     } while (!exit && command.compareTo("n") != 0);
+                break;
+                case "/abbandona":
+                            if (match == null) {
+                            Shell.printlnMessage(
+                                "Non e' in esecuzione nessuna partita!");
+                            Shell.printlnMessage(
+                                "Digita /gioca per iniziare una nuova partita!");
+                            } else {
+                                do {
+                                    Shell.printMessage("Sei sicuro di voler abbandonare? [ s / n ]: ");
+                                    command = SHELL.getInput().toLowerCase();
+                                    if (command.compareTo("s") == 0) {
+                                        quit = true;
+                                        Shell.printlnMessage("Ecco qual'era la posizione delle navi: ");
+                                        Shell.printlnMessage(match.getMap().toString());
+                                        Shell.printlnMessage("Partita terminata!");
+                                        match = null;
+                                    }
+                                } while (!quit && command.compareTo("n") != 0); 
+                            }
                 break;
                 default:
                     Shell.printlnMessage(
