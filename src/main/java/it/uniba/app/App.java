@@ -5,6 +5,9 @@ package it.uniba.app;
  */
 public final class App {
     private static final Shell SHELL = Shell.getShell();
+    private static Match match = null;
+    private static boolean isRunning = true;
+
     private App() { }
     /**
      * Prints the banner.
@@ -46,6 +49,7 @@ public final class App {
         Shell.printlnMessage("14. /large            imposta a 18x18 la dimensione della griglia");
         Shell.printlnMessage("15. /extralarge       imposta a 26x26 la dimensione della griglia");
         Shell.printlnMessage("16. /mostragriglia    mostra la griglia di gioco");
+        Shell.printlnMessage("17. /abbandona        abbandona la partita in corso");
     }
     private static void printDescription() {
         Shell.printlnMessage(
@@ -67,10 +71,9 @@ public final class App {
     /**
      * Method that sets the game difficulty according to the input of the user.
      * @param command
-     * @param match
      * @param difficulty
      */
-    private static void setDifficulty(final String[] command, final Match match, final Difficulty difficulty) {
+    private static void setDifficulty(final String[] command, final Difficulty difficulty) {
         if (match == null) {
             if (command.length == 2) {
                 try {
@@ -117,6 +120,77 @@ public final class App {
             Shell.printlnMessage("La partita e' gia' iniziata!");
         }
     }
+    private static void showLevel(final Difficulty difficulty) {
+        Shell.printMessage("Difficolta': ");
+        Shell.printlnMessage(difficulty.getName());
+        Shell.printlnMessage("Max. Tentativi Falliti: "
+        + difficulty.getCurrentMaxFailures());
+    }
+    private static void showShips() {
+        if (match == null) {
+            Shell.printlnMessage(
+                "Non e' in esecuzione nessuna partita!");
+            Shell.printlnMessage(
+                "Digita /gioca per iniziare una nuova partita!");
+        } else {
+            Shell.printlnMessage(match.getMap().getShipStats());
+        }
+    }
+    private static void play(final MapType mapType, final Difficulty difficulty) {
+        if (match == null) {
+            match = new Match(mapType, difficulty.getCurrentLevel());
+            Shell.printlnMessage("Partita avviata!");
+            Shell.printlnMessage(match.getMap().getMapGrid());
+        } else {
+            Shell.printlnMessage(
+                "E' gia' in corso un'altra partita!");
+            Shell.printlnMessage(
+                "Digita /esci per terminare la partita!");
+        }
+    }
+    private static void revealGrid() {
+        if (match != null) {
+            Shell.printlnMessage(match.getMap().toString());
+        } else {
+            Shell.printlnMessage(
+                "La partita non e' ancora iniziata.");
+            Shell.printlnMessage(
+                "Digita /gioca per iniziare una nuova partita!");
+        }
+    }
+    private static void showGrid() {
+        if (match == null) {
+            Shell.printlnMessage(
+                "Non e' in esecuzione nessuna partita!");
+            Shell.printlnMessage(
+                "Digita /gioca per iniziare una nuova partita!");
+        } else {
+            Shell.printlnMessage(match.getMap().getMapGrid());
+        }
+    }
+    private static void exit() {
+        String command;
+        do {
+            Shell.printMessage(
+            ANSICodes.FYELLOW
+            + "Sei sicuro di voler uscire? [ s / n ]: "
+            + ANSICodes.RESET);
+            command = SHELL.getInput().toLowerCase();
+            if (command.compareTo("s") == 0) {
+                isRunning = false;
+            }
+        } while (isRunning && command.compareTo("n") != 0);
+    }
+    private static MapType setGridSize(final MapType currentMapType, final MapType newMapType) {
+        if (match == null) {
+            Shell.printlnMessage("Ok!");
+            return newMapType;
+        } else {
+            Shell.printlnMessage("La partita e' già iniziata!");
+            return currentMapType;
+        }
+    }
+
     /**
      * Main game loop.
      * @param args
@@ -131,13 +205,9 @@ public final class App {
                     } else {
                         Shell.printlnMessage("\nPer consultare la lista dei comandi disponibili, digitare /help!");
                     }
-        String difficultyName;
         Difficulty difficulty = new Difficulty(Difficulty.Level.EASY);
         MapType mapType = MapType.STANDARD;
-        Match match = null;
-
         String command;
-        boolean exit = false;
         do {
             Shell.printMessage("> ");
             command = SHELL.getInput();
@@ -156,98 +226,36 @@ public final class App {
                     printHelp();
                 break;
                 case "/facile":
-                    setDifficulty(splittedCommand, match, difficulty);
-                    break;
                 case "/medio":
-                    setDifficulty(splittedCommand, match, difficulty);
-                    break;
                 case "/difficile":
-                    setDifficulty(splittedCommand, match, difficulty);
+                    setDifficulty(splittedCommand, difficulty);
                     break;
                 case "/mostralivello":
-                    difficultyName = difficulty.getName();
-                    Shell.printMessage("Difficolta': ");
-                    Shell.printlnMessage(difficultyName);
-                    Shell.printlnMessage("Max. Tentativi Falliti: "
-                    + difficulty.getCurrentMaxFailures());
+                    showLevel(difficulty);
                     break;
                 case "/mostranavi":
-                    if (match == null) {
-                        Shell.printlnMessage(
-                            "Non e' in esecuzione nessuna partita!");
-                        Shell.printlnMessage(
-                            "Digita /gioca per iniziare una nuova partita!");
-                    } else {
-                        Shell.printlnMessage(match.getMap().getShipStats());
-                    }
+                    showShips();
                     break;
                 case "/gioca":
-                    if (match == null) {
-                        match = new Match(mapType, difficulty.getCurrentLevel());
-                        Shell.printlnMessage("Partita avviata!");
-                        Shell.printlnMessage(match.getMap().getMapGrid());
-                    } else {
-                        Shell.printlnMessage(
-                            "E' gia' in corso un'altra partita!");
-                        Shell.printlnMessage(
-                            "Digita /esci per terminare la partita!");
-                    }
+                    play(mapType, difficulty);
                     break;
                 case "/svelagriglia":
-                    if (match != null) {
-                        Shell.printlnMessage(match.getMap().toString());
-                    } else {
-                        Shell.printlnMessage(
-                            "La partita non e' ancora iniziata.");
-                        Shell.printlnMessage(
-                            "Digita /gioca per iniziare una nuova partita!");
-                    }
+                    revealGrid();
                     break;
                 case "/standard":
-                    if (match == null) {
-                        Shell.printlnMessage("Ok!");
-                        mapType = MapType.STANDARD;
-                    } else {
-                        Shell.printlnMessage("La partita e' già iniziata!");
-                    }
+                    mapType = setGridSize(mapType, MapType.STANDARD);
                     break;
                 case "/large":
-                    if (match == null) {
-                        Shell.printlnMessage("Ok!");
-                        mapType = MapType.LARGE;
-                    } else {
-                        Shell.printlnMessage("La partita e' già iniziata!");
-                    }
+                    mapType = setGridSize(mapType, MapType.LARGE);
                     break;
                 case "/extralarge":
-                    if (match == null) {
-                        Shell.printlnMessage("Ok!");
-                        mapType = MapType.EXTRALARGE;
-                    } else {
-                        Shell.printlnMessage("La partita e' già iniziata!");
-                    }
+                    mapType = setGridSize(mapType, MapType.EXTRALARGE);
                     break;
                 case "/mostragriglia":
-                    if (match == null) {
-                        Shell.printlnMessage(
-                            "Non e' in esecuzione nessuna partita!");
-                        Shell.printlnMessage(
-                            "Digita /gioca per iniziare una nuova partita!");
-                    } else {
-                        Shell.printlnMessage(match.getMap().getMapGrid());
-                    }
+                    showGrid();
                     break;
                 case "/esci":
-                    do {
-                        Shell.printMessage(
-                        ANSICodes.FYELLOW
-                        + "Sei sicuro di voler uscire? [ s / n ]: "
-                        + ANSICodes.RESET);
-                        command = SHELL.getInput().toLowerCase();
-                        if (command.compareTo("s") == 0) {
-                            exit = true;
-                        }
-                    } while (!exit && command.compareTo("n") != 0);
+                    exit();
                 break;
                 default:
                     Shell.printlnMessage(
@@ -256,6 +264,6 @@ public final class App {
                         + ANSICodes.RESET);
                 break;
             }
-        } while (!exit);
+        } while (isRunning);
     }
 }
