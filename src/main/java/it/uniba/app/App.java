@@ -303,6 +303,9 @@ public final class App {
                 case "/mostragriglia":
                     showGrid();
                     break;
+                case "/tempo":
+                    setTimer(splittedCommand);
+                break;
                 case "/esci":
                     exit();
                 break;
