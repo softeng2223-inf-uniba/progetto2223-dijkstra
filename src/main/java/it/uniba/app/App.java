@@ -311,7 +311,7 @@ public final class App {
                             Shell.printlnMessage(
                                 "Digita /gioca per iniziare una nuova partita!");
                         } else {
-                            match.makeMove(splittedCommand[0]);
+                            Shell.printlnMessage(match.makeMove(splittedCommand[0]));
                         }
                     } else {
                         Shell.printlnMessage(

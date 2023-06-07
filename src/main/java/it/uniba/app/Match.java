@@ -59,7 +59,8 @@ public final class Match {
      * on a specific cell of the map.
      * @param command
      */
-    public void makeMove(final String command) {
+    public String makeMove(final String command) {
+        StringBuilder message = new StringBuilder("");
         String[] move = command.split("\\-");
         int row = Integer.parseInt(move[1]) - 1;
         int column = (move[0].toUpperCase()).charAt(0) - 'A';
@@ -78,42 +79,45 @@ public final class Match {
                 * Displays a different message, depending
                 * on the success of the attempt
                 */
-                Shell.printlnMessage(map.getMapGrid());
+                message.append(map.getMapGrid() + "\n");
 
                 if (hitCell.getShip() == null) {
-                    Shell.printlnMessage(
+                    message.append(
                         ANSICodes.FCYAN
                         + "\nacqua"
-                        + ANSICodes.RESET);
+                        + ANSICodes.RESET + "\n");
+                    incrementFailedAttempts();
                 } else {
                     hitCell.getShip().hit();
 
                     if (hitCell.getShip().isSunken()) {
-                        Shell.printlnMessage(
+                        message.append(
                             ANSICodes.FGREEN
                             + "\ncolpito e affondato"
-                            + ANSICodes.RESET);
+                            + ANSICodes.RESET + "\n");
                     } else {
-                        Shell.printlnMessage(
+                        message.append(
                             ANSICodes.FYELLOW
                             + "\ncolpito"
-                            + ANSICodes.RESET);
+                            + ANSICodes.RESET + "\n");
                     }
                 }
 
                 // Shows the main information of the match
-                Shell.printlnMessage("Attempts: " + String.valueOf(getNumberOfAttempts()) + "\n");
+                message.append("Tentativi: " + String.valueOf(getNumberOfAttempts()) + "\n\n");
             } else {
-                Shell.printlnMessage(
-                "La cella e' stata gia' selezionata. \nRiprova.\n");
+                message.append(
+                "La cella e' stata gia' selezionata. \nRiprova.\n\n");
             }
 
         } else {
-            Shell.printlnMessage(
-                "Il comando inserito contiene caratteri al di fuori della mappa.");
-            Shell.printlnMessage(
-                "Rispettare le dimensioni della mappa specificate.");
+            message.append(
+                "Il comando inserito contiene caratteri al di fuori della mappa.\n");
+            message.append(
+                "Rispettare le dimensioni della mappa specificate.\n");
         }
+
+        return message.toString();
     }
 
     public Map getMap() {
