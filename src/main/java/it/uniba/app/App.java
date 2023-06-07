@@ -181,6 +181,31 @@ public final class App {
             }
         } while (isRunning && command.compareTo("n") != 0);
     }
+    private static void quit() {
+        String command;
+        boolean quit = false;
+        if (match == null) {
+            Shell.printlnMessage(
+                "Non e' in esecuzione nessuna partita!");
+            Shell.printlnMessage(
+                "Digita /gioca per iniziare una nuova partita!");
+            } else {
+                do {
+                    Shell.printMessage(
+                    ANSICodes.FYELLOW
+                    + "Sei sicuro di voler abbandonare? [ s / n ]: "
+                    + ANSICodes.RESET);
+                    command = SHELL.getInput().toLowerCase();
+                    if (command.compareTo("s") == 0) {
+                        quit = true;
+                        Shell.printlnMessage("Ecco qual'era la posizione delle navi: ");
+                        Shell.printlnMessage(match.getMap().toString());
+                        Shell.printlnMessage("Partita terminata!");
+                        match = null;
+                    }
+                } while (!quit && command.compareTo("n") != 0);
+            }
+    }
     private static MapType setGridSize(final MapType currentMapType, final MapType newMapType) {
         if (match == null) {
             Shell.printlnMessage("Ok!");
@@ -256,6 +281,9 @@ public final class App {
                     break;
                 case "/esci":
                     exit();
+                break;
+                case "/abbandona":
+                    quit();
                 break;
                 default:
                     Shell.printlnMessage(
