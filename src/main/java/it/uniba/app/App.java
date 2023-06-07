@@ -218,7 +218,7 @@ public final class App {
     }
 
     private static void setTimer(final String[] command) {
-        if (match != null) {
+        if (match == null) {
             if (command.length == 2) {
                 try {
                     int number = Integer.parseInt(command[1]);
@@ -240,6 +240,14 @@ public final class App {
         }
     }
 
+    private static void resetGame() {
+        Shell.printlnMessage("Tempo scaduto! - Hai perso!");
+        Shell.printlnMessage("Ecco qual'era la posizione delle navi: ");
+        Shell.printlnMessage(match.getMap().toString());
+        match = null;
+        timer = null;
+    }
+
     /**
      * Main game loop.
      * @param args
@@ -258,6 +266,13 @@ public final class App {
         MapType mapType = MapType.STANDARD;
         String command;
         do {
+            if (timer != null) {
+                timer.showGameTime();
+                if (timer.isTimeOver()) {
+                    resetGame();
+                }
+            }
+
             Shell.printMessage("> ");
             command = SHELL.getInput();
             command = command.toLowerCase();
@@ -287,6 +302,7 @@ public final class App {
                     break;
                 case "/gioca":
                     play(mapType, difficulty);
+                    timer.startTimer();
                     break;
                 case "/svelagriglia":
                     revealGrid();
