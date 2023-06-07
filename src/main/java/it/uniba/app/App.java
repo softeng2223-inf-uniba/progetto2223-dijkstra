@@ -6,6 +6,7 @@ package it.uniba.app;
 public final class App {
     private static final Shell SHELL = Shell.getShell();
     private static Match match = null;
+    private static Timer timer = null;
     private static boolean isRunning = true;
 
     private App() { }
@@ -213,6 +214,29 @@ public final class App {
         } else {
             Shell.printlnMessage("La partita e' già iniziata!");
             return currentMapType;
+        }
+    }
+
+    private static void setTimer(final String[] command) {
+        if (match != null) {
+            if (command.length == 2) {
+                try {
+                    int number = Integer.parseInt(command[1]);
+                    if (number > 0) {
+                        timer = new Timer(number);
+                        Shell.printlnMessage("Ok!");
+                    } else {
+                        Shell.printlnMessage("Non puoi impostare un "
+                        + "numero di minuti negativo o uguale a zero.");
+                    }
+                } catch (NumberFormatException e) {
+                    Shell.printlnMessage("Numero non valido.");
+                }
+            } else {
+                Shell.printlnMessage("Numero non valido.");
+            }
+        } else {
+            Shell.printlnMessage("La partita e' gia' iniziata!");
         }
     }
 
