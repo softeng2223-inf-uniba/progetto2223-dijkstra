@@ -51,6 +51,7 @@ public final class App {
         Shell.printlnMessage("16. /mostragriglia    mostra la griglia di gioco");
         Shell.printlnMessage("17. /abbandona        abbandona la partita in corso");
         Shell.printlnMessage("18. /tempo numero     imposta la durata massima di gioco in minuti");
+        Shell.printlnMessage("19. /mostratempo      visualizza i minuti trascorsi e i minuti ancora disponibili");
     }
     private static void printDescription() {
         Shell.printlnMessage(
@@ -251,6 +252,15 @@ public final class App {
         match = null;
     }
 
+    private static void showTime() {
+        if (match != null) {
+            Shell.printlnMessage(match.getTimer().showGameTime());
+        } else {
+            Shell.printlnMessage("La partita non e' ancora iniziata.");
+            Shell.printlnMessage("Digita /gioca per iniziare una nuova partita!");
+        }
+    }
+
     /**
      * Main game loop.
      * @param args
@@ -330,6 +340,9 @@ public final class App {
                     break;
                 case "/tempo":
                     maxMinute = setTimer(splittedCommand);
+                break;
+                case "/mostratempo":
+                    showTime();
                 break;
                 case "/esci":
                     exit();
