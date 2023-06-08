@@ -55,6 +55,8 @@ public final class App {
         Shell.printlnMessage("17. /abbandona        abbandona la partita in corso");
         Shell.printlnMessage("18. /tempo numero     imposta la durata massima di gioco in minuti");
         Shell.printlnMessage("19. /mostratempo      visualizza i minuti trascorsi e i minuti ancora disponibili");
+        Shell.printlnMessage("20. /mostratentativi  visualizza il numero di tentativi falliti,"
+        + "rimasti e il massimo di tentativi falliti");
     }
     private static void printDescription() {
         Shell.printlnMessage(
@@ -273,6 +275,18 @@ public final class App {
             Shell.printlnMessage("Digita /gioca per iniziare una nuova partita!");
         }
     }
+
+    private static void showAttempts() {
+        if (match == null) {
+            Shell.printlnMessage("La partita non e' ancora iniziata.");
+            Shell.printlnMessage("Digita /gioca per iniziare una nuova partita!");
+        } else {
+            Shell.printlnMessage("Tentativi effettuati: " + match.getNumberOfAttempts());
+            Shell.printlnMessage("Tentativi falliti: " + match.getNumberOfFailedAttempts());
+            Shell.printlnMessage("Numero massimo tentativi falliti: "
+            + match.getCurrentDifficulty().getCurrentMaxFailures() + "\n");
+        }
+    }
     /**
      * Main game loop.
      * @param args
@@ -362,6 +376,9 @@ public final class App {
                 case "/abbandona":
                     quit();
                     maxMinute = 0;
+                break;
+                case "/mostratentativi":
+                    showAttempts();
                 break;
                 default:
                     if (isAMove(splittedCommand[0])) {
