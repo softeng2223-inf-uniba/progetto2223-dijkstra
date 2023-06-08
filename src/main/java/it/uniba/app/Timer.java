@@ -4,8 +4,8 @@ package it.uniba.app;
  * .
  */
 public class Timer {
-    private long initialTime = 0;
-    private long gameTime = 0;
+    private long initialTime;
+    private long gameTime;
     private static final double NANOTIME_TO_SECONDS = 1e9;
     private static final double SECONDS_TO_MINUTES = 60;
 
@@ -15,6 +15,7 @@ public class Timer {
      */
     public Timer(final int maxMinuteString) {
         gameTime = maxMinuteString;
+        initialTime = 0;
     }
 
     /**
@@ -22,7 +23,6 @@ public class Timer {
      */
     public void startTimer() {
         initialTime = System.nanoTime();
-        System.out.println(initialTime);
     }
 
     private long getElapsedTime() {
@@ -44,8 +44,12 @@ public class Timer {
     /**
      * Shows the game time.
      */
-    public void showGameTime() {
-        Shell.printlnMessage("Tempo trascorso: " + getElapsedTime() + " m");
-        Shell.printlnMessage("Tempo rimanente: " + getRemainingTime() + " m");
+    public String showGameTime() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Tempo trascorso: " + getElapsedTime() + " m");
+        sb.append("\n");
+        sb.append("Tempo rimanente: " + getRemainingTime() + " m");
+        sb.append("\n");
+        return sb.toString();
     }
 }
