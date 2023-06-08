@@ -266,8 +266,7 @@ public final class App {
         MapType mapType = MapType.STANDARD;
         String command;
         do {
-            if (timer != null) {
-                timer.showGameTime();
+            if (timer != null && match != null) {
                 if (timer.isTimeOver()) {
                     resetGame();
                 }
@@ -301,8 +300,13 @@ public final class App {
                     showShips();
                     break;
                 case "/gioca":
-                    play(mapType, difficulty);
-                    timer.startTimer();
+                    if (timer != null) {
+                        play(mapType, difficulty);
+                        timer.startTimer();
+                    } else {
+                        Shell.printlnMessage("Non hai impostato un timer di gioco!\n"
+                        + "Digita /tempo numero per impostarlo.");
+                    }
                     break;
                 case "/svelagriglia":
                     revealGrid();

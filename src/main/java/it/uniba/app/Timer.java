@@ -22,6 +22,7 @@ public class Timer {
      */
     public void startTimer() {
         initialTime = System.nanoTime();
+        System.out.println(initialTime);
     }
 
     private long getElapsedTime() {
