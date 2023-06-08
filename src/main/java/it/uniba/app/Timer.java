@@ -30,7 +30,11 @@ public class Timer {
     }
 
     private long getRemainingTime() {
-        return (long) (gameTime - getElapsedTime());
+        long remainingTime = gameTime - getElapsedTime();
+        if (remainingTime < 0) {
+            remainingTime = 0;
+        }
+        return remainingTime;
     }
 
     /**
@@ -42,9 +46,10 @@ public class Timer {
     }
 
     /**
-     * Shows the game time.
+     * Returns a string representing the game time.
+     * @return String - represents the game time stats.
      */
-    public String showGameTime() {
+    public String getGameTime() {
         StringBuilder sb = new StringBuilder();
         sb.append("Tempo trascorso: " + getElapsedTime() + " m");
         sb.append("\n");

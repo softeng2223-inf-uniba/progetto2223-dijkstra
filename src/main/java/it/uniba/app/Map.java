@@ -6,6 +6,7 @@ import java.util.Random;
  * This class describe the behaviour of the map during the game.
  */
 public final class Map {
+    public static final int TOTAL_SHIPS_NUMBER = 10;
     public static final int DESTROYERS_NUMBER = 4;
     public static final int CRUISERS_NUMBER = 3;
     public static final int ARMOUREDS_NUMBER = 2;
@@ -232,7 +233,7 @@ public final class Map {
             for (Cell cell : cells) {
                 if (cell.isHit()) {
                     if (cell.isFree()) {
-                        s.append(ANSICodes.BBLUE + "o " + ANSICodes.RESET);
+                        s.append(ANSICodes.FBLUE + "o " + ANSICodes.RESET);
                     } else if
                     (cell.getShip().getType() == ShipType.AIRCRAFT_CARRIER) {
                         s.append(ANSICodes.FRED + "X " + ANSICodes.RESET);

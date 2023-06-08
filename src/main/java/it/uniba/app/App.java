@@ -1,5 +1,8 @@
 package it.uniba.app;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Main app class.
  */
@@ -218,6 +221,19 @@ public final class App {
         }
     }
 
+    /**
+     * Checks if the input of the user
+     * is a move of the game or not.
+     * @param command
+     * @return
+     */
+    private static boolean isAMove(final String command) {
+        final String moveRegexp = "^[a-z]-\\d{1,2}$";
+        Pattern pattern = Pattern.compile(moveRegexp, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(command);
+
+        return matcher.matches();
+    }
     private static int setTimer(final String[] command) {
         int number = 0;
 
@@ -246,21 +262,17 @@ public final class App {
     }
 
     private static void resetGame() {
-        Shell.printlnMessage("Tempo scaduto! - Hai perso!");
-        Shell.printlnMessage("Ecco qual'era la posizione delle navi: ");
-        Shell.printlnMessage(match.getMap().toString());
         match = null;
     }
 
     private static void showTime() {
         if (match != null) {
-            Shell.printlnMessage(match.getTimer().showGameTime());
+            Shell.printlnMessage(match.getTimer().getGameTime());
         } else {
             Shell.printlnMessage("La partita non e' ancora iniziata.");
             Shell.printlnMessage("Digita /gioca per iniziare una nuova partita!");
         }
     }
-
     /**
      * Main game loop.
      * @param args
@@ -281,7 +293,7 @@ public final class App {
         int maxMinute = 0;
         do {
             if (match != null) {
-                if (match.getTimer().isTimeOver()) {
+                if (match.isGameOver()) {
                     resetGame();
                     maxMinute = 0;
                 }
@@ -352,11 +364,22 @@ public final class App {
                     maxMinute = 0;
                 break;
                 default:
-                    Shell.printlnMessage(
+                    if (isAMove(splittedCommand[0])) {
+                        if (match == null) {
+                            Shell.printlnMessage(
+                                "Non e' in esecuzione nessuna partita!");
+                            Shell.printlnMessage(
+                                "Digita /gioca per iniziare una nuova partita!");
+                        } else {
+                            Shell.printlnMessage(match.makeMove(splittedCommand[0]));
+                        }
+                    } else {
+                        Shell.printlnMessage(
                         ANSICodes.FRED
                         + "Comando inesistente o non riconosciuto."
                         + ANSICodes.RESET);
-                break;
+                    }
+                    break;
             }
         } while (isRunning);
     }
