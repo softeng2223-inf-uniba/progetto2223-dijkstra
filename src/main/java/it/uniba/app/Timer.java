@@ -42,9 +42,10 @@ public class Timer {
     }
 
     /**
-     * Shows the game time.
+     * Returns a string representing the game time.
+     * @return String - represents the game time stats.
      */
-    public String showGameTime() {
+    public String getGameTime() {
         StringBuilder sb = new StringBuilder();
         sb.append("Tempo trascorso: " + getElapsedTime() + " m");
         sb.append("\n");

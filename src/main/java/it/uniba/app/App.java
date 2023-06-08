@@ -270,7 +270,7 @@ public final class App {
 
     private static void showTime() {
         if (match != null) {
-            Shell.printlnMessage(match.getTimer().showGameTime());
+            Shell.printlnMessage(match.getTimer().getGameTime());
         } else {
             Shell.printlnMessage("La partita non e' ancora iniziata.");
             Shell.printlnMessage("Digita /gioca per iniziare una nuova partita!");

@@ -72,15 +72,10 @@ public final class Match {
              * and check if there is a ship in it.
             */
             Cell hitCell = map.getCell(row, column);
+
             if (!hitCell.isHit()) {
                 hitCell.hit();
                 incrementAttempts();
-
-                /*
-                * Displays a different message, depending
-                * on the success of the attempt
-                */
-                message.append(map.getMapGrid() + "\n");
 
                 if (hitCell.getShip() == null) {
                     message.append(
@@ -103,9 +98,6 @@ public final class Match {
                             + ANSICodes.RESET + "\n");
                     }
                 }
-
-                // Shows the main information of the match
-                message.append("Tentativi: " + String.valueOf(getNumberOfAttempts()) + "\n\n");
             } else {
                 message.append(
                 "La cella e' stata gia' selezionata. \nRiprova.\n\n");
@@ -117,6 +109,15 @@ public final class Match {
             message.append(
                 "Rispettare le dimensioni della mappa specificate.\n");
         }
+        // Shows the main information of the match
+        message.append("Tentativi: " + String.valueOf(getNumberOfAttempts()) + "\n\n");
+        message.append(timer.getGameTime());
+
+        /*
+        * Displays a different message, depending
+        * on the success of the attempt
+        */
+        message.append(map.getMapGrid() + "\n");
 
         return message.toString();
     }
