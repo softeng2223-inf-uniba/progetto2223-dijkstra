@@ -262,9 +262,6 @@ public final class App {
     }
 
     private static void resetGame() {
-        Shell.printlnMessage("Tempo scaduto! - Hai perso!");
-        Shell.printlnMessage("Ecco qual'era la posizione delle navi: ");
-        Shell.printlnMessage(match.getMap().toString());
         match = null;
     }
 
@@ -296,7 +293,7 @@ public final class App {
         int maxMinute = 0;
         do {
             if (match != null) {
-                if (match.getTimer().isTimeOver()) {
+                if (match.isGameOver()) {
                     resetGame();
                     maxMinute = 0;
                 }

@@ -30,7 +30,11 @@ public class Timer {
     }
 
     private long getRemainingTime() {
-        return (long) (gameTime - getElapsedTime());
+        long remainingTime = gameTime - getElapsedTime();
+        if (remainingTime < 0) {
+            remainingTime = 0;
+        }
+        return remainingTime;
     }
 
     /**
