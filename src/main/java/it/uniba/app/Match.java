@@ -8,17 +8,18 @@ public final class Match {
     private Difficulty currentDifficulty;
     private int numberOfFailedAttempts;
     private int numberOfAttempts;
-    // timer
+    private Timer timer;
 
     /**
      * Match constructor.
      * @param level - sets the current difficulty
      */
-    public Match(final MapType mapType, final Difficulty.Level level) {
+    public Match(final MapType mapType, final Difficulty.Level level, final int maxMinutes) {
         map = new Map(mapType);
         currentDifficulty = new Difficulty(level);
         numberOfFailedAttempts = 0;
         numberOfAttempts = 0;
+        timer = new Timer(maxMinutes);
     }
 
     public Map getMap() {
@@ -41,4 +42,7 @@ public final class Match {
         return numberOfAttempts;
     }
 
+    public Timer getTimer() {
+        return timer;
+    }
 }

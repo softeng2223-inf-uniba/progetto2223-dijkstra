@@ -50,6 +50,7 @@ public final class App {
         Shell.printlnMessage("15. /extralarge       imposta a 26x26 la dimensione della griglia");
         Shell.printlnMessage("16. /mostragriglia    mostra la griglia di gioco");
         Shell.printlnMessage("17. /abbandona        abbandona la partita in corso");
+        Shell.printlnMessage("18. /tempo numero     imposta la durata massima di gioco in minuti");
     }
     private static void printDescription() {
         Shell.printlnMessage(
@@ -136,9 +137,9 @@ public final class App {
             Shell.printlnMessage(match.getMap().getShipStats());
         }
     }
-    private static void play(final MapType mapType, final Difficulty difficulty) {
+    private static void play(final MapType mapType, final Difficulty difficulty, final int maxMinutes) {
         if (match == null) {
-            match = new Match(mapType, difficulty.getCurrentLevel());
+            match = new Match(mapType, difficulty.getCurrentLevel(), maxMinutes);
             Shell.printlnMessage("Partita avviata!");
             Shell.printlnMessage(match.getMap().getMapGrid());
         } else {
@@ -216,6 +217,40 @@ public final class App {
         }
     }
 
+    private static int setTimer(final String[] command) {
+        int number = 0;
+
+        if (match == null) {
+            if (command.length == 2) {
+                try {
+                    number = Integer.parseInt(command[1]);
+                    if (number > 0) {
+                        Shell.printlnMessage("Ok!");
+                    } else {
+                        number = 0;
+                        Shell.printlnMessage("Non puoi impostare un "
+                        + "numero di minuti negativo o uguale a zero.");
+                    }
+                } catch (NumberFormatException e) {
+                    Shell.printlnMessage("Numero non valido.");
+                }
+            } else {
+                Shell.printlnMessage("Numero non valido.");
+            }
+        } else {
+            Shell.printlnMessage("La partita e' gia' iniziata!");
+        }
+
+        return number;
+    }
+
+    private static void resetGame() {
+        Shell.printlnMessage("Tempo scaduto! - Hai perso!");
+        Shell.printlnMessage("Ecco qual'era la posizione delle navi: ");
+        Shell.printlnMessage(match.getMap().toString());
+        match = null;
+    }
+
     /**
      * Main game loop.
      * @param args
@@ -233,7 +268,15 @@ public final class App {
         Difficulty difficulty = new Difficulty(Difficulty.Level.EASY);
         MapType mapType = MapType.STANDARD;
         String command;
+        int maxMinute = 0;
         do {
+            if (match != null) {
+                if (match.getTimer().isTimeOver()) {
+                    resetGame();
+                    maxMinute = 0;
+                }
+            }
+
             Shell.printMessage("> ");
             command = SHELL.getInput();
             command = command.toLowerCase();
@@ -262,7 +305,13 @@ public final class App {
                     showShips();
                     break;
                 case "/gioca":
-                    play(mapType, difficulty);
+                    if (maxMinute > 0) {
+                        play(mapType, difficulty, maxMinute);
+                        match.getTimer().startTimer();
+                    } else {
+                        Shell.printlnMessage("Non hai impostato un timer di gioco!\n"
+                        + "Digita /tempo numero per impostarlo.");
+                    }
                     break;
                 case "/svelagriglia":
                     revealGrid();
@@ -279,11 +328,15 @@ public final class App {
                 case "/mostragriglia":
                     showGrid();
                     break;
+                case "/tempo":
+                    maxMinute = setTimer(splittedCommand);
+                break;
                 case "/esci":
                     exit();
                 break;
                 case "/abbandona":
                     quit();
+                    maxMinute = 0;
                 break;
                 default:
                     Shell.printlnMessage(
