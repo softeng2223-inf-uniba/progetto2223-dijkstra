@@ -96,6 +96,11 @@ public final class App {
                             case "/difficile":
                                 Difficulty.setHardMaxFailures(number);
                                 break;
+                            case "/tentativi":
+                                Difficulty.setEasyMaxFailures(number);
+                                Difficulty.setMediumMaxFailures(number);
+                                Difficulty.setHardMaxFailures(number);
+                                break;
                             default:
                                 return;
                         }
@@ -119,6 +124,10 @@ public final class App {
                         difficulty.setCurrentLevel(Difficulty.Level.HARD);
                         break;
                     default:
+                        Shell.printlnMessage(
+                            ANSICodes.FRED
+                            + "Comando inesistente o non riconosciuto."
+                            + ANSICodes.RESET);
                         return;
                 }
                 Shell.printlnMessage("Ok!");
@@ -332,6 +341,7 @@ public final class App {
                 case "/facile":
                 case "/medio":
                 case "/difficile":
+                case "/tentativi":
                     setDifficulty(splittedCommand, difficulty);
                     break;
                 case "/mostralivello":
