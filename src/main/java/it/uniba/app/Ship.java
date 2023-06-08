@@ -15,13 +15,25 @@ public final class Ship {
         this.type = inType;
         this.healthPoints = type.getSize();
     }
+
     public boolean isHit() {
         return healthPoints < type.getSize();
     }
+
     public boolean isSunken() {
         return healthPoints == 0;
     }
+
     public ShipType getType() {
         return type;
+    }
+
+    /**
+     * Method used to hit the cell.
+     */
+    public void hit() {
+        if (!isSunken()) {
+            healthPoints--;
+        }
     }
 }

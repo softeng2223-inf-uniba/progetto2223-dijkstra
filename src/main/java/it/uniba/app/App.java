@@ -1,5 +1,8 @@
 package it.uniba.app;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Main app class.
  */
@@ -218,6 +221,19 @@ public final class App {
         }
     }
 
+    /**
+     * Checks if the input of the user
+     * is a move of the game or not.
+     * @param command
+     * @return
+     */
+    private static boolean isAMove(final String command) {
+        final String moveRegexp = "^[a-z]-\\d{1,2}$";
+        Pattern pattern = Pattern.compile(moveRegexp, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(command);
+
+        return matcher.matches();
+    }
     private static int setTimer(final String[] command) {
         int number = 0;
 
@@ -260,7 +276,6 @@ public final class App {
             Shell.printlnMessage("Digita /gioca per iniziare una nuova partita!");
         }
     }
-
     /**
      * Main game loop.
      * @param args
@@ -352,11 +367,22 @@ public final class App {
                     maxMinute = 0;
                 break;
                 default:
-                    Shell.printlnMessage(
+                    if (isAMove(splittedCommand[0])) {
+                        if (match == null) {
+                            Shell.printlnMessage(
+                                "Non e' in esecuzione nessuna partita!");
+                            Shell.printlnMessage(
+                                "Digita /gioca per iniziare una nuova partita!");
+                        } else {
+                            Shell.printlnMessage(match.makeMove(splittedCommand[0]));
+                        }
+                    } else {
+                        Shell.printlnMessage(
                         ANSICodes.FRED
                         + "Comando inesistente o non riconosciuto."
                         + ANSICodes.RESET);
-                break;
+                    }
+                    break;
             }
         } while (isRunning);
     }

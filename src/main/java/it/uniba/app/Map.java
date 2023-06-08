@@ -232,7 +232,7 @@ public final class Map {
             for (Cell cell : cells) {
                 if (cell.isHit()) {
                     if (cell.isFree()) {
-                        s.append(ANSICodes.BBLUE + "o " + ANSICodes.RESET);
+                        s.append(ANSICodes.FBLUE + "o " + ANSICodes.RESET);
                     } else if
                     (cell.getShip().getType() == ShipType.AIRCRAFT_CARRIER) {
                         s.append(ANSICodes.FRED + "X " + ANSICodes.RESET);
