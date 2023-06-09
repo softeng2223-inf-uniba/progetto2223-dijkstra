@@ -38,25 +38,26 @@ public final class App {
         Shell.printlnMessage("I comandi utilizzabili sono:");
         Shell.printlnMessage("1.  /help             mostra l'elenco dei comandi disponibili");
         Shell.printlnMessage("2.  /gioca            avvia una nuova partita");
-        Shell.printlnMessage("3.  /esci             termina il gioco");
-        Shell.printlnMessage("4.  /facile           imposta la difficoltà a facile [default: 50 tentativi]");
-        Shell.printlnMessage("5.  /facile numero    imposta un nuovo numero di tentativi per la difficoltà facile");
-        Shell.printlnMessage("6.  /medio            imposta la difficoltà a medio [default: 30 tentativi]");
-        Shell.printlnMessage("7.  /medio numero     imposta un nuovo numero di tentativi per la difficoltà media");
-        Shell.printlnMessage("8.  /difficile        imposta la difficoltà a difficile [default: 10 tentativi]");
-        Shell.printlnMessage("9.  /difficile numero imposta un nuovo numero di tentativi per la difficoltà difficile");
-        Shell.printlnMessage("10. /mostralivello    mostra il livello di difficoltà impostato");
-        Shell.printlnMessage("11. /mostranavi       mostra le navi da affondare presenti sulla griglia");
-        Shell.printlnMessage("12. /svelagriglia     mostra la griglia con le navi posizionate");
+        Shell.printlnMessage("3.  /mostranavi       mostra le navi da affondare presenti sulla griglia");
+        Shell.printlnMessage("4.  /tempo numero     imposta la durata massima di gioco in minuti");
+        Shell.printlnMessage("5.  /facile           imposta la difficoltà a facile [default: 50 tentativi]");
+        Shell.printlnMessage("6.  /facile numero    imposta un nuovo numero di tentativi per la difficoltà facile");
+        Shell.printlnMessage("7.  /medio            imposta la difficoltà a medio [default: 30 tentativi]");
+        Shell.printlnMessage("8.  /medio numero     imposta un nuovo numero di tentativi per la difficoltà media");
+        Shell.printlnMessage("9.  /difficile        imposta la difficoltà a difficile [default: 10 tentativi]");
+        Shell.printlnMessage("10. /difficile numero imposta un nuovo numero di tentativi per la difficoltà difficile");
+        Shell.printlnMessage("11. /tentativi numero imposta un nuovo numero di tentativi per tutte le difficolta'");
+        Shell.printlnMessage("12. /mostralivello    mostra il livello di difficoltà impostato");
         Shell.printlnMessage("13. /standard         imposta a 10x10 la dimensione della griglia");
         Shell.printlnMessage("14. /large            imposta a 18x18 la dimensione della griglia");
         Shell.printlnMessage("15. /extralarge       imposta a 26x26 la dimensione della griglia");
         Shell.printlnMessage("16. /mostragriglia    mostra la griglia di gioco");
-        Shell.printlnMessage("17. /abbandona        abbandona la partita in corso");
-        Shell.printlnMessage("18. /tempo numero     imposta la durata massima di gioco in minuti");
-        Shell.printlnMessage("19. /mostratempo      visualizza i minuti trascorsi e i minuti ancora disponibili");
-        Shell.printlnMessage("20. /mostratentativi  visualizza il numero di tentativi falliti,"
+        Shell.printlnMessage("17. /mostratempo      visualizza i minuti trascorsi e i minuti ancora disponibili");
+        Shell.printlnMessage("18. /mostratentativi  visualizza il numero di tentativi falliti,"
         + "rimasti e il massimo di tentativi falliti");
+        Shell.printlnMessage("19. /svelagriglia     mostra la griglia con le navi posizionate");
+        Shell.printlnMessage("20. /abbandona        abbandona la partita in corso");
+        Shell.printlnMessage("21. /esci             termina il gioco");
     }
     private static void printDescription() {
         Shell.printlnMessage(
@@ -96,6 +97,11 @@ public final class App {
                             case "/difficile":
                                 Difficulty.setHardMaxFailures(number);
                                 break;
+                            case "/tentativi":
+                                Difficulty.setEasyMaxFailures(number);
+                                Difficulty.setMediumMaxFailures(number);
+                                Difficulty.setHardMaxFailures(number);
+                                break;
                             default:
                                 return;
                         }
@@ -119,6 +125,10 @@ public final class App {
                         difficulty.setCurrentLevel(Difficulty.Level.HARD);
                         break;
                     default:
+                        Shell.printlnMessage(
+                            ANSICodes.FRED
+                            + "Comando inesistente o non riconosciuto."
+                            + ANSICodes.RESET);
                         return;
                 }
                 Shell.printlnMessage("Ok!");
@@ -152,7 +162,7 @@ public final class App {
             Shell.printlnMessage(
                 "E' gia' in corso un'altra partita!");
             Shell.printlnMessage(
-                "Digita /esci per terminare la partita!");
+                "Digita /abbandona per terminare la partita!");
         }
     }
     private static void revealGrid() {
@@ -332,6 +342,7 @@ public final class App {
                 case "/facile":
                 case "/medio":
                 case "/difficile":
+                case "/tentativi":
                     setDifficulty(splittedCommand, difficulty);
                     break;
                 case "/mostralivello":
