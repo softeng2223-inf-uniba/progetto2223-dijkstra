@@ -28,17 +28,59 @@ public final class Shell {
         return command;
     }
     /**
-     * Print the message passed via argument to the shell.
+     * Prints the message passed via argument to the shell.
      * @param message
      */
     public static void printMessage(final String message) {
         System.out.print(message);
     }
     /**
-     * Print the message passed via argument to the shell with a newline.
+     * Prints the message passed via argument to the shell with a newline.
      * @param message
      */
     public static void printlnMessage(final String message) {
         System.out.println(message);
+    }
+    /**
+     * Prints the message with color red passed via argument to the shell.
+     * @param message
+     */
+    public static void printError(final String message) {
+        System.err.print(ANSICodes.FRED + message + ANSICodes.RESET);
+    }
+    /**
+     * Prints the message with color red passed via argument to the shell with a newline.
+     * @param message
+     */
+    public static void printlnError(final String message) {
+        System.err.println(ANSICodes.FRED + message + ANSICodes.RESET);
+    }
+    /**
+     * Prints the message with color yellow passed via argument to the shell.
+     * @param message
+     */
+    public static void printWarning(final String message) {
+        System.err.print(ANSICodes.FYELLOW + message + ANSICodes.RESET);
+    }
+    /**
+     * Prints the message with color yellow passed via argument to the shell with a newline.
+     * @param message
+     */
+    public static void printlnWarning(final String message) {
+        System.err.println(ANSICodes.FYELLOW + message + ANSICodes.RESET);
+    }
+    /**
+     * Prints the message with color green passed via argument to the shell.
+     * @param message
+     */
+    public static void printSuccess(final String message) {
+        System.err.print(ANSICodes.FGREEN + message + ANSICodes.RESET);
+    }
+    /**
+     * Prints the message with color green passed via argument to the shell with a newline.
+     * @param message
+     */
+    public static void printlnSuccess(final String message) {
+        System.err.println(ANSICodes.FGREEN + message + ANSICodes.RESET);
     }
 }

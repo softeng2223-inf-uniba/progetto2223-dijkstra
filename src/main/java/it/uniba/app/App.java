@@ -55,10 +55,12 @@ public final class App {
         Shell.printlnMessage("16. /mostragriglia    mostra la griglia di gioco");
         Shell.printlnMessage("17. /mostratempo      visualizza i minuti trascorsi e i minuti ancora disponibili");
         Shell.printlnMessage("18. /mostratentativi  visualizza il numero di tentativi falliti,"
-        + "rimasti e il massimo di tentativi falliti");
+        + " rimasti e il massimo di tentativi falliti");
         Shell.printlnMessage("19. /svelagriglia     mostra la griglia con le navi posizionate");
         Shell.printlnMessage("20. /abbandona        abbandona la partita in corso");
         Shell.printlnMessage("21. /esci             termina il gioco");
+        Shell.printlnMessage("\nPer effettuare un tentativo, digitare le coordinate da colpire\n"
+        + "nella forma <lettera>-<numero>, ad esempio A-1, B-5, C-10, D-26, ecc.\n");
     }
     private static void printDescription() {
         Shell.printlnMessage(
@@ -75,7 +77,7 @@ public final class App {
         + "progressivamente sempre piu' difficili, "
         + "in cui diminuisce il numero massimo "
         + "di tentativi falliti per l'utente.");
-        Shell.printlnMessage("Buona fortuna nell'affrontare il computer!\n");
+        Shell.printlnSuccess("Buona fortuna nell'affrontare il computer!\n");
     }
     /**
      * Method that sets the game difficulty according to the input of the user.
@@ -106,13 +108,13 @@ public final class App {
                             default:
                                 return;
                         }
-                        Shell.printlnMessage("Ok!");
+                        Shell.printlnSuccess("Ok!");
                     } else {
-                        Shell.printlnMessage("Non puoi impostare un "
+                        Shell.printlnError("Non puoi impostare un "
                         + "numero di tentativi negativo o uguale a zero.");
                     }
                 } catch (NumberFormatException e) {
-                    Shell.printlnMessage("Numero non valido.");
+                    Shell.printlnError("Numero non valido.");
                 }
             } else {
                 switch (command[0]) {
@@ -126,16 +128,13 @@ public final class App {
                         difficulty.setCurrentLevel(Difficulty.Level.HARD);
                         break;
                     default:
-                        Shell.printlnMessage(
-                            ANSICodes.FRED
-                            + "Comando inesistente o non riconosciuto."
-                            + ANSICodes.RESET);
+                        Shell.printlnError("Comando inesistente o non riconosciuto.");
                         return;
                 }
-                Shell.printlnMessage("Ok!");
+                Shell.printlnSuccess("Ok!");
             }
         } else {
-            Shell.printlnMessage("La partita e' gia' iniziata!");
+            Shell.printlnError("La partita e' gia' iniziata!");
         }
     }
     private static void showLevel(final Difficulty difficulty) {
@@ -146,9 +145,9 @@ public final class App {
     }
     private static void showShips() {
         if (match == null) {
-            Shell.printlnMessage(
+            Shell.printlnError(
                 "Non e' in esecuzione nessuna partita!");
-            Shell.printlnMessage(
+            Shell.printlnError(
                 "Digita /gioca per iniziare una nuova partita!");
         } else {
             Shell.printlnMessage(match.getMap().getShipStats());
@@ -157,12 +156,12 @@ public final class App {
     private static void play(final MapType mapType, final Difficulty difficulty, final int maxMinutes) {
         if (match == null) {
             match = new Match(mapType, difficulty.getCurrentLevel(), maxMinutes);
-            Shell.printlnMessage("Partita avviata!");
+            Shell.printlnSuccess("Partita avviata!");
             Shell.printlnMessage(match.getMap().getMapGrid());
         } else {
-            Shell.printlnMessage(
+            Shell.printlnError(
                 "E' gia' in corso un'altra partita!");
-            Shell.printlnMessage(
+            Shell.printlnError(
                 "Digita /abbandona per terminare la partita!");
         }
     }
@@ -170,17 +169,17 @@ public final class App {
         if (match != null) {
             Shell.printlnMessage(match.getMap().toString());
         } else {
-            Shell.printlnMessage(
+            Shell.printlnError(
                 "La partita non e' ancora iniziata.");
-            Shell.printlnMessage(
+            Shell.printlnError(
                 "Digita /gioca per iniziare una nuova partita!");
         }
     }
     private static void showGrid() {
         if (match == null) {
-            Shell.printlnMessage(
+            Shell.printlnError(
                 "Non e' in esecuzione nessuna partita!");
-            Shell.printlnMessage(
+            Shell.printlnError(
                 "Digita /gioca per iniziare una nuova partita!");
         } else {
             Shell.printlnMessage(match.getMap().getMapGrid());
@@ -189,47 +188,44 @@ public final class App {
     private static void exit() {
         String command;
         do {
-            Shell.printMessage(
-            ANSICodes.FYELLOW
-            + "Sei sicuro di voler uscire? [ s / n ]: "
-            + ANSICodes.RESET);
+            Shell.printWarning("Sei sicuro di voler uscire? [ s / n ]: ");
             command = SHELL.getInput().toLowerCase();
             if (command.compareTo("s") == 0) {
                 isRunning = false;
             }
         } while (isRunning && command.compareTo("n") != 0);
     }
-    private static void quit() {
+    private static int quit(final int maxMinutes) {
         String command;
         boolean quit = false;
         if (match == null) {
-            Shell.printlnMessage(
+            Shell.printlnError(
                 "Non e' in esecuzione nessuna partita!");
-            Shell.printlnMessage(
+            Shell.printlnError(
                 "Digita /gioca per iniziare una nuova partita!");
-            } else {
-                do {
-                    Shell.printMessage(
-                    ANSICodes.FYELLOW
-                    + "Sei sicuro di voler abbandonare? [ s / n ]: "
-                    + ANSICodes.RESET);
-                    command = SHELL.getInput().toLowerCase();
-                    if (command.compareTo("s") == 0) {
-                        quit = true;
-                        Shell.printlnMessage("Ecco qual'era la posizione delle navi: ");
-                        Shell.printlnMessage(match.getMap().toString());
-                        Shell.printlnMessage("Partita terminata!");
-                        match = null;
-                    }
-                } while (!quit && command.compareTo("n") != 0);
-            }
+        } else {
+            do {
+                Shell.printWarning("Sei sicuro di voler abbandonare? [ s / n ]: ");
+                command = SHELL.getInput().toLowerCase();
+                if (command.compareTo("s") == 0) {
+                    quit = true;
+                    Shell.printlnMessage("Ecco qual'era la posizione delle navi: ");
+                    Shell.printlnMessage(match.getMap().toString());
+                    Shell.printlnMessage("Partita terminata!");
+                    match = null;
+                    return 0;
+                }
+            } while (!quit && command.compareTo("n") != 0);
+        }
+
+        return maxMinutes;
     }
     private static MapType setGridSize(final MapType currentMapType, final MapType newMapType) {
         if (match == null) {
-            Shell.printlnMessage("Ok!");
+            Shell.printlnSuccess("Ok!");
             return newMapType;
         } else {
-            Shell.printlnMessage("La partita e' già iniziata!");
+            Shell.printlnError("La partita e' già iniziata!");
             return currentMapType;
         }
     }
@@ -255,20 +251,20 @@ public final class App {
                 try {
                     number = Integer.parseInt(command[1]);
                     if (number > 0) {
-                        Shell.printlnMessage("Ok!");
+                        Shell.printlnSuccess("Ok!");
                     } else {
                         number = 0;
-                        Shell.printlnMessage("Non puoi impostare un "
+                        Shell.printlnError("Non puoi impostare un "
                         + "numero di minuti negativo o uguale a zero.");
                     }
                 } catch (NumberFormatException e) {
-                    Shell.printlnMessage("Numero non valido.");
+                    Shell.printlnError("Numero non valido.");
                 }
             } else {
-                Shell.printlnMessage("Numero non valido.");
+                Shell.printlnError("Numero non valido.");
             }
         } else {
-            Shell.printlnMessage("La partita e' gia' iniziata!");
+            Shell.printlnError("La partita e' gia' iniziata!");
         }
 
         return number;
@@ -282,15 +278,15 @@ public final class App {
         if (match != null) {
             Shell.printlnMessage(match.getTimer().getGameTime());
         } else {
-            Shell.printlnMessage("La partita non e' ancora iniziata.");
-            Shell.printlnMessage("Digita /gioca per iniziare una nuova partita!");
+            Shell.printlnError("La partita non e' ancora iniziata.");
+            Shell.printlnError("Digita /gioca per iniziare una nuova partita!");
         }
     }
 
     private static void showAttempts() {
         if (match == null) {
-            Shell.printlnMessage("La partita non e' ancora iniziata.");
-            Shell.printlnMessage("Digita /gioca per iniziare una nuova partita!");
+            Shell.printlnError("La partita non e' ancora iniziata.");
+            Shell.printlnError("Digita /gioca per iniziare una nuova partita!");
         } else {
             Shell.printlnMessage("Tentativi effettuati: " + match.getNumberOfAttempts());
             Shell.printlnMessage("Tentativi falliti: " + match.getNumberOfFailedAttempts());
@@ -315,12 +311,12 @@ public final class App {
         Difficulty difficulty = new Difficulty(Difficulty.Level.EASY);
         MapType mapType = MapType.STANDARD;
         String command;
-        int maxMinute = 0;
+        int maxMinutes = 0;
         do {
             if (match != null) {
                 if (match.isGameOver()) {
                     resetGame();
-                    maxMinute = 0;
+                    maxMinutes = 0;
                 }
             }
 
@@ -331,7 +327,7 @@ public final class App {
             String[] splittedCommand = command.split("\\s+");
 
             if (splittedCommand.length > 2) {
-                Shell.printlnMessage(ANSICodes.FRED + "Comando inesistente o non riconosciuto." + ANSICodes.RESET);
+                Shell.printlnError("Comando inesistente o non riconosciuto.");
                 continue;
             }
 
@@ -353,11 +349,11 @@ public final class App {
                     showShips();
                     break;
                 case "/gioca":
-                    if (maxMinute > 0) {
-                        play(mapType, difficulty, maxMinute);
+                    if (maxMinutes > 0) {
+                        play(mapType, difficulty, maxMinutes);
                         match.getTimer().startTimer();
                     } else {
-                        Shell.printlnMessage("Non hai impostato un timer di gioco!\n"
+                        Shell.printlnError("Non hai impostato un timer di gioco!\n"
                         + "Digita /tempo numero per impostarlo.");
                     }
                     break;
@@ -377,7 +373,7 @@ public final class App {
                     showGrid();
                     break;
                 case "/tempo":
-                    maxMinute = setTimer(splittedCommand);
+                    maxMinutes = setTimer(splittedCommand);
                 break;
                 case "/mostratempo":
                     showTime();
@@ -386,8 +382,7 @@ public final class App {
                     exit();
                 break;
                 case "/abbandona":
-                    quit();
-                    maxMinute = 0;
+                    maxMinutes = quit(maxMinutes);
                 break;
                 case "/mostratentativi":
                     showAttempts();
@@ -395,18 +390,15 @@ public final class App {
                 default:
                     if (isAMove(splittedCommand[0])) {
                         if (match == null) {
-                            Shell.printlnMessage(
+                            Shell.printlnError(
                                 "Non e' in esecuzione nessuna partita!");
-                            Shell.printlnMessage(
+                            Shell.printlnError(
                                 "Digita /gioca per iniziare una nuova partita!");
                         } else {
                             Shell.printlnMessage(match.makeMove(splittedCommand[0]));
                         }
                     } else {
-                        Shell.printlnMessage(
-                        ANSICodes.FRED
-                        + "Comando inesistente o non riconosciuto."
-                        + ANSICodes.RESET);
+                        Shell.printlnError("Comando inesistente o non riconosciuto.");
                     }
                     break;
             }
