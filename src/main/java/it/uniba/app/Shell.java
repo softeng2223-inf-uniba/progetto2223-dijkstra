@@ -52,6 +52,6 @@ public final class Shell {
      * @param message
      */
     public static void printlnError(final String message) {
-        System.err.print(ANSICodes.FRED + message + ANSICodes.RESET);
+        System.err.println(ANSICodes.FRED + message + ANSICodes.RESET);
     }
 }
