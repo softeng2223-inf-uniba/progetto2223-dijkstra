@@ -1,5 +1,6 @@
 package it.uniba.app;
 /**
+ * << Boundary >>:
  * ANSICodes class in order to format text.
  */
 public final class ANSICodes {

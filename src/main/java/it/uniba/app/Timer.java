@@ -1,7 +1,8 @@
 package it.uniba.app;
 
 /**
- * .
+ * << Entity >>:
+ * Class to manage the game time.
  */
 public class Timer {
     private long initialTime;

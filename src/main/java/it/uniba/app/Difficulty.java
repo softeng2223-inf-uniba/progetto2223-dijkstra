@@ -1,6 +1,7 @@
 package it.uniba.app;
 
 /**
+ * << Entity >>:
  * Class that represents the game difficulty.
  */
 public final class Difficulty {

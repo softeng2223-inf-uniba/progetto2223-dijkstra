@@ -1,5 +1,6 @@
 package it.uniba.app;
 /**
+ * << Entity >>:
  * Cell class for map grid.
  */
 public final class Cell {
