@@ -1,5 +1,6 @@
 package it.uniba.app;
 /**
+ * << Entity >>:
  * Class for ship in Battleship.
  * This class describes the behaviour of a ship during the game.
  */
