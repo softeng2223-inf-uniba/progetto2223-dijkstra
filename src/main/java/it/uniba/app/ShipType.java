@@ -1,5 +1,6 @@
 package it.uniba.app;
 /**
+ * << Entity >>:
  * Enum class for ship types (and their dimension) of Battleship.
  */
 public enum ShipType {

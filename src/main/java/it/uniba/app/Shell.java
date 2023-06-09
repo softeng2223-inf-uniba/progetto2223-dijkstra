@@ -3,7 +3,8 @@ package it.uniba.app;
 import java.util.Scanner;
 
 /**
- * .
+ * << Boundary >>:
+ * Class to manage input/output from command line.
  */
 public final class Shell {
     private Scanner input;

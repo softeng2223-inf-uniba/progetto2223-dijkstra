@@ -2,6 +2,7 @@ package it.uniba.app;
 import java.util.Random;
 
 /**
+ * << Entity >>:
  * Class for the map of Battleship.
  * This class describe the behaviour of the map during the game.
  */
@@ -171,7 +172,7 @@ public final class Map {
      * Returns the cell in position row and col in map.
      * @param row - the row position.
      * @param col - the column position.
-     * @return
+     * @return Cell - cell in that position
      */
     public Cell getCell(final int row, final int col) {
         return map[row][col];

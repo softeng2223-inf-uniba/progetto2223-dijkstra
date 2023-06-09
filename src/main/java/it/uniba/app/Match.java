@@ -4,6 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+ * << Entity >>:
  * Class that represents a match of the game.
  */
 public final class Match {
@@ -82,7 +83,6 @@ public final class Match {
 
         if (timer.isTimeOver()) {
             message.append("Tempo scaduto!\nHai perso!\n");
-            // message.append("Ecco qual'era la posizione delle navi: \n\n");
         } else {
             if (isWithinBounds(move)) {
                 /*

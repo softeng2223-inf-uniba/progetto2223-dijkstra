@@ -1,5 +1,6 @@
 package it.uniba.app;
 /**
+ * << Entity >>:
  * Enum class for Map types.
  */
 public enum MapType {
