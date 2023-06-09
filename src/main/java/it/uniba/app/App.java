@@ -77,7 +77,7 @@ public final class App {
         + "progressivamente sempre piu' difficili, "
         + "in cui diminuisce il numero massimo "
         + "di tentativi falliti per l'utente.");
-        Shell.printlnMessage("Buona fortuna nell'affrontare il computer!\n");
+        Shell.printlnSuccess("Buona fortuna nell'affrontare il computer!\n");
     }
     /**
      * Method that sets the game difficulty according to the input of the user.
@@ -108,7 +108,7 @@ public final class App {
                             default:
                                 return;
                         }
-                        Shell.printlnMessage("Ok!");
+                        Shell.printlnSuccess("Ok!");
                     } else {
                         Shell.printlnError("Non puoi impostare un "
                         + "numero di tentativi negativo o uguale a zero.");
@@ -131,7 +131,7 @@ public final class App {
                         Shell.printlnError("Comando inesistente o non riconosciuto.");
                         return;
                 }
-                Shell.printlnMessage("Ok!");
+                Shell.printlnSuccess("Ok!");
             }
         } else {
             Shell.printlnError("La partita e' gia' iniziata!");
@@ -156,7 +156,7 @@ public final class App {
     private static void play(final MapType mapType, final Difficulty difficulty, final int maxMinutes) {
         if (match == null) {
             match = new Match(mapType, difficulty.getCurrentLevel(), maxMinutes);
-            Shell.printlnMessage("Partita avviata!");
+            Shell.printlnSuccess("Partita avviata!");
             Shell.printlnMessage(match.getMap().getMapGrid());
         } else {
             Shell.printlnError(
@@ -222,7 +222,7 @@ public final class App {
     }
     private static MapType setGridSize(final MapType currentMapType, final MapType newMapType) {
         if (match == null) {
-            Shell.printlnMessage("Ok!");
+            Shell.printlnSuccess("Ok!");
             return newMapType;
         } else {
             Shell.printlnError("La partita e' già iniziata!");
@@ -251,7 +251,7 @@ public final class App {
                 try {
                     number = Integer.parseInt(command[1]);
                     if (number > 0) {
-                        Shell.printlnMessage("Ok!");
+                        Shell.printlnSuccess("Ok!");
                     } else {
                         number = 0;
                         Shell.printlnError("Non puoi impostare un "
