@@ -54,10 +54,12 @@ public final class App {
         Shell.printlnMessage("16. /mostragriglia    mostra la griglia di gioco");
         Shell.printlnMessage("17. /mostratempo      visualizza i minuti trascorsi e i minuti ancora disponibili");
         Shell.printlnMessage("18. /mostratentativi  visualizza il numero di tentativi falliti,"
-        + "rimasti e il massimo di tentativi falliti");
+        + " rimasti e il massimo di tentativi falliti");
         Shell.printlnMessage("19. /svelagriglia     mostra la griglia con le navi posizionate");
         Shell.printlnMessage("20. /abbandona        abbandona la partita in corso");
         Shell.printlnMessage("21. /esci             termina il gioco");
+        Shell.printlnMessage("\nPer effettuare un tentativo, digitare le coordinate da colpire\n"
+        + "nella forma <lettera>-<numero>, ad esempio A-1, B-5, C-10, D-26, ecc.\n");
     }
     private static void printDescription() {
         Shell.printlnMessage(
@@ -107,11 +109,11 @@ public final class App {
                         }
                         Shell.printlnMessage("Ok!");
                     } else {
-                        Shell.printlnMessage("Non puoi impostare un "
+                        Shell.printlnError("Non puoi impostare un "
                         + "numero di tentativi negativo o uguale a zero.");
                     }
                 } catch (NumberFormatException e) {
-                    Shell.printlnMessage("Numero non valido.");
+                    Shell.printlnError("Numero non valido.");
                 }
             } else {
                 switch (command[0]) {
