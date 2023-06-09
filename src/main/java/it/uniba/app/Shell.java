@@ -69,4 +69,18 @@ public final class Shell {
     public static void printlnWarning(final String message) {
         System.err.println(ANSICodes.FYELLOW + message + ANSICodes.RESET);
     }
+    /**
+     * Prints the message with color green passed via argument to the shell.
+     * @param message
+     */
+    public static void printSuccess(final String message) {
+        System.err.print(ANSICodes.FGREEN + message + ANSICodes.RESET);
+    }
+    /**
+     * Prints the message with color green passed via argument to the shell with a newline.
+     * @param message
+     */
+    public static void printlnSuccess(final String message) {
+        System.err.println(ANSICodes.FGREEN + message + ANSICodes.RESET);
+    }
 }
