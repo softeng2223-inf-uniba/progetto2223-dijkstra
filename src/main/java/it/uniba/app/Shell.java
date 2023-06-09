@@ -59,7 +59,7 @@ public final class Shell {
      * @param message
      */
     public static void printWarning(final String message) {
-        System.err.print(ANSICodes.FRED + message + ANSICodes.RESET);
+        System.err.print(ANSICodes.FYELLOW + message + ANSICodes.RESET);
     }
     /**
      * Prints the message with color yellow passed via argument to the shell with a newline.

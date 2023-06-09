@@ -194,7 +194,7 @@ public final class App {
             }
         } while (isRunning && command.compareTo("n") != 0);
     }
-    private static void quit() {
+    private static int quit(final int maxMinutes) {
         String command;
         boolean quit = false;
         if (match == null) {
@@ -202,19 +202,22 @@ public final class App {
                 "Non e' in esecuzione nessuna partita!");
             Shell.printlnError(
                 "Digita /gioca per iniziare una nuova partita!");
-            } else {
-                do {
-                    Shell.printWarning("Sei sicuro di voler abbandonare? [ s / n ]: ");
-                    command = SHELL.getInput().toLowerCase();
-                    if (command.compareTo("s") == 0) {
-                        quit = true;
-                        Shell.printlnMessage("Ecco qual'era la posizione delle navi: ");
-                        Shell.printlnMessage(match.getMap().toString());
-                        Shell.printlnMessage("Partita terminata!");
-                        match = null;
-                    }
-                } while (!quit && command.compareTo("n") != 0);
-            }
+        } else {
+            do {
+                Shell.printWarning("Sei sicuro di voler abbandonare? [ s / n ]: ");
+                command = SHELL.getInput().toLowerCase();
+                if (command.compareTo("s") == 0) {
+                    quit = true;
+                    Shell.printlnMessage("Ecco qual'era la posizione delle navi: ");
+                    Shell.printlnMessage(match.getMap().toString());
+                    Shell.printlnMessage("Partita terminata!");
+                    match = null;
+                    return 0;
+                }
+            } while (!quit && command.compareTo("n") != 0);
+        }
+
+        return maxMinutes;
     }
     private static MapType setGridSize(final MapType currentMapType, final MapType newMapType) {
         if (match == null) {
@@ -307,12 +310,12 @@ public final class App {
         Difficulty difficulty = new Difficulty(Difficulty.Level.EASY);
         MapType mapType = MapType.STANDARD;
         String command;
-        int maxMinute = 0;
+        int maxMinutes = 0;
         do {
             if (match != null) {
                 if (match.isGameOver()) {
                     resetGame();
-                    maxMinute = 0;
+                    maxMinutes = 0;
                 }
             }
 
@@ -345,8 +348,8 @@ public final class App {
                     showShips();
                     break;
                 case "/gioca":
-                    if (maxMinute > 0) {
-                        play(mapType, difficulty, maxMinute);
+                    if (maxMinutes > 0) {
+                        play(mapType, difficulty, maxMinutes);
                         match.getTimer().startTimer();
                     } else {
                         Shell.printlnError("Non hai impostato un timer di gioco!\n"
@@ -369,7 +372,7 @@ public final class App {
                     showGrid();
                     break;
                 case "/tempo":
-                    maxMinute = setTimer(splittedCommand);
+                    maxMinutes = setTimer(splittedCommand);
                 break;
                 case "/mostratempo":
                     showTime();
@@ -378,8 +381,7 @@ public final class App {
                     exit();
                 break;
                 case "/abbandona":
-                    quit();
-                    maxMinute = 0;
+                    maxMinutes = quit(maxMinutes);
                 break;
                 case "/mostratentativi":
                     showAttempts();
