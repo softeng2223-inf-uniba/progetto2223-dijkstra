@@ -27,17 +27,31 @@ public final class Shell {
         return command;
     }
     /**
-     * Print the message passed via argument to the shell.
+     * Prints the message passed via argument to the shell.
      * @param message
      */
     public static void printMessage(final String message) {
         System.out.print(message);
     }
     /**
-     * Print the message passed via argument to the shell with a newline.
+     * Prints the message passed via argument to the shell with a newline.
      * @param message
      */
     public static void printlnMessage(final String message) {
         System.out.println(message);
+    }
+    /**
+     * Prints the message with color red passed via argument to the shell.
+     * @param message
+     */
+    public static void printError(final String message) {
+        System.err.print(ANSICodes.FRED + message + ANSICodes.RESET);
+    }
+    /**
+     * Prints the message with color red passed via argument to the shell with a newline.
+     * @param message
+     */
+    public static void printlnError(final String message) {
+        System.err.print(ANSICodes.FRED + message + ANSICodes.RESET);
     }
 }
