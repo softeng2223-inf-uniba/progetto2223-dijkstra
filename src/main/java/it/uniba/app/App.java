@@ -187,10 +187,7 @@ public final class App {
     private static void exit() {
         String command;
         do {
-            Shell.printMessage(
-            ANSICodes.FYELLOW
-            + "Sei sicuro di voler uscire? [ s / n ]: "
-            + ANSICodes.RESET);
+            Shell.printWarning("Sei sicuro di voler uscire? [ s / n ]: ");
             command = SHELL.getInput().toLowerCase();
             if (command.compareTo("s") == 0) {
                 isRunning = false;
@@ -207,10 +204,7 @@ public final class App {
                 "Digita /gioca per iniziare una nuova partita!");
             } else {
                 do {
-                    Shell.printMessage(
-                    ANSICodes.FYELLOW
-                    + "Sei sicuro di voler abbandonare? [ s / n ]: "
-                    + ANSICodes.RESET);
+                    Shell.printWarning("Sei sicuro di voler abbandonare? [ s / n ]: ");
                     command = SHELL.getInput().toLowerCase();
                     if (command.compareTo("s") == 0) {
                         quit = true;
