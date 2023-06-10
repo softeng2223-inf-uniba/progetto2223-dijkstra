@@ -216,6 +216,10 @@ Nel gioco della battaglia navale in singolo il tuo obiettivo è di distruggere t
 <br>
 
 # **4. System Design**
+
+Nel contesto specifico di questo progetto, abbiamo valutato che la creazione di diagrammi avrebbe comportato un carico di lavoro aggiuntivo, senza fornire un valore significativo al nostro risultato finale (basti ad esempio pensare che un eventuale diagramma dei package non sarebbe potuto essere rappresentato, vista la presenza di un solo package all'interno dell'intero progetto) . Abbiamo quindi deciso di concentrare il nostro tempo sull'effettiva implementazione del software, assicurandoci comunque di mantenere una progettazione chiara e organizzata, anche se non formalmente documentata.
+
+Nonostante la mancanza di una rappresentazione architetturale esplicita, abbiamo seguito le best practice generali per sviluppare un software di qualità. Abbiamo posto particolare attenzione sull'applicazione del principio di _Information Hiding_, che ci ha permesso di nascondere i dettagli implementativi all'esterno dei moduli e favorire la modularità del nostro sistema. Altro principio di Object Design adottato è quello di _Presentazione Separata_ (applicato con la creazione della classe Shell) che consiste nel separare la parte di codice relativa alla presentazione da quella relativa al resto dell'applicazione.  Questo approccio ci ha aiutato a migliorare la manutenibilità del codice e ad adattarci facilmente a futuri cambiamenti senza influire sull'intero sistema.
 <br>
 
 # **5. OO Design**
