@@ -227,21 +227,34 @@ Nel gioco della battaglia navale in singolo il tuo obiettivo è di distruggere t
 # **7. Manuale Utente**
 All'avvio del programma all'utente viene mostrata una descrizione concisa del gioco ed, inoltre, ha la possibilità di scegliere tra un insieme di comandi, ovvero:
 ```
-1. /help
-2. /gioca
-3. /esci
-4. /facile
-5. /medio
-6. /difficile
-7. /mostralivello
-8. /mostranavi
-9. /svelagriglia
+1.  /help             mostra l'elenco dei comandi disponibili
+2.  /gioca            avvia una nuova partita
+3.  /mostranavi       mostra le navi da affondare presenti sulla griglia
+4.  /tempo numero     imposta la durata massima di gioco in minuti
+5.  /facile           imposta la difficoltà a facile [default: 50 tentativi]
+6.  /facile numero    imposta un nuovo numero di tentativi per la difficoltà facile
+7.  /medio            imposta la difficoltà a medio [default: 30 tentativi]
+8.  /medio numero     imposta un nuovo numero di tentativi per la difficoltà media
+9.  /difficile        imposta la difficoltà a difficile [default: 10 tentativi]
+10. /difficile numero imposta un nuovo numero di tentativi per la difficoltà difficile
+11. /tentativi numero imposta un nuovo numero di tentativi per tutte le difficolta'
+12. /mostralivello    mostra il livello di difficoltà impostato
+13. /standard         imposta a 10x10 la dimensione della griglia
+14. /large            imposta a 18x18 la dimensione della griglia
+15. /extralarge       imposta a 26x26 la dimensione della griglia
+16. /mostragriglia    mostra la griglia di gioco
+17. /mostratempo      visualizza i minuti trascorsi e i minuti ancora disponibili
+18. /mostratentativi  visualizza il numero di tentativi falliti, rimasti e il massimo di tentativi falliti
+19. /svelagriglia     mostra la griglia con le navi posizionate
+20. /abbandona        abbandona la partita in corso
+21. /esci             termina il gioco
+Per effettuare un tentativo, digitare le coordinate da colpire nella forma <lettera>-<numero>, ad esempio A-1, B-5, C-10, D-26, ecc.
 ```
 Se l'utente sceglie il comando ```/help``` verrà mostrata la descrizione del gioco e la lista dei comandi selezionabili. 
 
 ![Comando help](./img/comando_help.png)
 
-Se l'utente (dopo aver impostato la difficoltà del gioco) sceglie il comando ```/gioca```  verrà mostrata a schermo la griglia 10x10 vuota (si è scelto di utilizzare il simbolo "_?_" per indicare le varie celle vuote della griglia). Nel caso in cui l'utente abbia selezionato questo comando senza aver prima scelto il livello di difficoltà allora verrà mostrato un messaggio di errore: _"Non è stata impostata alcuna difficoltà! Digitare /facile, /medio o /difficile per impostare una difficoltà!"_, di conseguenza il gioco non potrà iniziare e l'utente dovrà necessariamente selezionare il livello di difficoltà. 
+Se l'utente (dopo aver impostato la difficoltà del gioco) sceglie il comando ```/gioca```  verrà mostrata a schermo la griglia, della dimensione selezionata, vuota (si è scelto di utilizzare il simbolo "_?_" per indicare le varie celle vuote della griglia). Nel caso in cui l'utente abbia selezionato questo comando senza aver prima scelto il tempo di gioco allora verrà mostrato un messaggio di errore: _"Non hai impostato un timer di gioco! Digita /tempo numero per impostarlo."_, di conseguenza il gioco non potrà iniziare e l'utente dovrà necessariamente impostare il tempo di gioco. 
 
 ![Errore comando gioca](./img/gioca_errore.jpg)
 
@@ -254,7 +267,7 @@ Nel caso in cui il comando venga selezionato per sbaglio l'utente ha la possibil
 
 ![Risposta s](./img/esci_s.jpg)
 
-Se l'utente sceglie il comando ```/facile``` l'applicazione risponde con "_Ok!_" e imposta il numero massimo di tentativi a 50. 
+Se l'utente sceglie il comando ```/facile``` l'applicazione risponde con "_Ok!_" e imposta il numero massimo di tentativi a 50. Questo livello di difficoltà corrisponde al livello di default.
 
 ![Livello facile](./img/facile.jpg)
 
@@ -272,9 +285,7 @@ Nel caso in cui l'utente cerchi di modificare la difficoltà, mentre è in corso
 
 ![Errore livello](./img/errore_livello.jpg)
 
-Se l'utente sceglie il comando ```/mostralivello``` verrà mostrato il livello della partita che si sta giocando con il relativo numero massimo di tentativi. Se questo comando viene scelto quando ancora la partita non è iniziata l'utente visualizzerà il messaggio di errore: _"Non e' stata impostata alcuna difficoltà"_.
-
-![Errore mostra livello](./img/errore_mostra_livello.jpg)
+Se l'utente sceglie il comando ```/mostralivello``` verrà mostrato il livello della partita che si sta giocando con il relativo numero massimo di tentativi.
 
 ![Mostra livello](./img/mostra_livello.jpg)
 
@@ -282,7 +293,7 @@ Se l'utente sceglie il comando ```/mostranavi``` verrà mostrato a schermo, per 
 
 ![Mostra navi](./img/mostra_navi.jpg)
 
-Se l'utente sceglie il comando ```/svelagriglia``` verrà mostrato a schermo la griglia 10x10 e l'utente potrà vedere la posizione giusta delle navi non ancora affondate. Come team abbiamo scelto di rappresentare ogni nave con un colore diverso (per renderle più facilmente distinguibili), in particolare: 
+Se l'utente sceglie il comando ```/svelagriglia``` verrà mostrato a schermo la griglia, della dimensione selezionata, e l'utente potrà vedere la posizione giusta delle navi non ancora affondate. Come team abbiamo scelto di rappresentare ogni nave con un colore diverso (per renderle più facilmente distinguibili), in particolare: 
 - Cacciatorpediniere: _bianco_,
 - Incrociatore: _verde_,
 - Corazzata: _giallo_,
@@ -294,6 +305,97 @@ Nel caso in cui l'utente non inserisca nessuno tra questi comandi, verrà mostra
 
 ![Errore comando](./img/errore_comando.jpg)
 
+Se l'utente sceglie il comando ```/facile numero```, ```/medio numero``` o ```/difficile numero``` l'applicazione risponde con "_Ok!_" e imposta il numero massimo di tentativi relativi alla difficoltà inserita a numero.
+
+![Facile numero](./img/facile_numero.png)
+
+Se l'utente sceglie il comando ```/tentativi numero``` l'applicazione risponde con "_Ok!_" e imposta il numero massimo di tentativi a numero per tutte le difficoltà.
+
+![Tentativi numero](./img/tentativi_numero.png)
+
+Nel caso in cui l'utente cerchi di modificare il numero di tentativi, mentre è in corso una partita, verrà mostrato il messaggio di errore: _"La partita è già iniziata!"_.
+
+![Tentativi errore partita gia iniziata](./img/tentativi_partita_iniziata.png)
+
+Nel caso in cui l'utente inserisca un valore di numero negativo o non numerico, verrà mostrato il messaggio di errore: _"Numero non valido."_ oppure _"Non puoi impostare un numero di tentativi negativo o uguale a zero."_.
+
+![Tentativi errore numero non valido](./img/tentativi_numero_invalido.png)
+
+Se l'utente sceglie il comando ```/standard```, ```/large``` o ```/extralarge``` l'applicazione risponde con "_Ok!_" e imposta la dimensione della griglia a 10x10, 18x18 o 26x26 rispettivamente.
+
+![Griglia large](./img/griglia_large.png)
+
+Nel caso in cui l'utente cerchi di modificare la dimensione della griglia, mentre è in corso una partita, verrà mostrato il messaggio di errore: _"La partita è già iniziata!"_.
+
+![Griglia errore partita gia iniziata](./img/griglia_partita_iniziata.png)
+
+Se l'utente sceglie il comando ```/mostragriglia``` verrà mostrato a schermo la griglia di gioco aggiornata in base alle mosse precedentemente eseguite.
+
+![Mostra griglia](./img/mostra_griglia.png)
+
+Nel caso in cui l'utente cerchi di mostrare la griglia, mentre non è in corso una partita, verrà mostrato il messaggio di errore: _"Non e' in esecuzione nessuna partita!. Digita /gioca per iniziare una nuova partita!"_.
+
+![Mostra griglia errore partita non iniziata](./img/mostra_griglia_partita_non_iniziata.png)
+
+Se l'utente sceglie il comando ```/tempo numero``` l'applicazione risponde con "_Ok!_" e imposta il tempo massimo di gioco a numero minuti.
+
+![Tempo numero](./img/tempo_numero.png)
+
+Nel caso in cui l'utente cerchi di modificare il tempo di gioco, mentre è in corso una partita, verrà mostrato il messaggio di errore: _"La partita è già iniziata!"_.
+
+![Tempo errore partita gia iniziata](./img/tempo_partita_iniziata.png)
+
+Nel caso in cui l'utente inserisca un valore di numero negativo o non numerico, verrà mostrato il messaggio di errore: _"Numero non valido."_ oppure _"Non puoi impostare un tempo negativo o uguale a zero."_.
+
+![Tempo errore numero non valido](./img/tempo_numero_invalido.png)
+
+Se l'utente sceglie il comando ```/mostratempo``` verrà mostrato a schermo il tempo trascorso e rimanente prima che la partita termini.
+
+![Mostra tempo](./img/mostra_tempo.png)
+
+Nel caso in cui l'utente cerchi di mostrare il tempo, mentre non è in corso una partita, verrà mostrato il messaggio di errore: _"Non e' in esecuzione nessuna partita!. Digita /gioca per iniziare una nuova partita!"_.
+
+![Mostra tempo errore partita non iniziata](./img/mostra_tempo_partita_non_iniziata.png)
+
+Se l'utente sceglie il comando ```/abbandona``` abbandona la partita attuale (dopo aver confermato le sue intenzioni con il comando "_s_").
+Nel caso in cui il comando venga selezionato per sbaglio l'utente ha la possibilità di rispondere "_n_", di conseguenza l'utente potrà continuare la partita.
+
+Se l'utente sceglie confermare la sua intenzione di abbandonare la partita, l'applicazione mostra la griglia di gioco con tutte le navi posizionate.
+
+![Abbandona](./img/abbandona.png)
+
+Nel caso in cui l'utente cerchi di abbandonare la partita, mentre non è in corso una partita, verrà mostrato il messaggio di errore: _"Non e' in esecuzione nessuna partita!. Digita /gioca per iniziare una nuova partita!"_.
+
+![Abbandona errore partita non iniziata](./img/abbandona_partita_non_iniziata.png)
+
+Se l'utente sceglie il comando ```/mostratentativi``` verrà mostrato a schermo il numero di tentativi effettuati e falliti più il numero massimo di tentativi che si possono fallire.
+
+![Mostra tentativi](./img/mostra_tentativi.png)
+
+Nel caso in cui l'utente cerchi di mostrare i tentativi, mentre non è in corso una partita, verrà mostrato il messaggio di errore: _"Non e' in esecuzione nessuna partita!. Digita /gioca per iniziare una nuova partita!"_.
+
+![Mostra tentativi errore partita non iniziata](./img/mostra_tentativi_partita_non_iniziata.png)
+
+Per effettuare un tentativo, l'utente deve digitare le coordinate da colpire nella forma ```<lettera>-<numero>```, ad esempio ```A-1```, ```B-5```, ```C-10```, ```D-26```, ecc. <br>
+L’applicazione risponde con:
+- ```acqua``` se sulla cella non è posizionata nessuna nave;
+- ```colpito``` se sulla cella è posizionata una nave;
+- ```colpito e affondato``` se sulla cella è posizionata una nave ed è l’ultima cella non colpita della nave.  
+
+![Tentativo](./img/tentativo.png)
+
+![Tentativo](./img/tentativo_colpito.png)
+
+![Tentativo](./img/tentativo_colpito_affondato.png)
+
+Nel caso in cui l'utente cerchi di effettuare un tentativo, mentre non è in corso una partita, verrà mostrato il messaggio di errore: _"Non e' in esecuzione nessuna partita!. Digita /gioca per iniziare una nuova partita!"_.
+
+![Tentativo errore partita non iniziata](./img/tentativo_partita_non_iniziata.png)
+
+Nel caso in cui l'utente inserisca un valore di coordinate non valido, verrà mostrato il messaggio di errore: _"Il comando inserito contiene caratteri al di fuori della mappa. Rispettare le dimensioni della mappa specificate."_.
+
+![Tentativo errore coordinate non valide](./img/tentativo_coordinate_non_valide.png)
+
 <br>
 
 # **8. Processo di Sviluppo e Organizzazione del Lavoro**
@@ -304,7 +406,6 @@ Il gruppo Dijkstra per la realizzazione di questo progetto ha scelto di adottare
 All'inizio di ogni Sprint si è svolto un Meeting di Retrospettiva con l'obiettivo di eseguire una revisione dello Sprint precedente per individuare problematiche riscontrate durante lo svolgimento, nonchè proporre miglioramenti relativi anche dal punto di vista della produttività e dell'efficienza del gruppo.
 
 <br>
-
 
 ## **8.2 Organizzazione del Lavoro**
 
