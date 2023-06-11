@@ -290,4 +290,9 @@ public final class Map {
         s.append((carriers / ShipType.AIRCRAFT_CARRIER.getSize()) + "\n");
         return s.toString();
     }
+
+    public void setType(final MapType inType) {
+        this.type = inType;
+    }
+
 }

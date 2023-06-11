@@ -17,6 +17,15 @@ public final class Ship {
         this.healthPoints = type.getSize();
     }
 
+    /**
+     * Ship copy constructor.
+     * @param inShip - the ship that needs to be copied to the current object
+     */
+    public Ship(final Ship inShip) {
+        setType(inShip.getType());
+        this.healthPoints = type.getSize();
+    }
+
     public boolean isHit() {
         return healthPoints < type.getSize();
     }
@@ -29,6 +38,10 @@ public final class Ship {
         return type;
     }
 
+    public int getHealthPoints() {
+        return healthPoints;
+    }
+
     /**
      * Method used to hit the cell.
      */
@@ -36,5 +49,18 @@ public final class Ship {
         if (!isSunken()) {
             healthPoints--;
         }
+    }
+
+    public void setType(final ShipType inType) {
+        this.type = inType;
+    }
+
+    /**
+     * Checks that the Ship objects have the same attributes.
+     * @param inShip
+     * @return
+     */
+    public boolean isEquals(final Ship inShip) {
+        return type == inShip.getType() && healthPoints == inShip.getHealthPoints();
     }
 }

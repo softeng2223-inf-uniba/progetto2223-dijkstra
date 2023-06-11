@@ -84,7 +84,7 @@ public final class App {
      * @param command
      * @param difficulty
      */
-    private static void setDifficulty(final String[] command, final Difficulty difficulty) {
+    public static void setDifficulty(final String[] command, final Difficulty difficulty) {
         if (match == null) {
             if (command.length == 2) {
                 try {
@@ -137,13 +137,20 @@ public final class App {
             Shell.printlnError("La partita e' gia' iniziata!");
         }
     }
-    private static void showLevel(final Difficulty difficulty) {
+    /**
+     * Method that shows the current game difficulty.
+     * @param difficulty
+     */
+    public static void showLevel(final Difficulty difficulty) {
         Shell.printMessage("Difficolta': ");
         Shell.printlnMessage(difficulty.getName());
         Shell.printlnMessage("Max. Tentativi Falliti: "
         + difficulty.getCurrentMaxFailures());
     }
-    private static void showShips() {
+    /**
+     * Method that shows ships stats.
+     */
+    public static void showShips() {
         if (match == null) {
             Shell.printlnError(
                 "Non e' in esecuzione nessuna partita!");
@@ -153,9 +160,13 @@ public final class App {
             Shell.printlnMessage(match.getMap().getShipStats());
         }
     }
-    private static void play(final MapType mapType, final Difficulty difficulty, final int maxMinutes) {
+    /**
+     * Method that starts the game.
+     */
+    public static void play(final MapType mapType, final Difficulty difficulty, final int maxMinutes) {
         if (match == null) {
-            match = new Match(mapType, difficulty.getCurrentLevel(), maxMinutes);
+            //match = new Match(mapType, difficulty.getCurrentLevel(), maxMinutes);
+            setMatch(new Match(mapType, difficulty.getCurrentLevel(), maxMinutes));
             Shell.printlnSuccess("Partita avviata!");
             Shell.printlnMessage(match.getMap().getMapGrid());
         } else {
@@ -165,7 +176,10 @@ public final class App {
                 "Digita /abbandona per terminare la partita!");
         }
     }
-    private static void revealGrid() {
+    /**
+     * Method that reveals the grid.
+     */
+    public static void revealGrid() {
         if (match != null) {
             Shell.printlnMessage(match.getMap().toString());
         } else {
@@ -175,7 +189,10 @@ public final class App {
                 "Digita /gioca per iniziare una nuova partita!");
         }
     }
-    private static void showGrid() {
+    /**
+     * Method that shows the grid.
+     */
+    public static void showGrid() {
         if (match == null) {
             Shell.printlnError(
                 "Non e' in esecuzione nessuna partita!");
@@ -185,7 +202,10 @@ public final class App {
             Shell.printlnMessage(match.getMap().getMapGrid());
         }
     }
-    private static void exit() {
+    /**
+     * Method that allows the user to exit the game.
+     */
+    public static void exit() {
         String command;
         do {
             Shell.printWarning("Sei sicuro di voler uscire? [ s / n ]: ");
@@ -195,7 +215,12 @@ public final class App {
             }
         } while (isRunning && command.compareTo("n") != 0);
     }
-    private static int quit(final int maxMinutes) {
+    /**
+     * Method that allows the user to quit the game.
+     * @param maxMinutes
+     * @return int
+     */
+    public static int quit(final int maxMinutes) {
         String command;
         boolean quit = false;
         if (match == null) {
@@ -236,7 +261,7 @@ public final class App {
      * @param command
      * @return
      */
-    private static boolean isAMove(final String command) {
+    public static boolean isAMove(final String command) {
         final String moveRegexp = "^[a-z]-\\d{1,2}$";
         Pattern pattern = Pattern.compile(moveRegexp, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(command);
@@ -403,5 +428,40 @@ public final class App {
                     break;
             }
         } while (isRunning);
+    }
+
+    /**
+     * Returns the current state of the game.
+     */
+    public static boolean isRunning() {
+        return isRunning;
+    }
+
+    public static void setRunning(final boolean running) {
+        isRunning = running;
+    }
+
+    /**
+     * Sets the game match.
+     * @param inMatch
+     */
+    public static void setMatch(final Match inMatch) {
+        if (inMatch != null) {
+            match = new Match(inMatch);
+        } else {
+            match = null;
+        }
+    }
+
+    /**
+     * Returns the match.
+     * @return
+     */
+    public static Match getMatch() {
+        if (match != null) {
+            return new Match(match);
+        } else {
+            return null;
+        }
     }
 }
