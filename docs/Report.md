@@ -240,11 +240,20 @@ Le classi classificate come << entity >> sono state progettate per seguire i pri
 ![Diagramma classi /gioca](./img/diagramma_classi_gioca.svg)
 <br>
 
-### **5.2.1 Diagramma di sequenza**
+### **5.2.2 Diagramma di sequenza**
 ![Diagramma di sequenza /gioca](./img/diagramma_sequenza_gioca.svg)
 <br>
 
+## **5.3 Comando /abbandona**
+### **5.3.1 Diagramma delle classi**
+<br>
 
+![Diagramma classi /abbandona](./img/diagramma_classi_abbandona.svg)
+<br>
+
+### **5.3.2 Diagramma di sequenza**
+![Diagramma di sequenza /abbandona](./img/diagramma_sequenza_abbandona.svg)
+<br>
 
 # **6. Riepilogo Del Test**
 <br>
