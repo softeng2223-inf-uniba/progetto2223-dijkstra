@@ -12,6 +12,7 @@ public final class Cell {
      */
     public Cell() {
         hit = false;
+        ship = null;
     }
     /**
      * Cell Constructor.
@@ -19,13 +20,21 @@ public final class Cell {
      */
     public Cell(final Ship inShip) {
         hit = false;
-        this.ship = inShip;
+        setShip(inShip);
     }
     public void setShip(final Ship inShip) {
-        this.ship = inShip;
+        ship = new Ship(inShip);
     }
+    /**
+     * Returns the ship.
+     * @return
+     */
     public Ship getShip() {
-        return ship;
+        if (ship != null) {
+            return new Ship(ship);
+        } else {
+            return null;
+        }
     }
     public boolean isFree() {
         return ship == null;

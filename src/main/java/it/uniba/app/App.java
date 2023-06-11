@@ -165,7 +165,8 @@ public final class App {
      */
     public static void play(final MapType mapType, final Difficulty difficulty, final int maxMinutes) {
         if (match == null) {
-            match = new Match(mapType, difficulty.getCurrentLevel(), maxMinutes);
+            //match = new Match(mapType, difficulty.getCurrentLevel(), maxMinutes);
+            setMatch(new Match(mapType, difficulty.getCurrentLevel(), maxMinutes));
             Shell.printlnSuccess("Partita avviata!");
             Shell.printlnMessage(match.getMap().getMapGrid());
         } else {
@@ -440,11 +441,27 @@ public final class App {
         isRunning = running;
     }
 
+    /**
+     * Sets the game match.
+     * @param inMatch
+     */
     public static void setMatch(final Match inMatch) {
-        match = inMatch;
+        if (inMatch != null) {
+            match = new Match(inMatch);
+        } else {
+            match = null;
+        }
     }
 
+    /**
+     * Returns the match.
+     * @return
+     */
     public static Match getMatch() {
-        return match;
+        if (match != null) {
+            return new Match(match);
+        } else {
+            return null;
+        }
     }
 }

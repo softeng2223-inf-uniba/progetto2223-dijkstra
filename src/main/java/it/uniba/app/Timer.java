@@ -30,7 +30,11 @@ public class Timer {
         return (long) (((System.nanoTime() - initialTime) / NANOTIME_TO_SECONDS) / SECONDS_TO_MINUTES);
     }
 
-    private long getRemainingTime() {
+    /**
+     * Returns the remaining time of the match.
+     * @return
+     */
+    public long getRemainingTime() {
         long remainingTime = gameTime - getElapsedTime();
         if (remainingTime < 0) {
             remainingTime = 0;
@@ -57,5 +61,13 @@ public class Timer {
         sb.append("Tempo rimanente: " + getRemainingTime() + " m");
         sb.append("\n");
         return sb.toString();
+    }
+
+    /**
+     * Returns the maximum number of minutes of the game.
+     * @return
+     */
+    public long getMaxMinutes() {
+        return gameTime;
     }
 }

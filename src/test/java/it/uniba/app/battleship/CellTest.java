@@ -12,7 +12,6 @@ import org.junit.jupiter.api.DisplayName;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertSame;
 
 /* CellTest - Test class used to check basic cell properties */
 class CellTest {
@@ -74,7 +73,7 @@ class CellTest {
     @DisplayName("Test whether a ship is assigned correctly to a cell.")
     void testSetShip() {
         cell.setShip(ship);
-        assertSame(ship, cell.getShip(), "The ship should be set correctly on the cell.");
+        assertTrue(ship.isEquals(cell.getShip()), "The ship should be set correctly on the cell.");
     }
 
     /**

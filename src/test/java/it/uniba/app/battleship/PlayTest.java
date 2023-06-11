@@ -13,7 +13,6 @@ import static it.uniba.app.utils.OutputHandler.captureOutput;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.AfterEach;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /*
@@ -35,19 +34,13 @@ class PlayTest {
     }
 
     /**
-     * After all tests, the match is reset.
-     */
-    @AfterEach
-    void reset() {
-        setMatch(null);
-    }
-
-    /**
       * Tests the method {@link App#play()}
       * to start a new match.
       */
     @Test
     void testGameHasNotStarted() {
+        setMatch(null);
+
         String expectedOutput = "Partita avviata!\n" + match.getMap().getMapGrid();
         String output = captureOutput(() -> play(match.getMap().getMapType(),
                                             match.getCurrentDifficulty(), Integer.MAX_VALUE))

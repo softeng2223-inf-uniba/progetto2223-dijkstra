@@ -29,6 +29,19 @@ public final class Match {
     }
 
     /**
+     * Match copy constructor.
+     * @param inMatch - the Match that needs to be copied to this object
+     */
+    public Match(final Match inMatch) {
+        map = new Map(inMatch.getMap().getMapType());
+        currentDifficulty = new Difficulty(inMatch.getCurrentDifficulty().getCurrentLevel());
+        numberOfFailedAttempts = 0;
+        numberOfAttempts = 0;
+        timer = new Timer(((int) inMatch.getTimer().getMaxMinutes()));
+        numberOfAliveShips = Map.TOTAL_SHIPS_NUMBER;
+    }
+
+    /**
      * Checks that both the letter and the number inserted by
      * the user is within the bounds of the map.
      * @param move
@@ -153,8 +166,16 @@ public final class Match {
         return message.toString();
     }
 
+    /**
+     * Returns the current map.
+     * @return
+     */
     public Map getMap() {
-        return new Map(map);
+        if (map != null) {
+            return new Map(map);
+        } else {
+            return null;
+        }
     }
 
     public void setCurrentDifficulty(final Difficulty.Level level) {
