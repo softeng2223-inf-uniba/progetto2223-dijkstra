@@ -37,4 +37,9 @@ public final class Ship {
             healthPoints--;
         }
     }
+
+     public void setType(final ShipType inType) {
+        this.type = inType;
+    }
+
 }

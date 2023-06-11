@@ -25,8 +25,8 @@ class CellTest {
      */
     @BeforeAll
     static void setUp() {
-        cell = new Cell();
-        ship = new Ship(ShipType.DESTROYER);
+        setCell(new Cell());
+        setShip(new Ship(ShipType.DESTROYER));
     }
 
     /**
@@ -35,7 +35,15 @@ class CellTest {
      */
     @AfterEach
     void cleanUp() {
-        cell = new Cell();
+        setCell(new Cell());
+    }
+
+    static void setCell(final Cell inCell) {
+        cell = inCell;
+    }
+
+    static void setShip(final Ship inShip) {
+        ship = inShip;
     }
 
     /**

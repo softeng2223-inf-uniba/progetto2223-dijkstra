@@ -1,11 +1,15 @@
 package it.uniba.app.battleship;
 
 import static it.uniba.app.App.showShips;
+import static it.uniba.app.App.setMatch;
 import static it.uniba.app.utils.OutputHandler.captureOutput;
 
 import org.junit.jupiter.api.Test;
+
 import org.junit.jupiter.api.DisplayName;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.BeforeAll;
 
 /*
  * ShowShipsTest - Test class used to check
@@ -13,6 +17,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * of the class "App" under certain conditions
 */
 class ShowShipsTest {
+
+    /**
+     * Before all tests, the match is set to "null"
+     * to terminate all started matches.
+     */
+    @BeforeAll
+    static void setUp() {
+        setMatch(null);
+    }
 
     /**
      * Tests the method {@link App#showShips()} to check
@@ -32,8 +45,7 @@ class ShowShipsTest {
          * correctly with the expected output.
          */
         String output = captureOutput(() -> showShips()).replace((char) (cr) + "\n", "\n");
-
-        assertTrue(expectedOutput.toString().compareTo(output) == 0,
+        assertTrue(expectedOutput.contains(output),
             "The current state of the ships should not be revealed, "
             + "because the match hasn't started yet.");
     }

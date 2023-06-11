@@ -53,7 +53,7 @@ class QuitTest {
     @DisplayName("Check if the match is terminated after successful input.")
     void testQuitYes() {
         Shell.setInput("s");
-        quit();
+        quit(Integer.MAX_VALUE);
 
         assertNull(getMatch(), "The match must terminate.");
     }
@@ -67,7 +67,7 @@ class QuitTest {
     @DisplayName("Check if the match stays active after successful input.")
     void testQuitNo() {
         Shell.setInput("n");
-        quit();
+        quit(Integer.MAX_VALUE);
 
         assertNotNull(getMatch(), "The match must not terminate.");
     }

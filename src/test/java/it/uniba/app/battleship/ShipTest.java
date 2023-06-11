@@ -25,7 +25,7 @@ class ShipTest {
   @BeforeAll
   static void setUp() {
     type = ShipType.CRUISER;
-    ship = new Ship(type);
+    setShip(new Ship(type));
   }
 
   /**
@@ -34,7 +34,11 @@ class ShipTest {
    */
   @AfterEach
   void reset() {
-    ship = new Ship(type);
+    setShip(new Ship(type));
+  }
+
+  static void setShip(final Ship inShip) {
+    ship = inShip;
   }
 
   /**

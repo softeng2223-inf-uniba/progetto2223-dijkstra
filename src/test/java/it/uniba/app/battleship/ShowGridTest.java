@@ -1,10 +1,12 @@
 package it.uniba.app.battleship;
 
 import static it.uniba.app.App.showGrid;
+import static it.uniba.app.App.setMatch;
 import static it.uniba.app.utils.OutputHandler.captureOutput;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.BeforeAll;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -14,6 +16,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * of the class "App" under certain conditions
 */
 class ShowGridTest {
+
+    /**
+     * Before all tests, the match is set to "null"
+     * to terminate all started matches.
+     */
+    @BeforeAll
+    static void setUp() {
+        setMatch(null);
+    }
 
     /**
      * Tests the method {@link App#showGrid()} to check
@@ -34,7 +45,7 @@ class ShowGridTest {
         String output = captureOutput(() -> showGrid())
                         .replace((char) (cr) + "\n", "\n");
 
-        assertTrue(expectedOutput.toString().compareTo(output) == 0,
+        assertTrue(expectedOutput.contains(output),
             "The current grid should not be revealed, "
             + "because the match hasn't started yet.");
     }

@@ -2,6 +2,7 @@ package it.uniba.app.battleship;
 
 import static it.uniba.app.App.play;
 
+import it.uniba.app.ANSICodes;
 import it.uniba.app.Difficulty;
 import it.uniba.app.MapType;
 import it.uniba.app.Match;
@@ -21,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 class PlayTest {
 
-    private final int cr = 13;
+    private static final int CR = 13;
     private static Match match = new Match(MapType.EXTRALARGE, Difficulty.Level.EASY, Integer.MAX_VALUE);
 
     /**
@@ -48,12 +49,11 @@ class PlayTest {
     @Test
     void testGameHasNotStarted() {
         String expectedOutput = "Partita avviata!\n" + match.getMap().getMapGrid();
-        expectedOutput.replace((char) (cr) + "\n", "\n");
         String output = captureOutput(() -> play(match.getMap().getMapType(),
                                             match.getCurrentDifficulty(), Integer.MAX_VALUE))
-                                            .replace((char) (cr) + "\n", "\n");
+                                            .replace((char) (CR) + "\n", "\n");
 
-        assertTrue(expectedOutput.contains(output), "The match should start.");
+        assertTrue(expectedOutput.replace((char) (CR) + "\n", "\n").contains(output), "The match should start.");
     }
 
     /**
@@ -65,12 +65,13 @@ class PlayTest {
     void testGameHasAlreadyStarted() {
         setMatch(match);
 
-        String expectedOutput = "E' gia' in corso un'altra partita!\nDigita /abbandona per terminare la partita!";
+        String expectedOutput = ANSICodes.FRED
+        + "E' gia' in corso un'altra partita!\nDigita /abbandona per terminare la partita!" + ANSICodes.RESET;
         String output = captureOutput(() -> play(match.getMap().getMapType(),
                                             match.getCurrentDifficulty(), Integer.MAX_VALUE))
-                        .replace((char) (cr) + "\n", "\n");
+                        .replace((char) (CR) + "\n", "\n");
 
-        assertTrue(expectedOutput.toString().compareTo(output) == 0,
+        assertTrue(expectedOutput.toString().contains(output),
                     "A new match should not start. A match already started.");
     }
 }

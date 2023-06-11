@@ -83,4 +83,8 @@ public final class Shell {
     public static void printlnSuccess(final String message) {
         System.err.println(ANSICodes.FGREEN + message + ANSICodes.RESET);
     }
+
+    public static void setInput(final String input) {
+        SHELL.input = new Scanner(input);
+    }
 }
