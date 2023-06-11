@@ -265,7 +265,25 @@ Le classi classificate come << entity >> sono state progettate per seguire i pri
 ![Diagramma di sequenza tentativo](./img/diagramma_sequenza_tentativo.svg)
 <br>
 
-# **6. Riepilogo Del Test**
+# **6. Riepilogo del test**
+## **6.1 Criteri di localizzazione adottati**
+Di seguito é riportata una tabella riassuntiva, contenente maggiori informazioni sui test definiti ed eseguiti all'interno del progetto.
+
+![Report dei test](./img/test_report.png)
+
+Come visibile dalla tabella, le classi di test facenti parte del progetto sono state inserite all'interno di un apposito package, `it.uniba.it.app.battleship`, al fine di separarle dalle classi utilitarie, inserite nel relativo package `it.uniba.it.app.utils`. <br>
+
+La definizione della classe utilitaria `OutputHandler` é dovuta alla necessitá di voler risolvere eventuali problematiche, riscontrate durante il testing di metodi che richiedono l'analisi di stringhe di caratteri. Mediante questa classe, infatti, la stringa viene formattata in modo tale da rimuovere eventuali caratteri (o sequenze di caratteri) che potrebbero portare ad un risultato errato del test.
+
+<br>
+
+## **6.2 Criteri di selezione adottati**
+In merito al criterio di selezione dei metodi adottato, si é deciso di rispettare il seguente criterio di copertura:
+- Nel caso di classi di tipo _Entity_, si é cercato di verificare il corretto funzionamento di tutti i metodi pubblici, che costituiranno le interfacce di tali oggetti;
+- Nel caso della classe `App.java`, di tipo _Control_, a seguito di un Daily Scrum Meeting, é stata presa la decisione di modificare la visibilità di alcuni metodi da "privato" a "pubblico", con lo scopo di poter eseguire il testing delle singole user stories.
+
+Il cambiamento di visibilità di tali metodi non viola i principi di OO Design, in quanto la loro esecuzione consente una modifica dello stato della classe `App` in modo consistente, garantendone l'integrità dei dati. 
+
 <br>
 
 # **7. Manuale Utente**
