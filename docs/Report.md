@@ -225,12 +225,26 @@ Nonostante la mancanza di una rappresentazione architetturale esplicita, abbiamo
 # **5. OO Design**
 <br>
 
-## **5.3 Diagramma delle classi completo**
+## **5.1 Diagramma delle classi completo**
 <br>
 
-![Diagramma /gioca](./img/Diagramma_classi.svg)
+![Diagramma classi intero progetto](./img/Diagramma_classi.svg)
 
 Le classi classificate come << entity >> sono state progettate per seguire i principi di Information Hiding, Alta coesione, Basso accoppiamento, DRY (Do Not Repeat Yourself) e i principi SOLID. Ogni classe << entity >> nasconde i dettagli implementativi e la sua rappresentazione fornendo, allo stesso tempo, interfacce per la sua manipolazione. L'Alta coesione in combinazione con l'Information Hiding ci ha permesso di manipolare tali oggetti in modo sicuro e ci ha permesso di limitare al minimo le eventuali modifiche da applicare. E' stato, inoltre, seguito il principio di Presentazione Separata mediante la separazione tra le responsabilità di interfacciamento, con il terminale per l'output di programma, (gestito dalla classe << boundary >> `Shell`) e la logica di dominio (gestita dalla classe << control >> `App`). L'unica classe non classificata secondo la classificazione ECB è `ANSICodes` la quale, essendo una sola classe utilitaria, può essere sfruttata dalle altre classi senza violare nessuno dei principi sopra citati.
+<br>
+
+## **5.2 Comando /gioca**
+### **5.2.1 Diagramma delle classi**
+<br>
+
+![Diagramma classi /gioca](./img/diagramma_classi_gioca.svg)
+<br>
+
+### **5.2.1 Diagramma di sequenza**
+![Diagramma di sequenza /gioca](./img/diagramma_sequenza_gioca.svg)
+<br>
+
+
 
 # **6. Riepilogo Del Test**
 <br>
