@@ -223,8 +223,6 @@ Nonostante la mancanza di una rappresentazione architetturale esplicita, abbiamo
 <br>
 
 # **5. OO Design**
-<br>
-
 ## **5.1 Diagramma delle classi completo**
 <br>
 
@@ -253,6 +251,17 @@ Le classi classificate come << entity >> sono state progettate per seguire i pri
 
 ### **5.3.2 Diagramma di sequenza**
 ![Diagramma di sequenza /abbandona](./img/diagramma_sequenza_abbandona.svg)
+<br>
+
+## **5.4 Esecuzione Tentativo**
+### **5.3.1 Diagramma delle classi**
+<br>
+
+![Diagramma classi tentativo](./img/diagramma_classi_tentativo.svg)
+<br>
+
+### **5.3.2 Diagramma di sequenza**
+![Diagramma di sequenza tentativo](./img/diagramma_sequenza_tentativo.svg)
 <br>
 
 # **6. Riepilogo Del Test**
