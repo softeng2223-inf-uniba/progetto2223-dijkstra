@@ -6,7 +6,11 @@
     3.1 [Requisiti funzionali](#31-requisiti-funzionali) <br>
     3.2 [Requisiti non funzionali](#32-requisiti-non-funzionali)
 4. [System Design](#4-system-design)
-5. [OO Design](#5-oo-design)
+5. [OO Design](#5-oo-design) <br>
+    5.1 [Diagramma delle classi completo](#51-diagramma-delle-classi-completo) <br>
+    5.2 [Diagrammi comando /gioca](#52-comando-gioca) <br>
+    5.3 [Diagrammi comando /abbandona](#53-comando-abbandona) <br>
+    5.4 [Diagrammi esecuzione tentativo](#54-esecuzione-tentativo) <br>
 6. [Riepilogo del test](#6-riepilogo-del-test)
 7. [Manuale utente](#7-manuale-utente)
 8. [Processo di Sviluppo e Organizzazione del Lavoro](#8-processo-di-sviluppo-e-organizzazione-del-lavoro) <br>
@@ -233,7 +237,6 @@ Le classi classificate come << entity >> sono state progettate per seguire i pri
 
 ## **5.2 Comando /gioca**
 ### **5.2.1 Diagramma delle classi**
-<br>
 
 ![Diagramma classi /gioca](./img/diagramma_classi_gioca.svg)
 <br>
@@ -244,7 +247,6 @@ Le classi classificate come << entity >> sono state progettate per seguire i pri
 
 ## **5.3 Comando /abbandona**
 ### **5.3.1 Diagramma delle classi**
-<br>
 
 ![Diagramma classi /abbandona](./img/diagramma_classi_abbandona.svg)
 <br>
@@ -254,13 +256,12 @@ Le classi classificate come << entity >> sono state progettate per seguire i pri
 <br>
 
 ## **5.4 Esecuzione Tentativo**
-### **5.3.1 Diagramma delle classi**
-<br>
+### **5.4.1 Diagramma delle classi**
 
 ![Diagramma classi tentativo](./img/diagramma_classi_tentativo.svg)
 <br>
 
-### **5.3.2 Diagramma di sequenza**
+### **5.4.2 Diagramma di sequenza**
 ![Diagramma di sequenza tentativo](./img/diagramma_sequenza_tentativo.svg)
 <br>
 
