@@ -490,6 +490,15 @@ Uno di questi è stato **Microsoft Whiteboard**, utilizzato per la relizzazione 
 
 <br>
 
+## **8.4 Scelte progettuali intraprese**
+In seguito alla definizione del codice e all'esecuzione della build mediante il tool _Gradle_, é stato visualizzato un warning da parte di SpotBugs, che al termine del programma si é deciso di non risolvere.
+- Il warning in questione é legato al costruttore della classe `Cell.java`, avente come parametro formale un oggetto di classe `Ship`. All'interno di questo costruttore, infatti, all'attributo di classe `Ship` viene assegnato in modo diretto un oggetto appartenente alla stessa classe, senza ricorrere al metodo `setShip()` della classe `Cell`, grazie al quale sarebbe possibile impedire ad un eventuale codice malevolo di modificare erroneamente il valore di tale attributo. <br><br>
+Tuttavia, si tratta di un comportamento desiderato. Nel momento in cui determiniamo la posizione di una nave all'interno della mappa, é necessario assegnare alle celle corrispondenti lo stesso oggetto; tale comportamento é fondamentale, poiché, nel momento in cui una nave viene colpita, si devono decrementare i suoi punti vita, cosí da poter individuare il momento in cui essa risulta affondata.
+
+Non ricorrendo a tale implementazione, e quindi utilizzando il metodo `setShip()`, alle varie celle della stessa nave verrebbero assegnati due oggetti differenti, non permettendo cosí al programma di decrementare i punti vita della nave, e quindi di affondarla come previsto.
+
+<br>
+
 # **9. Analisi Retrospettiva**
 
 ## **9.1 Sprint 0**
