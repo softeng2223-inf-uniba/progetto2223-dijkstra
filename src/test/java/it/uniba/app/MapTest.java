@@ -1,10 +1,7 @@
-package it.uniba.app.battleship;
+package it.uniba.app;
 
 import java.util.Random;
 import org.junit.jupiter.api.Test;
-
-import it.uniba.app.Map;
-import it.uniba.app.MapType;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;

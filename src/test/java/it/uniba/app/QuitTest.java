@@ -1,9 +1,4 @@
-package it.uniba.app.battleship;
-
-import it.uniba.app.Shell;
-import it.uniba.app.MapType;
-import it.uniba.app.Match;
-import it.uniba.app.Difficulty;
+package it.uniba.app;
 
 import static it.uniba.app.App.quit;
 import static it.uniba.app.App.setMatch;

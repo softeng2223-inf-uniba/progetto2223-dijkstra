@@ -1,6 +1,5 @@
-package it.uniba.app.utils;
+package it.uniba.app;
 
-import it.uniba.app.Shell;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
