@@ -165,7 +165,6 @@ public final class App {
      */
     public static void play(final MapType mapType, final Difficulty difficulty, final int maxMinutes) {
         if (match == null) {
-            //match = new Match(mapType, difficulty.getCurrentLevel(), maxMinutes);
             setMatch(new Match(mapType, difficulty.getCurrentLevel(), maxMinutes));
             Shell.printlnSuccess("Partita avviata!");
             Shell.printlnMessage(match.getMap().getMapGrid());

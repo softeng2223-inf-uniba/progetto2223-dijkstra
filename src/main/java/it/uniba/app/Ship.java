@@ -24,7 +24,6 @@ public final class Ship {
     public Ship(final Ship inShip) {
         setType(inShip.getType());
         this.healthPoints = inShip.getHealthPoints();
-        // Shell.printlnError(((Integer) inShip.getHealthPoints()).toString());
     }
 
     public boolean isHit() {

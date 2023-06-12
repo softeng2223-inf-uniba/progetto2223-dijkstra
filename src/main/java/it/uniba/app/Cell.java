@@ -44,7 +44,6 @@ public final class Cell {
      */
     public void hit() {
         hit = true;
-        // Shell.printlnError(((Integer) ship.getHealthPoints()).toString());
         if (ship != null) {
             ship.hit();
         }
