@@ -165,7 +165,6 @@ public final class App {
      */
     public static void play(final MapType mapType, final Difficulty difficulty, final int maxMinutes) {
         if (match == null) {
-            //match = new Match(mapType, difficulty.getCurrentLevel(), maxMinutes);
             setMatch(new Match(mapType, difficulty.getCurrentLevel(), maxMinutes));
             Shell.printlnSuccess("Partita avviata!");
             Shell.printlnMessage(match.getMap().getMapGrid());
@@ -340,6 +339,10 @@ public final class App {
         do {
             if (match != null) {
                 if (match.isGameOver()) {
+                    if (match.isTimeOver()) {
+                        Shell.printlnMessage("Il tempo è scaduto!\nHai perso!");
+                        revealGrid();
+                    }
                     resetGame();
                     maxMinutes = 0;
                 }
@@ -350,6 +353,11 @@ public final class App {
             command = command.toLowerCase();
 
             String[] splittedCommand = command.split("\\s+");
+
+            if (splittedCommand.length == 0) {
+                splittedCommand = new String[1];
+                splittedCommand[0] = " ";
+            }
 
             if (splittedCommand.length > 2) {
                 Shell.printlnError("Comando inesistente o non riconosciuto.");

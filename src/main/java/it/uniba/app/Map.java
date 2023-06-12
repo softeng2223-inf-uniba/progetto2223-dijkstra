@@ -269,13 +269,21 @@ public final class Map {
             for (Cell cell : cells) {
                 if (!cell.isFree()) {
                     if (cell.getShip().getType() == ShipType.AIRCRAFT_CARRIER) {
-                        carriers++;
+                        if (!cell.getShip().isSunken()) {
+                            carriers++;
+                        }
                     } else if (cell.getShip().getType() == ShipType.ARMOURED) {
-                        armoureds++;
+                        if (!cell.getShip().isSunken()) {
+                            armoureds++;
+                        }
                     } else if (cell.getShip().getType() == ShipType.CRUISER) {
-                        cruisers++;
+                        if (!cell.getShip().isSunken()) {
+                            cruisers++;
+                        }
                     } else if (cell.getShip().getType() == ShipType.DESTROYER) {
-                        destroyers++;
+                        if (!cell.getShip().isSunken()) {
+                            destroyers++;
+                        }
                     }
                 }
             }

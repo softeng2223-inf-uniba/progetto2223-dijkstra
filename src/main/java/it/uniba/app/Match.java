@@ -83,6 +83,10 @@ public final class Match {
         return false;
     }
 
+    public boolean isTimeOver() {
+        return timer.isTimeOver();
+    }
+
     /**
      * Make an attempt for a move
      * on a specific cell of the map.
@@ -94,9 +98,7 @@ public final class Match {
         int row = Integer.parseInt(move[1]) - 1;
         int column = (move[0].toUpperCase()).charAt(0) - 'A';
 
-        if (timer.isTimeOver()) {
-            message.append("Tempo scaduto!\nHai perso!\n");
-        } else {
+        if (!timer.isTimeOver()) {
             if (isWithinBounds(move)) {
                 /*
                  * Hit the cell (if not already done)
@@ -115,12 +117,8 @@ public final class Match {
                             + ANSICodes.RESET + "\n");
                         incrementFailedAttempts();
                     } else {
-                        hitCell.getShip().hit();
                         if (hitCell.getShip().isSunken()) {
                             numberOfAliveShips--;
-                        }
-
-                        if (hitCell.getShip().isSunken()) {
                             message.append(
                                 ANSICodes.FGREEN
                                 + "\ncolpito e affondato"
@@ -157,9 +155,7 @@ public final class Match {
         * Displays a different message, depending
         * on the success of the attempt
         */
-        if (isGameOver()) {
-            message.append(map.toString() + "\n");
-        } else {
+        if (!isGameOver()) {
             message.append(map.getMapGrid() + "\n");
         }
 
