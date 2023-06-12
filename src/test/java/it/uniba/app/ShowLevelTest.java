@@ -1,12 +1,11 @@
-package it.uniba.app.battleship;
+package it.uniba.app;
 
 import static it.uniba.app.App.showLevel;
-import static it.uniba.app.utils.OutputHandler.captureOutput;
+import static it.uniba.app.OutputHandler.captureOutput;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import it.uniba.app.Difficulty;
 import it.uniba.app.Difficulty.Level;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;

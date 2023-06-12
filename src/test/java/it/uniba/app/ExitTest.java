@@ -1,4 +1,4 @@
-package it.uniba.app.battleship;
+package it.uniba.app;
 
 import static it.uniba.app.App.exit;
 import static it.uniba.app.App.isRunning;
@@ -6,7 +6,6 @@ import static it.uniba.app.App.setRunning;
 
 import org.junit.jupiter.api.Test;
 
-import it.uniba.app.Shell;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 

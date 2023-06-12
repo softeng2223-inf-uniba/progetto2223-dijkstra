@@ -1,8 +1,8 @@
-package it.uniba.app.battleship;
+package it.uniba.app;
 
 import static it.uniba.app.App.showGrid;
+import static it.uniba.app.OutputHandler.captureOutput;
 import static it.uniba.app.App.setMatch;
-import static it.uniba.app.utils.OutputHandler.captureOutput;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;

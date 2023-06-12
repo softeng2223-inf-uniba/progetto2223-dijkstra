@@ -1,12 +1,8 @@
-package it.uniba.app.battleship;
+package it.uniba.app;
 
 import static it.uniba.app.App.isAMove;
 
 import org.junit.jupiter.api.Test;
-
-import it.uniba.app.Difficulty;
-import it.uniba.app.MapType;
-import it.uniba.app.Match;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.BeforeAll;

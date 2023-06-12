@@ -1,15 +1,14 @@
-package it.uniba.app.battleship;
+package it.uniba.app;
 
 import static it.uniba.app.App.revealGrid;
-import static it.uniba.app.utils.OutputHandler.captureOutput;
 import static it.uniba.app.App.setMatch;
+import static it.uniba.app.OutputHandler.captureOutput;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.BeforeAll;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import org.junit.jupiter.api.BeforeAll;
 
 /*
  * RevealGridTest - Test class used to check

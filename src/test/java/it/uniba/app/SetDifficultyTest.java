@@ -1,8 +1,5 @@
-package it.uniba.app.battleship;
+package it.uniba.app;
 
-import it.uniba.app.Difficulty;
-import it.uniba.app.MapType;
-import it.uniba.app.Match;
 import static it.uniba.app.App.setDifficulty;
 
 import org.junit.jupiter.api.Test;

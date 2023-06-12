@@ -1,9 +1,6 @@
-package it.uniba.app.battleship;
+package it.uniba.app;
 
 import org.junit.jupiter.api.Test;
-
-import it.uniba.app.Ship;
-import it.uniba.app.ShipType;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.BeforeAll;

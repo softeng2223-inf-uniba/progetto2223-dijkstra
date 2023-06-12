@@ -1,14 +1,9 @@
-package it.uniba.app.battleship;
+package it.uniba.app;
 
 import static it.uniba.app.App.play;
 
-import it.uniba.app.ANSICodes;
-import it.uniba.app.Difficulty;
-import it.uniba.app.MapType;
-import it.uniba.app.Match;
-
 import static it.uniba.app.App.setMatch;
-import static it.uniba.app.utils.OutputHandler.captureOutput;
+import static it.uniba.app.OutputHandler.captureOutput;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
