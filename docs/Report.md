@@ -4,8 +4,9 @@
 2. [Modello di dominio](#2-modello-di-dominio)
 3. [Requisiti specifici](#3-requisiti-specifici) <br>
     3.1 [Requisiti funzionali](#31-requisiti-funzionali) <br>
-    3.2 [Requisiti non funzionali](#32-requisiti-non-funzionali)
-4. [System Design](#4-system-design)
+    3.2 [Requisiti non funzionali](#32-requisiti-non-funzionali) <br>
+4. [System Design](#4-system-design) <br>
+    4.1 [Design Pattern impiegati](#41-design-pattern-impiegati) <br>
 5. [OO Design](#5-oo-design) <br>
     5.1 [Diagramma delle classi completo](#51-diagramma-delle-classi-completo) <br>
     5.2 [Diagrammi comando /gioca](#52-comando-gioca) <br>
@@ -224,7 +225,14 @@ Nel gioco della battaglia navale in singolo il tuo obiettivo è di distruggere t
 
 Nel contesto specifico di questo progetto, abbiamo valutato che la creazione di diagrammi avrebbe comportato un carico di lavoro aggiuntivo, senza fornire un valore significativo al nostro risultato finale (basti ad esempio pensare che un eventuale diagramma dei package non sarebbe potuto essere rappresentato, vista la presenza di un solo package all'interno dell'intero progetto) . Abbiamo quindi deciso di concentrare il nostro tempo sull'effettiva implementazione del software, assicurandoci comunque di mantenere una progettazione chiara e organizzata, anche se non formalmente documentata.
 
-Nonostante la mancanza di una rappresentazione architetturale esplicita, abbiamo seguito le best practice generali per sviluppare un software di qualità. Abbiamo posto particolare attenzione sull'applicazione del principio di _Information Hiding_, che ci ha permesso di nascondere i dettagli implementativi all'esterno dei moduli e favorire la modularità del nostro sistema. Altro principio di Object Design adottato è quello di _Presentazione Separata_ (applicato con la creazione della classe Shell) che consiste nel separare la parte di codice relativa alla presentazione da quella relativa al resto dell'applicazione.  Questo approccio ci ha aiutato a migliorare la manutenibilità del codice e ad adattarci facilmente a futuri cambiamenti senza influire sull'intero sistema.
+Nonostante la mancanza di una rappresentazione architetturale esplicita, abbiamo seguito le best practice generali per sviluppare un software di qualità. Abbiamo posto particolare attenzione sull'applicazione del principio di _Information Hiding_, che ci ha permesso di nascondere i dettagli implementativi all'esterno dei moduli e favorire la modularità del nostro sistema. Altro principio di Object Oriented Design adottato è quello di _Presentazione Separata_ (applicato con la creazione della classe Shell) che consiste nel separare la parte di codice relativa alla presentazione da quella relativa al resto dell'applicazione.  Questo approccio ci ha aiutato a migliorare la manutenibilità del codice e ad adattarci facilmente a futuri cambiamenti senza influire sull'intero sistema.
+
+<br>
+
+## **4.1 Design Pattern impiegati**
+
+In termini di Design Pattern impiegati, é stato fatto riferimento al design pattern *Singleton* per la definizione della classe `Shell`; tale scelta é stata adoperata in quanto, per il corretto funzionamento del programma, é necessario garantire l'univocitá dell'istanza di tale classe, poiché essa rappresenta il dispositivo terminale di output.
+
 <br>
 
 # **5. OO Design**
