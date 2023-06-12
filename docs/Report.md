@@ -16,7 +16,8 @@
 8. [Processo di Sviluppo e Organizzazione del Lavoro](#8-processo-di-sviluppo-e-organizzazione-del-lavoro) <br>
     8.1 [Processo di Sviluppo adottato](#81-processo-di-sviluppo-adottato) <br>
     8.2 [Organizzazione del Lavoro](#82-organizzazione-del-lavoro) <br>
-    8.3 [Tool Utilizzati](#83-tool-utilizzati)
+    8.3 [Tool Utilizzati](#83-tool-utilizzati) <br>
+    8.4 [Scelte progettuali intraprese](#84-scelte-progettuali-intraprese) <br>
 9. [Analisi Retrospettiva](#9-analisi-retrospettiva) <br>
     9.1 [Sprint 0](#91-sprint-0) <br>
     9.2 [Sprint 1](#92-sprint-1)
