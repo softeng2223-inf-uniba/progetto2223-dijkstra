@@ -340,6 +340,9 @@ public final class App {
         do {
             if (match != null) {
                 if (match.isGameOver()) {
+                    if (match.isTimeOver()) {
+                        Shell.printlnMessage("Il tempo è scaduto!\nHai perso!");
+                    }
                     resetGame();
                     maxMinutes = 0;
                 }

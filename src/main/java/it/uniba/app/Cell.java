@@ -20,7 +20,7 @@ public final class Cell {
      */
     public Cell(final Ship inShip) {
         hit = false;
-        setShip(inShip);
+        ship = inShip;
     }
     public void setShip(final Ship inShip) {
         ship = new Ship(inShip);
@@ -44,6 +44,10 @@ public final class Cell {
      */
     public void hit() {
         hit = true;
+        // Shell.printlnError(((Integer) ship.getHealthPoints()).toString());
+        if (ship != null) {
+            ship.hit();
+        }
     }
     public boolean isHit() {
         return hit;
