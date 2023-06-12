@@ -342,6 +342,7 @@ public final class App {
                 if (match.isGameOver()) {
                     if (match.isTimeOver()) {
                         Shell.printlnMessage("Il tempo è scaduto!\nHai perso!");
+                        revealGrid();
                     }
                     resetGame();
                     maxMinutes = 0;
@@ -353,6 +354,11 @@ public final class App {
             command = command.toLowerCase();
 
             String[] splittedCommand = command.split("\\s+");
+
+            if (splittedCommand.length == 0) {
+                splittedCommand = new String[1];
+                splittedCommand[0] = " ";
+            }
 
             if (splittedCommand.length > 2) {
                 Shell.printlnError("Comando inesistente o non riconosciuto.");

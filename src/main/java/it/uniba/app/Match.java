@@ -155,9 +155,7 @@ public final class Match {
         * Displays a different message, depending
         * on the success of the attempt
         */
-        if (isGameOver()) {
-            message.append(map.toString() + "\n");
-        } else {
+        if (!isGameOver()) {
             message.append(map.getMapGrid() + "\n");
         }
 
